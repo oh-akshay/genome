@@ -1,0 +1,216 @@
+{
+  "activities": [
+    {
+      "id": "ACT-GM-TUNNEL-CRAWL",
+      "title": "Tunnel Crawl",
+      "emoji": "🐾",
+      "environment": ["home", "school"],
+      "durationMin": 6,
+      "materials": [{ "name": "Tunnel/blanket over chairs" }],
+      "steps": [
+        { "text": "Set a tunnel with a blanket", "emoji": "🛖" },
+        { "text": "Place a toy at the far end" },
+        { "text": "Call child warmly; celebrate forward movement" }
+      ],
+      "observe": ["Alternating hand–knee pattern", "Moves forward 3–5m"],
+      "variations": ["Shorter tunnel", "Add a turn mid-tunnel"],
+      "cautions": ["Clear floor; supervise closely"],
+      "links": [
+        { "nodeId": "GM-CRAWL-01", "meetsExit": "Crawls 5m on hands & knees ×3" }
+      ],
+      "tags": ["gross-motor", "locomotion"]
+    },
+    {
+      "id": "ACT-GM-CRUISE-SOFA",
+      "title": "Sofa Cruise",
+      "emoji": "🛋️",
+      "environment": ["home", "school"],
+      "durationMin": 6,
+      "materials": [{ "name": "Stable sofa or low bench" }],
+      "steps": [
+        { "text": "Stand at sofa with support" },
+        { "text": "Place toys a small step to the side" },
+        { "text": "Encourage side steps; praise attempts" }
+      ],
+      "observe": ["Side steps while holding support"],
+      "variations": ["Lower toy height (easier)", "Increase distance (harder)"],
+      "cautions": ["Ensure stable surface; close supervision"],
+      "links": [
+        { "nodeId": "GM-CRUISE-01", "meetsExit": "Cruises 3 steps each direction ×2" }
+      ],
+      "tags": ["balance"]
+    },
+    {
+      "id": "ACT-GM-3-STEPS",
+      "title": "Three Brave Steps",
+      "emoji": "🚶",
+      "environment": ["home", "school"],
+      "durationMin": 4,
+      "steps": [
+        { "text": "Stand child; take a small step back" },
+        { "text": "Arms open: 'Come to me!'" },
+        { "text": "Celebrate 2–3 independent steps" }
+      ],
+      "observe": ["2–3 unaided steps"],
+      "variations": ["Reduce distance (easier)", "Add a soft target (harder)"],
+      "cautions": ["Safe, soft landing area"],
+      "links": [
+        { "nodeId": "GM-WALK-01", "meetsExit": "Walks 3 steps unaided ×2" }
+      ],
+      "tags": ["locomotion", "confidence"]
+    },
+
+    {
+      "id": "ACT-EX-SOUND-IMITATE",
+      "title": "Copy My Sounds",
+      "emoji": "🎶",
+      "environment": ["home", "school"],
+      "durationMin": 5,
+      "steps": [
+        { "text": "Model 'ba-ba'/'da-da' (fun tone)" },
+        { "text": "Pause 2–3s; wait for response" },
+        { "text": "Mirror child’s sounds back" }
+      ],
+      "observe": ["Consonant–vowel repetitions over ~10s"],
+      "variations": ["Add gestures: clap/wave", "Change tempo"],
+      "cautions": ["Avoid over-prompting"],
+      "links": [
+        { "nodeId": "EX-BABBLE-CANON-01", "meetsExit": "Consonant–vowel repetition ≥10s" }
+      ],
+      "tags": ["expressive"]
+    },
+    {
+      "id": "ACT-EX-NAMING-GAME",
+      "title": "Name & Show",
+      "emoji": "🗣️",
+      "environment": ["home", "school"],
+      "durationMin": 5,
+      "materials": [{ "name": "3 familiar objects" }],
+      "steps": [
+        { "text": "Place 3 familiar objects" },
+        { "text": "Ask: 'Where is the ball? Show me the ball.'" },
+        { "text": "Model pointing if needed; celebrate" }
+      ],
+      "observe": ["Consistent labeling attempts"],
+      "variations": ["Add 4–5 items", "Switch to action words"],
+      "links": [
+        { "nodeId": "EX-FIRST-WORDS-01", "meetsExit": "Says 3 distinct meaningful words across a day" }
+      ],
+      "tags": ["vocabulary"]
+    },
+
+    {
+      "id": "ACT-RC-NAME-GAME",
+      "title": "Name Game",
+      "emoji": "📣",
+      "environment": ["home", "school", "outdoors"],
+      "durationMin": 3,
+      "steps": [
+        { "text": "Gain attention calmly (touch shoulder)" },
+        { "text": "Say child's name once; wait up to 3s" },
+        { "text": "Smile/affirm when child orients" }
+      ],
+      "observe": ["Turns to name ≥3/5 trials"],
+      "variations": ["Increase distance", "Add mild distraction"],
+      "cautions": ["Avoid repeating name rapidly"],
+      "links": [
+        { "nodeId": "RC-NAME-ORIENT-01", "meetsExit": "Turns to name ≥3/5 trials" }
+      ],
+      "tags": ["receptive", "attention"]
+    },
+    {
+      "id": "ACT-RC-ONE-STEP",
+      "title": "One-Step Helper",
+      "emoji": "🧺",
+      "environment": ["home", "school"],
+      "durationMin": 4,
+      "materials": [{ "name": "Routine objects (cup, book, toy)" }],
+      "steps": [
+        { "text": "Say: 'Give the cup to Mama' + point/gesture" },
+        { "text": "Wait 3s; reduce cue if needed" },
+        { "text": "Praise success; rotate objects" }
+      ],
+      "observe": ["Follows 1-step direction ≥3/5 with gesture"],
+      "links": [
+        { "nodeId": "RC-FOLLOW-ONE-STEP-01", "meetsExit": "Follows 1-step direction ≥3/5 trials with gesture" }
+      ],
+      "tags": ["comprehension"]
+    },
+
+    {
+      "id": "ACT-SE-LOOK-SHARE",
+      "title": "Look & Share",
+      "emoji": "👀",
+      "environment": ["home", "school"],
+      "durationMin": 4,
+      "materials": [{ "name": "Interesting toy" }],
+      "steps": [
+        { "text": "Hold toy near face; say 'Look!'" },
+        { "text": "Wait for gaze shift" },
+        { "text": "Smile and label object" }
+      ],
+      "observe": ["Alternates gaze twice within 5s"],
+      "variations": ["Use puppets", "Use bubbles"],
+      "cautions": ["Avoid overwhelming stimuli"],
+      "links": [
+        { "nodeId": "SE-GAZE-SHIFT-01", "meetsExit": "Alternates gaze twice within 5s" }
+      ],
+      "tags": ["social", "joint-attention"]
+    },
+    {
+      "id": "ACT-SE-POINT-SHOW",
+      "title": "Point & Share",
+      "emoji": "👉",
+      "environment": ["home", "school", "outdoors"],
+      "durationMin": 3,
+      "steps": [
+        { "text": "Spot something fun; model pointing" },
+        { "text": "Say: 'Wow! Look at the ___!'" },
+        { "text": "Wait; celebrate child's point" }
+      ],
+      "observe": ["Spontaneous point to share interest"],
+      "links": [
+        { "nodeId": "SE-POINT-SHOW-01", "meetsExit": "Points to share interest ≥2 times/day" }
+      ],
+      "tags": ["gesture", "sharing"]
+    },
+
+    {
+      "id": "ACT-CO-FIND-CLOTH",
+      "title": "Find It Under the Cloth",
+      "emoji": "🧻",
+      "environment": ["home", "school"],
+      "durationMin": 4,
+      "materials": [{ "name": "Cloth & small toy" }],
+      "steps": [
+        { "text": "Hide toy under cloth while child watches" },
+        { "text": "Ask: 'Where did it go?'" },
+        { "text": "Let child uncover; repeat 3–4 trials" }
+      ],
+      "observe": ["Finds toy under cloth in ≥3/4 trials"],
+      "links": [
+        { "nodeId": "CO-OBJECT-PERM-01", "meetsExit": "Finds hidden toy under cloth ≥3/4 trials" }
+      ],
+      "tags": ["object-permanence"]
+    },
+
+    {
+      "id": "ACT-FM-GRASP-DROP",
+      "title": "Grasp & Drop",
+      "emoji": "🧊",
+      "environment": ["home", "school"],
+      "durationMin": 5,
+      "materials": [{ "name": "Medium blocks or soft balls" }],
+      "steps": [
+        { "text": "Offer objects to grasp" },
+        { "text": "Say: 'Take it… now drop!'" },
+        { "text": "Cycle 5–10 objects in a minute" }
+      ],
+      "observe": ["Grasp + release repeated"],
+      "links": [
+        { "nodeId": "FM-PALMAR-01", "meetsExit": "Grasp + release 5 objects in 1 minute" }
+      ],
+      "tags": ["fine-motor", "grasp"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "domains": [
+    { "id": "gross_motor", "name": "Gross Motor", "emoji": "🐾" },
+    { "id": "fine_motor", "name": "Fine Motor", "emoji": "✋" },
+    { "id": "communication_receptive", "name": "Communication — Receptive", "emoji": "👂" },
+    { "id": "communication_expressive", "name": "Communication — Expressive", "emoji": "🗣️" },
+    { "id": "social_emotional", "name": "Social & Emotional", "emoji": "🤝" },
+    { "id": "cognition", "name": "Cognition", "emoji": "🧠" },
+    { "id": "self_help", "name": "Self-Help", "emoji": "🧼" },
+    { "id": "sensory", "name": "Sensory", "emoji": "🌈" },
+    { "id": "executive", "name": "Early Executive", "emoji": "🎯" },
+    { "id": "early_literacy", "name": "Early Literacy", "emoji": "🔤" },
+    { "id": "early_numeracy", "name": "Early Numeracy", "emoji": "🔢" },
+    { "id": "play_creativity", "name": "Play & Creativity", "emoji": "🎨" }
+  ]
+}

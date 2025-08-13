@@ -21,6 +21,8 @@ export default function App() {
   const [planMaxMin, setPlanMaxMin] = useState<number>(10);
   const [focusId, setFocusId] = useState<string | null>(null);
   const [planExpanded, setPlanExpanded] = useState<Set<string>>(new Set());
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -136,6 +138,17 @@ export default function App() {
       });
   }, [genome, childAge, domainOrder]);
 
+  // search results (keep hooks before any early return)
+  const searchResults = useMemo(() => {
+    if (!genome) return [] as Node[];
+    const q = searchQuery.trim().toLowerCase();
+    if (!q) return [] as Node[];
+    const arr = genome.nodes.filter(n => n.name.toLowerCase().includes(q));
+    return arr
+      .sort((a,b)=> (a.ageBand?.typicalStart ?? 999) - (b.ageBand?.typicalStart ?? 999) || a.name.localeCompare(b.name))
+      .slice(0,10);
+  }, [genome, searchQuery]);
+
   if (err) {
     return (
       <div style={{ padding: 16, fontFamily: "system-ui", color: "#b91c1c" }}>
@@ -164,6 +177,18 @@ export default function App() {
         )
       : [];
 
+  // Search helpers
+  const emojiFor = (n: Node): string => {
+    if ((n as any).tags && (n as any).tags.length) {
+      for (const t of (n as any).tags) {
+        if ((icons as any)[t]) return (icons as any)[t];
+      }
+    }
+    if ((n as any).domain && (icons as any)[(n as any).domain]) return (icons as any)[(n as any).domain];
+    return "";
+  };
+  
+
   return (
     <div
       style={{
@@ -190,6 +215,42 @@ export default function App() {
           background: "#fafafa",
         }}
       >
+        {/* Search box */}
+        <div style={{ position:'relative', marginBottom: 8 }}>
+          <input
+            type="text"
+            placeholder="Search milestones…"
+            value={searchQuery}
+            onChange={(e)=>{ setSearchQuery(e.target.value); setSearchOpen(true); }}
+            onFocus={()=> setSearchOpen(true)}
+            onKeyDown={(e)=>{
+              if (e.key==='Escape'){ setSearchOpen(false); (e.target as HTMLInputElement).blur(); }
+              if (e.key==='Enter' && searchResults.length>0){ const n=searchResults[0]; setSelectedId(n.id); setFocusId(n.id); setSearchOpen(false); }
+            }}
+            style={{ width:'100%', padding:'8px 10px', border:'1px solid #e5e7eb', borderRadius:8 }}
+          />
+          {searchOpen && searchQuery.trim() && (
+            <ul style={{ position:'absolute', zIndex:100, top:'100%', left:0, right:0, background:'#fff', border:'1px solid #e5e7eb', borderRadius:8, margin:4, padding:4, listStyle:'none', maxHeight:260, overflow:'auto', boxShadow:'0 6px 24px rgba(0,0,0,0.12)' }}>
+              {searchResults.length===0 && (
+                <li style={{ padding:'8px 10px', color:'#6b7280', fontSize:12 }}>No matches</li>
+              )}
+              {searchResults.map(n => (
+                <li key={n.id}
+                    onMouseDown={(e)=>{ e.preventDefault(); setSelectedId(n.id); setFocusId(n.id); setSearchOpen(false); }}
+                    style={{ display:'flex', alignItems:'center', gap:8, padding:'6px 8px', cursor:'pointer', borderRadius:6 }}
+                    onMouseEnter={(e)=>{ (e.currentTarget as HTMLElement).style.background = '#f3f4f6' }}
+                    onMouseLeave={(e)=>{ (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
+                  <span style={{ fontSize:16 }}>{emojiFor(n)}</span>
+                  <div style={{ display:'grid' }}>
+                    <div style={{ fontWeight:600, fontSize:13 }}>{n.name} {n.ageBand && (<span style={{ fontWeight:400, color:'#6b7280' }}>({n.ageBand.typicalStart}–{n.ageBand.typicalEnd}m)</span>)}</div>
+                    <div style={{ fontSize:11, color:'#6b7280' }}>{n.domain || ''}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, gap: 8 }}>
           <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowPlan(true)}>Plan</button>
           <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowLegend(true)}>Legend</button>

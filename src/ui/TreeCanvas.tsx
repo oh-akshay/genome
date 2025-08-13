@@ -1,265 +1,423 @@
-import React from 'react'
-import * as d3 from 'd3'
-import type { Genome, Node } from '../types'
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Edge, Genome, Node } from "../types";
 
-type Props = {
-  genome: Genome
-  state: any
-  age: number
-  nextIds: Set<string>
-  expanded: Record<string, Set<string>>
-  colorFor: (n: Node) => string
-  onSelect: (n: Node) => void
-  onToggleNode: (ladderId: string, nodeId: string) => void
-  onExpandAll: (ladderId: string) => void
-  onCollapseAll: (ladderId: string) => void
+// simple tree building
+function buildChildrenIndex(nodes: Node[]): Map<string | null, Node[]> {
+  const map = new Map<string | null, Node[]>();
+  for (const n of nodes) {
+    const key = n.parentId;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key)!.push(n);
+  }
+  return map;
 }
 
-/** Fixed node dimensions so layout is stable regardless of label length */
-const NODE_W = 220
-const NODE_H = 72
-const COL_GAP = 120          // min horizontal gap between ladders
-const BASE_SIBLING_GAP = 90  // min vertical gap between siblings
-const T = 260                // ms for transitions
-const PADDING_X = 12
+type Props = {
+  genome: Genome;
+  icons: Record<string, string>;
+  domainOrder: Record<string, number>;
+  completed: Set<string>;
+  onSelect: (nodeId: string) => void;
+  selectedId: string | null;
+  focusId?: string | null;
+};
 
-export function TreeCanvas({
-  genome, state, nextIds, expanded,
-  colorFor, onSelect, onToggleNode, onExpandAll, onCollapseAll
-}: Props) {
-  const svgRef = React.useRef<SVGSVGElement>(null)
-  const spaceDownRef = React.useRef(false)
+type Camera = { x: number; y: number; k: number };
 
-  // Figma-like panning: hold spacebar to pan, wheel to zoom
-  React.useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => { if (e.code === 'Space') spaceDownRef.current = true }
-    const onKeyUp = (e: KeyboardEvent) => { if (e.code === 'Space') spaceDownRef.current = false }
-    window.addEventListener('keydown', onKeyDown)
-    window.addEventListener('keyup', onKeyUp)
+const NODE_W = 220;
+const NODE_H = 64;
+const X_GAP = 48;
+const Y_GAP = 18;
+const LAYER_GAP = 80;
+
+export default function TreeCanvas({ genome, icons, domainOrder, completed, onSelect, selectedId, focusId }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [cam, setCam] = useState<Camera>({ x: 0, y: 0, k: 1 });
+
+  // Expanded state: collapse all by default except the root
+  const [expanded, setExpanded] = useState<Set<string>>(() => {
+    const s = new Set<string>();
+    const roots = genome.ladders.map((l) => l.rootNodeId);
+    roots.forEach((r) => s.add(r));
+    return s;
+  });
+
+  const nodesById = useMemo(() => {
+    const m = new Map<string, Node>();
+    for (const n of genome.nodes) m.set(n.id, n);
+    return m;
+  }, [genome.nodes]);
+
+  const childrenIndex = useMemo(() => buildChildrenIndex(genome.nodes), [genome.nodes]);
+
+  const roots = useMemo(() => {
+    return genome.ladders
+      .map((l) => nodesById.get(l.rootNodeId))
+      .filter(Boolean) as Node[];
+  }, [genome.ladders, nodesById]);
+
+  // Expand ancestors to ensure focusId becomes visible
+  useEffect(() => {
+    if (!focusId) return;
+    const target = nodesById.get(focusId);
+    if (!target) return;
+    setExpanded((prev) => {
+      const s = new Set(prev);
+      let cur: Node | undefined = target;
+      while (cur && cur.parentId) {
+        s.add(cur.parentId);
+        cur = nodesById.get(cur.parentId);
+      }
+      return s;
+    });
+  }, [focusId, nodesById]);
+
+  // layout (hierarchical, respecting collapse)
+  const layout = useMemo(() => {
+    let yCursor = 0;
+    const positions = new Map<string, { x: number; y: number }>();
+    const visible: Node[] = [];
+
+    function layoutSubtree(node: Node, depth: number): number {
+      const kids = (childrenIndex.get(node.id) || []).slice();
+      const parentIsRoot = roots.some((r) => r.id === node.id);
+      kids.sort((a, b) => {
+        if (parentIsRoot) {
+          const ra = domainOrder[a.domain || ""] ?? 999;
+          const rb = domainOrder[b.domain || ""] ?? 999;
+          return ra - rb || (a.name || "").localeCompare(b.name || "");
+        }
+        const as = a.ageBand?.typicalStart ?? 999;
+        const bs = b.ageBand?.typicalStart ?? 999;
+        return as - bs || a.name.localeCompare(b.name);
+      });
+      const isOpen = expanded.has(node.id);
+      const myY = yCursor;
+      visible.push(node);
+      positions.set(node.id, { x: depth * (NODE_W + LAYER_GAP), y: myY });
+      yCursor += NODE_H + Y_GAP;
+
+      if (isOpen && kids.length) {
+        for (const child of kids) {
+          layoutSubtree(child, depth + 1);
+        }
+      }
+      return myY;
+    }
+
+    let maxX = 0;
+    let maxY = 0;
+
+    for (const r of roots) {
+      layoutSubtree(r, 0);
+      yCursor += NODE_H; // extra space between roots
+    }
+
+    for (const { x, y } of positions.values()) {
+      if (x > maxX) maxX = x;
+      if (y > maxY) maxY = y;
+    }
+
+    return {
+      positions,
+      visible,
+      bounds: { x: 0, y: 0, w: maxX + NODE_W, h: maxY + NODE_H },
+    };
+  }, [roots, childrenIndex, expanded]);
+
+  // panning/zooming
+  useEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    let dragging = false;
+    let last = { x: 0, y: 0 };
+
+    function mousedown(e: MouseEvent) {
+      dragging = true;
+      last = { x: e.clientX, y: e.clientY };
+    }
+    function mousemove(e: MouseEvent) {
+      if (!dragging) return;
+      const dx = e.clientX - last.x;
+      const dy = e.clientY - last.y;
+      last = { x: e.clientX, y: e.clientY };
+      setCam((c) => ({ ...c, x: c.x + dx, y: c.y + dy }));
+    }
+    function mouseup() {
+      dragging = false;
+    }
+    function wheel(e: WheelEvent) {
+      e.preventDefault();
+      const scale = Math.exp(-e.deltaY * 0.001); // smooth zoom
+      setCam((c) => {
+        const k = Math.min(2.5, Math.max(0.4, c.k * scale));
+        return { ...c, k };
+      });
+    }
+
+    el.addEventListener("mousedown", mousedown);
+    window.addEventListener("mousemove", mousemove);
+    window.addEventListener("mouseup", mouseup);
+    el.addEventListener("wheel", wheel, { passive: false });
+
     return () => {
-      window.removeEventListener('keydown', onKeyDown)
-      window.removeEventListener('keyup', onKeyUp)
-    }
-  }, [])
+      el.removeEventListener("mousedown", mousedown);
+      window.removeEventListener("mousemove", mousemove);
+      window.removeEventListener("mouseup", mouseup);
+      el.removeEventListener("wheel", wheel as any);
+    };
+  }, []);
 
-  React.useEffect(() => {
-    const svg = d3.select(svgRef.current!)
-    svg.selectAll('*').remove()
+  // click picking (toggle expand / select)
+  useEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
 
-    const width  = svgRef.current?.clientWidth  || 1200
-    const height = svgRef.current?.clientHeight || 800
-
-    // Root group + zoom
-    const rootG = svg.append('g')
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
-      .filter((ev: any) => {
-        if (ev.type === 'wheel') return true
-        // drag to pan only while holding Space
-        if (ev.type === 'mousedown' || ev.type === 'pointerdown') return spaceDownRef.current
-        return true
-      })
-      .scaleExtent([0.4, 2.5])
-      .on('zoom', (ev) => rootG.attr('transform', ev.transform.toString()))
-    svg.call(zoom as any).call(zoom.transform as any, d3.zoomIdentity.translate(24, 36).scale(0.95))
-
-    // Arrow marker for edges
-    svg.append('defs').append('marker')
-      .attr('id', 'arrow')
-      .attr('viewBox', '0 0 10 10')
-      .attr('refX', 10).attr('refY', 5)
-      .attr('markerWidth', 6).attr('markerHeight', 6).attr('orient', 'auto-start-reverse')
-      .append('path').attr('d', 'M 0 0 L 10 5 L 0 10 z').attr('fill', '#cbd5e1')
-
-    const colWidth = Math.max(NODE_W + COL_GAP, width / Math.max(1, genome.ladders.length))
-
-    // Text wrap helper: returns up to 2 lines with ellipsis
-    const measure = document.createElement('canvas').getContext('2d')!
-    measure.font = '600 14px Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'
-    const wrap2 = (s: string, maxPx: number) => {
-      const words = s.split(/\s+/)
-      const lines: string[] = []
-      let cur = ''
-      for (const w of words) {
-        const trial = cur ? `${cur} ${w}` : w
-        if (measure.measureText(trial).width <= maxPx) cur = trial
-        else { if (cur) lines.push(cur); cur = w }
-      }
-      if (cur) lines.push(cur)
-      if (lines.length <= 2) return lines
-      const keep = [lines[0], lines.slice(1).join(' ')]
-      let last = keep[1]
-      while (measure.measureText(last + '…').width > maxPx && last.length > 2) last = last.slice(0, -1)
-      keep[1] = last + '…'
-      return keep
+    const elSafe = el; // capture non-null for closures
+    function worldFromClient(clientX: number, clientY: number) {
+      const rect = elSafe.getBoundingClientRect();
+      const x = (clientX - rect.left - cam.x) / cam.k;
+      const y = (clientY - rect.top - cam.y) / cam.k;
+      return { x, y };
     }
 
-    // Draw each ladder as an independent column
-    genome.ladders.forEach((ladder, idx) => {
-      const ladderId = ladder.id
-      const nodes = genome.nodes.filter(n => n.ladderId === ladderId)
-      const byId: Record<string, Node> = Object.fromEntries(nodes.map(n => [n.id, n]))
-      const root = byId[ladder.rootNodeId]
-      if (!root) return
+    function onclick(e: MouseEvent) {
+      const pt = worldFromClient(e.clientX, e.clientY);
 
-      // Full children map (for chevrons)
-      const childrenFull = (id: string | null) => nodes.filter(n => n.parentId === id)
-      const hasChildMap: Record<string, boolean> = {}
-      for (const n of nodes) hasChildMap[n.id] = childrenFull(n.id).length > 0
-
-      // Pruned tree based on expanded set
-      const expandedSet = expanded[ladderId] ?? new Set<string>()
-      const buildPruned = (n: Node): any => ({
-        ...n,
-        children: expandedSet.has(n.id) ? childrenFull(n.id).map(buildPruned) : []
-      })
-      const h = d3.hierarchy(buildPruned(root))
-
-      // Auto vertical spacing based on visible nodes
-      const visibleCount = Math.max(1, h.descendants().length)
-      const usableH = Math.max(360, height - 160)
-      const vGap = Math.max(BASE_SIBLING_GAP, Math.min(130, Math.floor(usableH / Math.max(4, visibleCount / 1.25))))
-
-      // Tidy layout (stable ordering), then shift into the ladder column
-      const tree = d3.tree<any>()
-        .nodeSize([NODE_W + 80, NODE_H + vGap])
-        .separation((a, b) => (a.parent === b.parent ? 1 : 1.3))
-      const laid = tree(h)
-      const nodesLaid = laid.descendants()
-      const linksLaid = laid.links()
-
-      const baseX = idx * colWidth + 20
-      const baseY = 64
-
-      // Column header & controls
-      const head = rootG.append('g').attr('transform', `translate(${idx * colWidth}, 0)`)
-      head.append('text')
-        .attr('x', 8).attr('y', 18).attr('fill', '#0f172a').attr('font-weight', 800).attr('font-size', 14)
-        .text(ladder.name)
-      const controls = head.append('g').attr('transform', `translate(${colWidth - 165}, 2)`)
-      const mkBtn = (label: string, x: number, onClick: () => void) => {
-        const g = controls.append('g').attr('transform', `translate(${x},0)`).style('cursor', 'pointer').on('click', onClick)
-        g.append('rect').attr('width', 74).attr('height', 24).attr('rx', 8).attr('ry', 8).attr('fill', '#f1f5f9').attr('stroke', '#e2e8f0')
-        g.append('text').attr('x', 37).attr('y', 12).attr('text-anchor', 'middle').attr('dominant-baseline', 'middle').attr('font-size', 11).attr('fill', '#334155').text(label)
+      // detect chevron hit on any visible node
+      for (const n of layout.visible) {
+        const p = layout.positions.get(n.id)!;
+        const cx = p.x + 12;
+        const cy = p.y + NODE_H / 2;
+        const r = 10;
+        const dx = pt.x - cx;
+        const dy = pt.y - cy;
+        if (dx * dx + dy * dy <= r * r) {
+          // toggle
+          setExpanded((s) => {
+            const ns = new Set(s);
+            if (ns.has(n.id)) ns.delete(n.id);
+            else ns.add(n.id);
+            return ns;
+          });
+          return;
+        }
       }
-      mkBtn('Expand all', 0, () => onExpandAll(ladderId))
-      mkBtn('Collapse', 86, () => onCollapseAll(ladderId))
 
-      // Column divider
-      rootG.append('line').attr('x1', idx * colWidth).attr('y1', 26).attr('x2', idx * colWidth).attr('y2', height).attr('stroke', '#e5e7eb')
+      // detect node click
+      for (const n of layout.visible) {
+        const p = layout.positions.get(n.id)!;
+        if (
+          pt.x >= p.x &&
+          pt.x <= p.x + NODE_W &&
+          pt.y >= p.y &&
+          pt.y <= p.y + NODE_H
+        ) {
+          if ((n as Node).ageBand) onSelect(n.id);
+          return;
+        }
+      }
+    }
 
-      // Layers (edges behind nodes)
-      const edgesLayer = rootG.append('g')
-      const nodesLayer = rootG.append('g')
+    elSafe.addEventListener("click", onclick);
+    return () => elSafe.removeEventListener("click", onclick);
+  }, [layout, cam, onSelect]);
 
-      // --- EDGES (curved, animated) ---
-      const edgeSel = edgesLayer.selectAll('path.edge')
-        .data(linksLaid, (d: any) => `${ladderId}:${d.target.data.id}`)
+  // draw
+  useEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    const ctx = el.getContext("2d");
+    if (!ctx) return;
 
-      edgeSel.enter()
-        .append('path')
-        .attr('class', 'edge')
-        .attr('marker-end', 'url(#arrow)')
-        .attr('opacity', 0)
-        .attr('d', d => {
-          const x = baseX + d.source.x, y = baseY + d.source.y + NODE_H / 2
-          return `M${x},${y} C ${x},${y} ${x},${y} ${x},${y}`
-        })
-        .transition().duration(T).ease(d3.easeCubicOut)
-        .attr('opacity', 1)
-        .attr('d', d => {
-          const x1 = baseX + d.source.x, y1 = baseY + d.source.y + NODE_H / 2
-          const x2 = baseX + d.target.x, y2 = baseY + d.target.y + NODE_H / 2
-          const mx = (x1 + x2) / 2
-          return `M${x1},${y1} C ${mx},${y1} ${mx},${y2} ${x2},${y2}`
-        })
+    const DPR = window.devicePixelRatio || 1;
+    const cw = el.clientWidth * DPR;
+    const ch = el.clientHeight * DPR;
+    if (el.width !== cw || el.height !== ch) {
+      el.width = cw;
+      el.height = ch;
+    }
 
-      edgeSel.transition().duration(T).ease(d3.easeCubicOut)
-        .attr('opacity', 1)
-        .attr('d', d => {
-          const x1 = baseX + d.source.x, y1 = baseY + d.source.y + NODE_H / 2
-          const x2 = baseX + d.target.x, y2 = baseY + d.target.y + NODE_H / 2
-          const mx = (x1 + x2) / 2
-          return `M${x1},${y1} C ${mx},${y1} ${mx},${y2} ${x2},${y2}`
-        })
+    ctx.save();
+    ctx.scale(DPR, DPR);
+    ctx.clearRect(0, 0, el.clientWidth, el.clientHeight);
 
-      edgeSel.exit().transition().duration(T).attr('opacity', 0).remove()
+    // world transform
+    ctx.translate(cam.x, cam.y);
+    ctx.scale(cam.k, cam.k);
 
-      // --- NODES (fixed size, wrapped labels, chevrons) ---
-      const nodeSel = nodesLayer.selectAll('g.node')
-        .data(nodesLaid, (d: any) => `${ladderId}:${d.data.id}`)
+    // draw tree edges (parent→child) as light lines
+    ctx.strokeStyle = "#e5e7eb";
+    ctx.lineWidth = 1.2;
+      for (const n of layout.visible) {
+        if (!n.parentId) continue;
+        const a = layout.positions.get(n.parentId);
+        const b = layout.positions.get(n.id);
+        if (!a || !b) continue;
+      const ax = a.x + NODE_W;
+      const ay = a.y + NODE_H / 2;
+      const bx = b.x;
+      const by = b.y + NODE_H / 2;
 
-      const nodeEnter = nodeSel.enter()
-        .append('g')
-        .attr('class', 'node')
-        .attr('transform', (d: any) => {
-          const p = d.parent || d
-          return `translate(${baseX + p.x - NODE_W / 2},${baseY + p.y})`
-        })
-        .attr('opacity', 0)
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      // elbow
+      const mx = (ax + bx) / 2;
+      ctx.lineTo(mx, ay);
+      ctx.lineTo(mx, by);
+      ctx.lineTo(bx, by);
+      ctx.stroke();
+    }
 
-      // Node body
-      nodeEnter.append('rect')
-        .attr('width', NODE_W).attr('height', NODE_H)
-        .attr('rx', 12).attr('ry', 12)
-        .attr('fill', (d: any) => colorFor(d.data as Node))
-        .attr('stroke', (d: any) => nextIds.has((d.data as any).id) ? '#4c3cff' : '#fff')
-        .attr('stroke-width', (d: any) => nextIds.has((d.data as any).id) ? 2 : 1)
-        .style('cursor', 'pointer')
-        .on('click', (_, d: any) => onSelect(d.data as Node))
+    // draw cross-domain edges (dashed)
+    if (genome.edges && genome.edges.length) {
+      ctx.save();
+      ctx.setLineDash([6, 6]);
+      ctx.strokeStyle = "#9CA3AF";
+      ctx.lineWidth = 1;
+      for (const e of genome.edges) {
+        const a = layout.positions.get(e.source);
+        const b = layout.positions.get(e.target);
+        if (!a || !b) continue;
+        const ax = a.x + NODE_W / 2;
+        const ay = a.y + NODE_H / 2;
+        const bx = b.x + NODE_W / 2;
+        const by = b.y + NODE_H / 2;
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(bx, by);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
 
-      // Chevron (always visible if expandable in the FULL tree)
-      nodeEnter.append('text')
-        .attr('class', 'chev')
-        .attr('x', NODE_W - 16).attr('y', 18)
-        .text((d: any) => {
-          const id = (d.data as Node).id
-          if (!hasChildMap[id]) return ''
-          return (expandedSet.has(id) ? '▾' : '▸')
-        })
-        .on('click', (_, d: any) => onToggleNode(ladderId, (d.data as Node).id))
+    // helper: pick emoji by tags/domain
+    const emojiFor = (n: Node): string | null => {
+      if (n.tags && n.tags.length) {
+        for (const t of n.tags) {
+          if (icons[t]) return icons[t];
+        }
+      }
+      if (n.domain && icons[n.domain]) return icons[n.domain];
+      return null;
+    };
 
-      // Label (2-line wrap)
-      nodeEnter.each(function (d: any) {
-        const name: string = d.data.name
-        const lines = wrap2(name, NODE_W - PADDING_X * 2)
-        const label = d3.select(this).append('text').attr('class', 'label').attr('fill', '#0f172a')
-        lines.forEach((ln, i) => {
-          label.append('tspan').attr('x', PADDING_X).attr('y', 24 + i * 16).text(ln)
-        })
-      })
+    // draw nodes
+      for (const n of layout.visible) {
+        const p = layout.positions.get(n.id)!;
+        const isSelected = selectedId === n.id;
+        const isDone = completed.has(n.id);
 
-      // Level line
-      nodeEnter.append('text')
-        .attr('class', 'label-muted')
-        .attr('x', PADDING_X).attr('y', NODE_H - 10)
-        .text((d: any) => `lvl ${(state[d.data.id]?.level ?? 0).toFixed(1)}`)
+      // card
+      ctx.fillStyle = isDone ? "#ecfdf5" : isSelected ? "#eef2ff" : "#ffffff";
+      ctx.strokeStyle = isDone ? "#10b981" : isSelected ? "#6366f1" : "#d1d5db";
+      ctx.lineWidth = isSelected || isDone ? 2 : 1;
+      roundRect(ctx, p.x, p.y, NODE_W, NODE_H, 12);
+      ctx.fill();
+      ctx.stroke();
 
-      // Enter transition
-      nodeEnter.transition().duration(T).ease(d3.easeCubicOut)
-        .attr('opacity', 1)
-        .attr('transform', (d: any) => `translate(${baseX + d.x - NODE_W / 2},${baseY + d.y})`)
+      // chevron circle
+      const hasKids = (childrenIndex.get(n.id) || []).length > 0;
+      if (hasKids) {
+        const cx = p.x + 12;
+        const cy = p.y + NODE_H / 2;
+        ctx.fillStyle = expanded.has(n.id) ? "#10b981" : "#9ca3af";
+        ctx.beginPath();
+        ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+        ctx.fill();
 
-      // Update transition
-      nodeSel.transition().duration(T).ease(d3.easeCubicOut)
-        .attr('transform', (d: any) => `translate(${baseX + d.x - NODE_W / 2},${baseY + d.y})`)
-        .attr('opacity', 1)
-        .select('rect')
-          .attr('fill', (d: any) => colorFor(d.data as Node))
-          .attr('stroke', (d: any) => nextIds.has((d.data as any).id) ? '#4c3cff' : '#fff')
-          .attr('stroke-width', (d: any) => nextIds.has((d.data as any).id) ? 2 : 1)
+        // chevron
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 12px system-ui";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(expanded.has(n.id) ? "–" : "+", cx, cy + 0.5);
+      }
 
-      // Update chevrons for current expanded state
-      nodeSel.select<SVGTextElement>('text.chev')
-        .text((d: any) => {
-          const id = (d.data as Node).id
-          if (!hasChildMap[id]) return ''
-          return (expandedSet.has(id) ? '▾' : '▸')
-        })
+      // title with emoji
+      ctx.fillStyle = "#111827";
+      ctx.font = "600 13px Inter, system-ui, sans-serif";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "top";
+      const padX = 30;
+      const padY = 10;
+      const prefix = emojiFor(n);
+      const title = (prefix ? prefix + " " : "") + n.name;
+      wrapText(ctx, title, p.x + padX, p.y + padY, NODE_W - padX - 10, 16);
 
-      // Exit transition
-      nodeSel.exit().transition().duration(T).attr('opacity', 0).remove()
-    })
-  }, [genome, state, nextIds, expanded, colorFor, onSelect, onToggleNode, onExpandAll, onCollapseAll])
+      // age badge
+      if (n.ageBand) {
+        const txt = `${n.ageBand.typicalStart}–${n.ageBand.typicalEnd}m`;
+        ctx.fillStyle = "#065f46";
+        ctx.font = "11px Inter, system-ui, sans-serif";
+        ctx.textBaseline = "alphabetic";
+        ctx.fillText(txt, p.x + padX, p.y + NODE_H - 10);
+      }
+    }
 
-  return <svg ref={svgRef} />
+    ctx.restore();
+  }, [cam, genome.edges, layout, selectedId, childrenIndex, icons, completed]);
+
+  // Autofocus on selected/focused node
+  useEffect(() => {
+    const id = focusId || selectedId;
+    if (!id) return;
+    const p = layout.positions.get(id);
+    const el = canvasRef.current;
+    if (!p || !el) return;
+    const cx = el.clientWidth / 2;
+    const cy = el.clientHeight / 2;
+    setCam((c) => ({ ...c, x: cx - (p.x + NODE_W / 2) * c.k, y: cy - (p.y + NODE_H / 2) * c.k }));
+  }, [focusId, selectedId, layout]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ width: "100%", height: "100%", background: "#f8fafc", cursor: "grab" }}
+    />
+  );
+}
+
+// utils
+function roundRect(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  r: number
+) {
+  const rr = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rr, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rr);
+  ctx.arcTo(x + w, y + h, x, y + h, rr);
+  ctx.arcTo(x, y + h, x, y, rr);
+  ctx.arcTo(x, y, x + w, y, rr);
+  ctx.closePath();
+}
+
+function wrapText(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  maxWidth: number,
+  lineHeight: number
+) {
+  const words = text.split(" ");
+  let line = "";
+  let yy = y;
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + " ";
+    const metrics = ctx.measureText(testLine);
+    if (metrics.width > maxWidth && n > 0) {
+      ctx.fillText(line.trimEnd(), x, yy);
+      line = words[n] + " ";
+      yy += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  if (line) ctx.fillText(line.trimEnd(), x, yy);
 }

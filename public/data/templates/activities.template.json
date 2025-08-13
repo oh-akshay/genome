@@ -1,0 +1,24 @@
+{
+  "activities": [
+    {
+      "id": "ACT-UNIQUE-ID",
+      "title": "Activity Title",
+      "emoji": "🎯",
+      "environment": ["home", "school"],
+      "durationMin": 5,
+      "materials": [ { "name": "Optional material" } ],
+      "steps": [
+        { "text": "Step 1 instruction" },
+        { "text": "Step 2 instruction" }
+      ],
+      "observe": ["What to watch for"],
+      "variations": ["Easier option", "Harder option"],
+      "cautions": ["Safety note"],
+      "links": [
+        { "nodeId": "NODE-ID-FROM-GENOME", "meetsExit": "How this proves mastery" }
+      ],
+      "tags": ["gross_motor", "locomotion"]
+    }
+  ]
+}
+

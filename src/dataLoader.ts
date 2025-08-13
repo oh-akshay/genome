@@ -1,39 +1,59 @@
-// src/dataLoader.ts
-import type { Genome, Activity, ActivityIndex } from './types'
+import { ActivitiesDoc, Genome } from "./types";
 
-function publicUrl(path: string) {
-  // Works even if the app is deployed under a sub-path (e.g., GitHub Pages)
-  const base = (import.meta as any)?.env?.BASE_URL || '/'
-  return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
-}
-
-async function fetchJson<T>(path: string): Promise<T> {
-  const url = publicUrl(path)
-  const res = await fetch(url, { cache: 'no-cache' })
-  if (!res.ok) throw new Error(`Fetch failed (${res.status}) for ${url}`)
-  try {
-    return await res.json()
-  } catch (e: any) {
-    throw new Error(`Invalid JSON at ${url}: ${e.message}`)
-  }
+async function fetchJSON<T>(path: string): Promise<T> {
+  const res = await fetch(path);
+  if (!res.ok) throw new Error(`Failed to fetch ${path} (${res.status})`);
+  return res.json() as Promise<T>;
 }
 
 export async function loadGenome(): Promise<Genome> {
-  return fetchJson<Genome>('data/genome.json')
+  // Your app serves files under /data/...
+  return fetchJSON<Genome>("/data/genome.json");
 }
 
-export async function loadActivities(): Promise<ActivityIndex> {
-  // Try /data/activities/activities.json first, then fall back to /data/activities.json
-  let data: { activities: Activity[] } | null = null
-  let lastErr: any = null
-  for (const p of ['data/activities/activities.json', 'data/activities.json']) {
+export async function loadActivities(): Promise<ActivitiesDoc | null> {
+  // Try nested path first, then flat fallback
+  try {
+    return await fetchJSON<ActivitiesDoc>("/data/activities/activities.json");
+  } catch {
     try {
-      data = await fetchJson<{ activities: Activity[] }>(p)
-      break
-    } catch (e) { lastErr = e }
+      return await fetchJSON<ActivitiesDoc>("/data/activities.json");
+    } catch {
+      return null;
+    }
   }
-  if (!data) throw lastErr || new Error('activities.json not found')
-  const idx: ActivityIndex = {}
-  for (const a of data.activities) idx[a.id] = a
-  return idx
+}
+
+export async function loadIcons(): Promise<Record<string, string>> {
+  try {
+    const data = await fetchJSON<{ defaults: Record<string, string> }>(
+      "/data/metadata/icons.json"
+    );
+    return data.defaults || {};
+  } catch {
+    return {};
+  }
+}
+
+export async function loadDomainOrder(): Promise<string[]> {
+  try {
+    const data = await fetchJSON<{ domains: Array<{ id: string }> }>(
+      "/data/domains.json"
+    );
+    return (data.domains || []).map((d) => d.id);
+  } catch {
+    return [];
+  }
+}
+
+export type DomainMeta = { id: string; name: string; emoji?: string };
+export async function loadDomains(): Promise<DomainMeta[]> {
+  try {
+    const data = await fetchJSON<{ domains: DomainMeta[] }>(
+      "/data/domains.json"
+    );
+    return data.domains || [];
+  } catch {
+    return [];
+  }
 }

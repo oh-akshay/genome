@@ -1,108 +1,3038 @@
 {
-  "meta": { "version": "0.9.0", "updatedAt": "2025-08-13", "notes": "Comprehensive 0–36mo starter genome (single-parent chains per ladder)."},
+  "meta": {
+    "version": "1.0.0",
+    "updatedAt": "2025-08-13",
+    "notes": "0–4 years milestone genome integrating multiple developmental domains as tags. Every node is a milestone with domains as tags and cross-domain gates/relations."
+  },
   "ladders": [
-    { "id": "gross_motor.mobility", "name": "🐾 Gross Motor — Mobility", "rootNodeId": "GM-MOB-HEAD-CTRL-00" },
-    { "id": "gross_motor.posture", "name": "🐾 Gross Motor — Posture & Balance", "rootNodeId": "GM-POS-PRONE-00" },
-    { "id": "fine_motor.grasp", "name": "✋ Fine Motor — Grasp", "rootNodeId": "FM-GRASP-PALMAR-06" },
-    { "id": "fine_motor.manipulation", "name": "✋ Fine Motor — Manipulation", "rootNodeId": "FM-MANIP-TRANSFER-08" },
-    { "id": "communication.receptive", "name": "👂 Communication — Receptive", "rootNodeId": "RC-ATTN-SOUNDS-02" },
-    { "id": "communication.expressive", "name": "🗣️ Communication — Expressive", "rootNodeId": "EX-COO-02" },
-    { "id": "social.joint_attention", "name": "🤝 Social — Joint Attention", "rootNodeId": "SE-SHARED-AFFECT-04" },
-    { "id": "social.play", "name": "🎨 Social — Play", "rootNodeId": "SE-PLAY-SENSORY-04" },
-    { "id": "cognition.object", "name": "🧠 Cognition — Object", "rootNodeId": "CO-TRACK-04" },
-    { "id": "cognition.problem_solving", "name": "🧠 Cognition — Problem Solving", "rootNodeId": "CO-PROTO-PROBLEM-10" },
-    { "id": "self_help.feeding", "name": "🧼 Self-Help — Feeding", "rootNodeId": "SH-FEED-HANDS-04" },
-    { "id": "sensory.processing", "name": "🌈 Sensory — Processing", "rootNodeId": "SN-REGULATION-02" }
+    {
+      "id": "milestone.tree",
+      "name": "🌱 Early Childhood Development (0–4y)",
+      "rootNodeId": "DEV-ROOT"
+    }
   ],
   "nodes": [
-    { "id":"GM-MOB-HEAD-CTRL-00","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":null,"name":"🐾 Lifts head in prone (brief)","description":"Momentary head lift when on tummy.","ageBand":{"typicalStart":0,"typicalEnd":2},"exitCriteria":["Lifts head ≥2s in prone, 2 times"],"tags":["prone","head-control"]},
-    { "id":"GM-MOB-ROLL-02","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-HEAD-CTRL-00","name":"🐾 Rolls tummy↔back","description":"Rolls both directions with emerging control.","ageBand":{"typicalStart":2,"typicalEnd":5},"exitCriteria":["Rolls both directions in a day"],"tags":["rolling"]},
-    { "id":"GM-MOB-PROP-06","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-ROLL-02","name":"🐾 Props on forearms","description":"Bears weight on forearms in prone.","ageBand":{"typicalStart":4,"typicalEnd":6},"exitCriteria":["Props for 10s in prone, 2 trials"]},
-    { "id":"GM-MOB-SIT-UNSUP-07","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-PROP-06","name":"🐾 Sits without support (brief)","description":"Independently sits for a few seconds.","ageBand":{"typicalStart":6,"typicalEnd":8},"exitCriteria":["Sits 10s without support, 2 trials"],"tags":["sitting"]},
-    { "id":"GM-MOB-CRAWL-09","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-SIT-UNSUP-07","name":"🐾 Hands-and-knees crawling 3–5m","description":"Alternating hand–knee pattern.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Crawls 5m ×3"],"tags":["locomotion"]},
-    { "id":"GM-MOB-PULL-TO-STAND-10","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-CRAWL-09","name":"🐾 Pulls to stand","description":"Pulls to stand at furniture.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Pulls to stand at furniture ×3"],"tags":["standing"]},
-    { "id":"GM-MOB-CRUISE-11","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-PULL-TO-STA[ND]-10","name":"🐾 Cruises 3 steps each side","description":"Side steps while holding furniture.","ageBand":{"typicalStart":10,"typicalEnd":13},"exitCriteria":["Cruises 3 steps each side ×2"],"tags":["balance"]},
-    { "id":"GM-MOB-WALK-12","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-CRUISE-11","name":"🐾 Independent steps (2–3)","description":"Takes 2–3 unaided steps.","ageBand":{"typicalStart":11,"typicalEnd":15},"exitCriteria":["Walks 3 steps unaided ×2"],"tags":["locomotion","balance"]},
-    { "id":"GM-MOB-WALK-STEADY-15","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-WALK-12","name":"🐾 Walks steadily with turns","description":"Walks across room with turns.","ageBand":{"typicalStart":14,"typicalEnd":18},"exitCriteria":["Walks 10m with turn ×2"]},
-    { "id":"GM-MOB-RUN-18","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-WALK-STEADY-15","name":"🐾 Runs forward (short)","description":"Short run bursts with control.","ageBand":{"typicalStart":18,"typicalEnd":24},"exitCriteria":["Runs 5m without fall ×2"]},
-    { "id":"GM-MOB-JUMP-24","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-RUN-18","name":"🐾 Jumps in place with two feet","description":"Both feet off ground briefly.","ageBand":{"typicalStart":24,"typicalEnd":30},"exitCriteria":["Two-foot jump clear off ground ×3"]},
-    { "id":"GM-MOB-STAIRS-30","ladderId":"gross_motor.mobility","domain":"gross_motor","parentId":"GM-MOB-JUMP-24","name":"🐾 Walks stairs with rail (step-to)","description":"Ascends/descends with support.","ageBand":{"typicalStart":30,"typicalEnd":36},"exitCriteria":["Ascend/descend 4 steps with rail"]},
-
-    { "id":"GM-POS-PRONE-00","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":null,"name":"🐾 Tummy time tolerance","description":"Calms and tolerates 3–5m tummy time.","ageBand":{"typicalStart":0,"typicalEnd":2},"exitCriteria":["Tolerates 3m prone without distress"]},
-    { "id":"GM-POS-PRONE-PUSHUP-04","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-PRONE-00","name":"🐾 Prone on extended arms","description":"Pushes up on hands, chest elevated.","ageBand":{"typicalStart":4,"typicalEnd":6},"exitCriteria":["Supports on hands 10s ×2"]},
-    { "id":"GM-POS-SIT-REACH-08","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-PRONE-PUSHUP-04","name":"🐾 Sitting reach & recover","description":"Reaches outside base, returns upright.","ageBand":{"typicalStart":7,"typicalEnd":10},"exitCriteria":["Leans to reach and returns, 3 directions"]},
-    { "id":"GM-POS-KNEEL-09","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-SIT-REACH-08","name":"🐾 Tall kneel hold","description":"Holds tall kneel at support.","ageBand":{"typicalStart":8,"typicalEnd":11},"exitCriteria":["Tall kneel 10s ×2"]},
-    { "id":"GM-POS-HALF-KNEEL-10","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-KNEEL-09","name":"🐾 Half-kneel transitions","description":"Transitions via half-kneel to stand.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Half-kneel to stand ×3"]},
-    { "id":"GM-POS-SQUAT-RETRIEVE-16","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-HALF-KNEEL-10","name":"🐾 Squat to retrieve","description":"Squats to pick object, stands up.","ageBand":{"typicalStart":15,"typicalEnd":20},"exitCriteria":["Squat → pick up → stand ×3"]},
-    { "id":"GM-POS-BALANCE-ONE-FOOT-30","ladderId":"gross_motor.posture","domain":"gross_motor","parentId":"GM-POS-SQUAT-RETRIEVE-16","name":"🐾 Brief single-leg stance (assisted)","description":"Holds 1–2s with light support.","ageBand":{"typicalStart":28,"typicalEnd":36},"exitCriteria":["Single-leg stance 2s with support"]},
-
-    { "id":"FM-GRASP-PALMAR-06","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":null,"name":"✋ Palmar grasp (ulnar→radial)","description":"Holds medium object against palm.","ageBand":{"typicalStart":5,"typicalEnd":7},"exitCriteria":["Holds medium object ≥10s"],"tags":["grasp"]},
-    { "id":"FM-GRASP-RADIAL-07","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-PALMAR-06","name":"✋ Radial palmar grasp","description":"Uses thumb side to grasp.","ageBand":{"typicalStart":6,"typicalEnd":8},"exitCriteria":["Radial palmar grasp 3 objects"]},
-    { "id":"FM-GRASP-RAKE-08","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-RADIAL-07","name":"✋ Raking grasp (pellets)","description":"Rakes small items with fingers.","ageBand":{"typicalStart":7,"typicalEnd":9},"exitCriteria":["Rakes 5 pellets to palm"]},
-    { "id":"FM-GRASP-CRUDE-PINCH-09","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-RAKE-08","name":"✋ Crude pincer grasp","description":"Thumb+side of index pinch.","ageBand":{"typicalStart":8,"typicalEnd":10},"exitCriteria":["Picks 5 small items with crude pinch"]},
-    { "id":"FM-GRASP-PINCER-10","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-CRUDE-PINCH-09","name":"✋ Neat pincer grasp","description":"Thumb + index tip pinch.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Neat pincer 5 items within 1m"]},
-    { "id":"FM-GRASP-RELEASE-12","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-PINCER-10","name":"✋ Controlled release into container","description":"Releases small item into cup.","ageBand":{"typicalStart":11,"typicalEnd":14},"exitCriteria":["Release 5/6 into container"]},
-    { "id":"FM-GRASP-STACK-18","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-RELEASE-12","name":"✋ Stack 2–4 blocks","description":"Stacks simple tower.","ageBand":{"typicalStart":16,"typicalEnd":20},"exitCriteria":["Stacks 4 blocks"]},
-    { "id":"FM-GRASP-TURN-PAGES-24","ladderId":"fine_motor.grasp","domain":"fine_motor","parentId":"FM-GRASP-STACK-18","name":"✋ Turns board-book pages","description":"Turns pages singly/2 at a time.","ageBand":{"typicalStart":20,"typicalEnd":26},"exitCriteria":["Turns ≥3 pages"]},
-
-    { "id":"FM-MANIP-TRANSFER-08","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":null,"name":"✋ Transfers hand-to-hand","description":"Moves object between hands.","ageBand":{"typicalStart":6,"typicalEnd":9},"exitCriteria":["Transfers 5 objects hand-to-hand"]},
-    { "id":"FM-MANIP-BANG-08","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-TRANSFER-08","name":"✋ Bangs objects together","description":"Midline banging play.","ageBand":{"typicalStart":7,"typicalEnd":10},"exitCriteria":["Bangs objects together 3×"]},
-    { "id":"FM-MANIP-CONTAINER-12","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-BANG-08","name":"✋ Takes objects out of container","description":"Empties small container.","ageBand":{"typicalStart":11,"typicalEnd":14},"exitCriteria":["Empties 6 items"]},
-    { "id":"FM-MANIP-INTO-14","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-CONTAINER-12","name":"✋ Puts objects into container","description":"Places items into container.","ageBand":{"typicalStart":12,"typicalEnd":16},"exitCriteria":["Places 6 items into container"]},
-    { "id":"FM-MANIP-SCRIBBLE-18","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-INTO-14","name":"✋ Spontaneous scribble","description":"Makes marks with crayon.","ageBand":{"typicalStart":16,"typicalEnd":20},"exitCriteria":["Marks paper with intent, 3s"]},
-    { "id":"FM-MANIP-STRING-24","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-SCRIBBLE-18","name":"✋ Large bead lacing (assist)","description":"Threads 1–2 big beads with help.","ageBand":{"typicalStart":24,"typicalEnd":30},"exitCriteria":["Laces 2 beads with assist"]},
-    { "id":"FM-MANIP-SORT-30","ladderId":"fine_motor.manipulation","domain":"fine_motor","parentId":"FM-MANIP-STRING-24","name":"✋ Sorts by one feature","description":"Sorts by color/shape simple.","ageBand":{"typicalStart":28,"typicalEnd":36},"exitCriteria":["Sorts 6 items by one feature"]},
-
-    { "id":"RC-ATTN-SOUNDS-02","ladderId":"communication.receptive","domain":"communication_receptive","parentId":null,"name":"👂 Alerts to sounds/voice","description":"Quiets or startles to voice/sound.","ageBand":{"typicalStart":0,"typicalEnd":3},"exitCriteria":["Consistent orient/quieting to voice"]},
-    { "id":"RC-RESP-TO-NAME-08","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-ATTN-SOUNDS-02","name":"👂 Responds to name","description":"Orients within ~2–3s to name.","ageBand":{"typicalStart":7,"typicalEnd":10},"exitCriteria":["Turns to name ≥3/5 trials"]},
-    { "id":"RC-COMMON-OBJECTS-10","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-RESP-TO-NAME-08","name":"👂 Understands common objects","description":"Looks/points to named objects.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Identifies 3/5 familiar items"]},
-    { "id":"RC-ONE-STEP-12","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-COMMON-OBJECTS-10","name":"👂 Follows 1-step routine dirs (with gesture)","description":"Understands simple daily commands.","ageBand":{"typicalStart":12,"typicalEnd":16},"exitCriteria":["Follows 1-step ≥3/5 with gesture"]},
-    { "id":"RC-BODY-PARTS-18","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-ONE-STEP-12","name":"👂 Identifies body parts (3–5)","description":"Points to named parts.","ageBand":{"typicalStart":16,"typicalEnd":22},"exitCriteria":["Points 3 body parts"]},
-    { "id":"RC-ONE-STEP-NO-GEST-20","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-BODY-PARTS-18","name":"👂 Follows 1-step without gesture","description":"Understands single verbal command.","ageBand":{"typicalStart":18,"typicalEnd":24},"exitCriteria":["Follows 1-step ≥3/5 no gesture"]},
-    { "id":"RC-CHOICE-24","ladderId":"communication.receptive","domain":"communication_receptive","parentId":"RC-ONE-STEP-NO-GEST-20","name":"👂 Understands simple choices","description":"Chooses between two named items.","ageBand":{"typicalStart":22,"typicalEnd":28},"exitCriteria":["Chooses correctly 4/5"]},
-
-    { "id":"EX-COO-02","ladderId":"communication.expressive","domain":"communication_expressive","parentId":null,"name":"🗣️ Coos & vowel play","description":"Long vowels/cooing when content.","ageBand":{"typicalStart":1,"typicalEnd":3},"exitCriteria":["Cooing in 2 contexts/day"]},
-    { "id":"EX-BABBLE-CANON-06","ladderId":"communication.expressive","domain":"communication_expressive","parentId":"EX-COO-02","name":"🗣️ Canonical babble","description":"Reduplicated CV syllables.","ageBand":{"typicalStart":6,"typicalEnd":10},"exitCriteria":["CV repetitions ≥10s"]},
-    { "id":"EX-GESTURE-09","ladderId":"communication.expressive","domain":"communication_expressive","parentId":"EX-BABBLE-CANON-06","name":"🗣️ Early gestures (reach, wave)","description":"Waves, reaches intentionally.","ageBand":{"typicalStart":8,"typicalEnd":12},"exitCriteria":["Waves or reaches on request 2×"]},
-    { "id":"EX-FIRST-WORDS-12","ladderId":"communication.expressive","domain":"communication_expressive","parentId":"EX-GESTURE-09","name":"🗣️ First words (1–3)","description":"Meaningful words for familiar items.","ageBand":{"typicalStart":10,"typicalEnd":14},"exitCriteria":["3 distinct meaningful words/day"]},
-    { "id":"EX-WORDS-10-15","ladderId":"communication.expressive","domain":"communication_expressive","parentId":"EX-FIRST-WORDS-12","name":"🗣️ Vocabulary 10–15 words","description":"Growing lexicon of labels.","ageBand":{"typicalStart":14,"typicalEnd":20},"exitCriteria":["Uses 10 words across week"]},
-    { "id":"EX-TWO-WORD-24","ladderId":"communication.expressive","domain":"communication_expressive","parentId":"EX-WORDS-10-15","name":"🗣️ Two-word combinations","description":"Simple combinations (want ball).","ageBand":{"typicalStart":22,"typicalEnd":28},"exitCriteria":["2-word combos ≥2/day"]},
-
-    { "id":"SE-SHARED-AFFECT-04","ladderId":"social.joint_attention","domain":"social_emotional","parentId":null,"name":"🤝 Shared affect (smile/eye contact)","description":"Mutual smiles, eye contact in play.","ageBand":{"typicalStart":2,"typicalEnd":6},"exitCriteria":["Mutual eye contact + smile in play 3×"]},
-    { "id":"SE-GAZE-SHIFT-09","ladderId":"social.joint_attention","domain":"social_emotional","parentId":"SE-SHARED-AFFECT-04","name":"🤝 Alternating gaze adult↔object","description":"Shifts gaze twice within 5s.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Alternates gaze twice within 5s"]},
-    { "id":"SE-POINT-REQUEST-12","ladderId":"social.joint_attention","domain":"social_emotional","parentId":"SE-GAZE-SHIFT-09","name":"🤝 Points to request","description":"Index finger to request object.","ageBand":{"typicalStart":11,"typicalEnd":15},"exitCriteria":["Points to request in 2 contexts/day"]},
-    { "id":"SE-POINT-SHOW-14","ladderId":"social.joint_attention","domain":"social_emotional","parentId":"SE-POINT-REQUEST-12","name":"🤝 Points to show/share","description":"Spontaneous show-point.","ageBand":{"typicalStart":12,"typicalEnd":16},"exitCriteria":["Points to share interest ≥2/day"]},
-    { "id":"SE-SHOW-GIVE-16","ladderId":"social.joint_attention","domain":"social_emotional","parentId":"SE-POINT-SHOW-14","name":"🤝 Shows or gives to share","description":"Brings item to adult to show/give.","ageBand":{"typicalStart":14,"typicalEnd":18},"exitCriteria":["Shows/gives to share 2/day"]},
-
-    { "id":"SE-PLAY-SENSORY-04","ladderId":"social.play","domain":"social_emotional","parentId":null,"name":"🎨 Sensory exploration","description":"Mouthing, shaking, looking.","ageBand":{"typicalStart":2,"typicalEnd":6},"exitCriteria":["Explores 3+ modalities in a session"]},
-    { "id":"SE-PLAY-CAUSE-08","ladderId":"social.play","domain":"social_emotional","parentId":"SE-PLAY-SENSORY-04","name":"🎨 Cause-effect play","description":"Bangs/presses for effect.","ageBand":{"typicalStart":6,"typicalEnd":10},"exitCriteria":["Repeats cause-effect 3× intentionally"]},
-    { "id":"SE-PLAY-FUNCTIONAL-12","ladderId":"social.play","domain":"social_emotional","parentId":"SE-PLAY-CAUSE-08","name":"🎨 Functional play with objects","description":"Uses objects appropriately.","ageBand":{"typicalStart":11,"typicalEnd":15},"exitCriteria":["Functional use 3 different toys"]},
-    { "id":"SE-PLAY-SIMPLE-PRETEND-18","ladderId":"social.play","domain":"social_emotional","parentId":"SE-PLAY-FUNCTIONAL-12","name":"🎨 Simple pretend (feed doll)","description":"Single-step pretend actions.","ageBand":{"typicalStart":18,"typicalEnd":24},"exitCriteria":["2 pretend acts in play"]},
-    { "id":"SE-PLAY-PARALLEL-24","ladderId":"social.play","domain":"social_emotional","parentId":"SE-PLAY-SIMPLE-PRETEND-18","name":"🎨 Parallel play near peers","description":"Plays alongside without conflict.","ageBand":{"typicalStart":22,"typicalEnd":30},"exitCriteria":["Plays near peer 5m without issue"]},
-
-    { "id":"CO-TRACK-04","ladderId":"cognition.object","domain":"cognition","parentId":null,"name":"🧠 Visual tracking 180°","description":"Smoothly tracks moving object.","ageBand":{"typicalStart":2,"typicalEnd":5},"exitCriteria":["Tracks 180° smoothly"]},
-    { "id":"CO-OBJECT-PERM-08","ladderId":"cognition.object","domain":"cognition","parentId":"CO-TRACK-04","name":"🧠 Object permanence (cloth)","description":"Finds toy under single cloth.","ageBand":{"typicalStart":8,"typicalEnd":12},"exitCriteria":["Finds toy under cloth ≥3/4"]},
-    { "id":"CO-CONTAINER-12","ladderId":"cognition.object","domain":"cognition","parentId":"CO-OBJECT-PERM-08","name":"🧠 In/out container play","description":"Understands containment.","ageBand":{"typicalStart":11,"typicalEnd":14},"exitCriteria":["Places 6 items into container"]},
-    { "id":"CO-TRIAL-ERR-18","ladderId":"cognition.object","domain":"cognition","parentId":"CO-CONTAINER-12","name":"🧠 Trial-and-error solutions","description":"Varies actions to achieve outcome.","ageBand":{"typicalStart":16,"typicalEnd":22},"exitCriteria":["Varies action patterns 2 solutions"]},
-    { "id":"CO-SIMPLE-CATEGORY-24","ladderId":"cognition.object","domain":"cognition","parentId":"CO-TRIAL-ERR-18","name":"🧠 Simple categorization","description":"Sorts by one feature.","ageBand":{"typicalStart":24,"typicalEnd":30},"exitCriteria":["Sorts 6 items correctly"]},
-
-    { "id":"CO-PROTO-PROBLEM-10","ladderId":"cognition.problem_solving","domain":"cognition","parentId":null,"name":"🧠 Pulls cloth to get toy","description":"Uses intermediary tool/cloth.","ageBand":{"typicalStart":9,"typicalEnd":13},"exitCriteria":["Pulls cloth to retrieve toy 2×"]},
-    { "id":"CO-BLOCK-TOWER-18","ladderId":"cognition.problem_solving","domain":"cognition","parentId":"CO-PROTO-PROBLEM-10","name":"🧠 Builds tower of 4 blocks","description":"Plans sequence to stack.","ageBand":{"typicalStart":16,"typicalEnd":22},"exitCriteria":["Stacks 4 blocks upright"]},
-    { "id":"CO-PUZZLE-24","ladderId":"cognition.problem_solving","domain":"cognition","parentId":"CO-BLOCK-TOWER-18","name":"🧠 Simple inset puzzle (2–3 pieces)","description":"Matches shapes to board.","ageBand":{"typicalStart":22,"typicalEnd":28},"exitCriteria":["Places 2–3 pieces correctly"]},
-    { "id":"CO-MULTI-STEP-30","ladderId":"cognition.problem_solving","domain":"cognition","parentId":"CO-PUZZLE-24","name":"🧠 Two-step problem (tool + reach)","description":"Combines steps to solve.","ageBand":{"typicalStart":28,"typicalEnd":36},"exitCriteria":["Solves 2-step problem 2×"]},
-
-    { "id":"SH-FEED-HANDS-04","ladderId":"self_help.feeding","domain":"self_help","parentId":null,"name":"🧼 Hands to mouth (self-soothe)","description":"Brings hands to mouth for regulation.","ageBand":{"typicalStart":1,"typicalEnd":4},"exitCriteria":["Self-soothes with hands 2 contexts"]},
-    { "id":"SH-FEED-HOLDS-BOTTLE-06","ladderId":"self_help.feeding","domain":"self_help","parentId":"SH-FEED-HANDS-04","name":"🧼 Holds bottle with help","description":"Assists holding bottle.","ageBand":{"typicalStart":5,"typicalEnd":7},"exitCriteria":["Holds bottle during feed 2×"]},
-    { "id":"SH-FEED-FINGER-FOODS-10","ladderId":"self_help.feeding","domain":"self_help","parentId":"SH-FEED-HOLDS-BOTTLE-06","name":"🧼 Finger-feeds soft pieces","description":"Self-feeds small soft foods.","ageBand":{"typicalStart":9,"typicalEnd":12},"exitCriteria":["Finger-feeds 6 pieces safely"]},
-    { "id":"SH-FEED-SPOON-SELF-15","ladderId":"self_help.feeding","domain":"self_help","parentId":"SH-FEED-FINGER-FOODS-10","name":"🧼 Attempts self-spoon","description":"Brings loaded spoon to mouth.","ageBand":{"typicalStart":14,"typicalEnd":18},"exitCriteria":["Self-spoon 3 bites, minimal spill"]},
-    { "id":"SH-FEED-OPEN-CUP-18","ladderId":"self_help.feeding","domain":"self_help","parentId":"SH-FEED-SPOON-SELF-15","name":"🧼 Sips from open cup (assist)","description":"Drinks from open cup with help.","ageBand":{"typicalStart":16,"typicalEnd":22},"exitCriteria":["Sips 3 times with assist"]},
-    { "id":"SH-FEED-OPEN-CUP-INDEP-30","ladderId":"self_help.feeding","domain":"self_help","parentId":"SH-FEED-OPEN-CUP-18","name":"🧼 Drinks from open cup (indep)","description":"Open-cup control with low spill.","ageBand":{"typicalStart":28,"typicalEnd":36},"exitCriteria":["Drinks 30ml with minimal spill"]},
-
-    { "id":"SN-REGULATION-02","ladderId":"sensory.processing","domain":"sensory","parentId":null,"name":"🌈 Calms with co-regulation","description":"Settles with caregiver support.","ageBand":{"typicalStart":0,"typicalEnd":3},"exitCriteria":["Calms in 2m with routine support"]},
-    { "id":"SN-TOLERATE-TUMMY-03","ladderId":"sensory.processing","domain":"sensory","parentId":"SN-REGULATION-02","name":"🌈 Tolerates positional change","description":"Tolerates tummy/back/side changes.","ageBand":{"typicalStart":2,"typicalEnd":5},"exitCriteria":["Tolerates 3 position changes"]},
-    { "id":"SN-TACTILE-EXPLORE-06","ladderId":"sensory.processing","domain":"sensory","parentId":"SN-TOLERATE-TUMMY-03","name":"🌈 Tactile exploration (hands)","description":"Explores varied textures.","ageBand":{"typicalStart":4,"typicalEnd":8},"exitCriteria":["Explores 3 textures without aversion"]},
-    { "id":"SN-AUD-LOCALIZE-08","ladderId":"sensory.processing","domain":"sensory","parentId":"SN-TACTILE-EXPLORE-06","name":"🌈 Localizes sound source","description":"Turns toward sound source.","ageBand":{"typicalStart":7,"typicalEnd":10},"exitCriteria":["Turns to sound both sides 3×"]},
-    { "id":"SN-VESTIB-ROLL-12","ladderId":"sensory.processing","domain":"sensory","parentId":"SN-AUD-LOCALIZE-08","name":"🌈 Enjoys gentle movement","description":"Tolerates slow rocking/rolling.","ageBand":{"typicalStart":10,"typicalEnd":14},"exitCriteria":["Accepts 3 movement types calmly"]},
-    { "id":"SN-TOLERATE-GROOM-24","ladderId":"sensory.processing","domain":"sensory","parentId":"SN-VESTIB-ROLL-12","name":"🌈 Tolerates grooming routines","description":"Accepts hair/face/hand wipes.","ageBand":{"typicalStart":20,"typicalEnd":30},"exitCriteria":["Accepts grooming 3/4 contexts"]}
+    {
+      "id": "DEV-ROOT",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": null,
+      "name": "Birth: Reflexive responses",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 0,
+        "typicalEnd": 1
+      },
+      "exitCriteria": [
+        "Exhibits key newborn reflexes (Moro, rooting, grasping)"
+      ],
+      "description": "At birth, infants display reflexive behaviors (like startling at loud sounds, rooting for a nipple, grasping a finger). These automatic responses help them survive and form the basis for later voluntary movements.",
+      "signals": [
+        "Newborn reflexes (startle, suck) are present from day one",
+        "Gradually becomes more calm with gentle soothing as reflexes integrate"
+      ],
+      "activities": [
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust",
+        "Offer opportunities for reflexes to be triggered naturally (touch cheek to elicit rooting) and ensure a safe, comforting environment"
+      ]
+    },
+    {
+      "id": "GM-HEAD-02",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "DEV-ROOT",
+      "name": "Lifts head in prone (brief)",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 2,
+        "typicalEnd": 4
+      },
+      "exitCriteria": [
+        "Holds head up for a few seconds during tummy time"
+      ],
+      "description": "When placed on the tummy, the infant briefly lifts their head up against gravity. This early gross motor milestone builds neck strength and marks the beginning of anti-gravity control.",
+      "signals": [
+        "Lifts head in prone easily",
+        "Begins to lift head momentarily during tummy time"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-FOREARM-PROP-03",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-HEAD-02",
+      "name": "Props on forearms (lifts chest)",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 3,
+        "typicalEnd": 5
+      },
+      "exitCriteria": [
+        "Pushes up onto forearms for several seconds"
+      ],
+      "description": "Lying on the tummy, the baby pushes up onto forearms, lifting the chest off the surface. This milestone indicates growing upper body strength and better head control.",
+      "signals": [
+        "Lifts head in prone (brief) easily",
+        "Begins to push up onto forearms during tummy time"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-ROLL-TB-04",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-FOREARM-PROP-03",
+      "name": "Rolls from tummy to back",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 4,
+        "typicalEnd": 6
+      },
+      "exitCriteria": [
+        "Rolls completely over without help"
+      ],
+      "description": "From a prone (tummy-down) position, the infant learns to roll onto their back. This first roll typically happens accidentally at first and then becomes intentional, helping baby explore movement and position changes.",
+      "signals": [
+        "Props on forearms (lifts chest) easily",
+        "Begins to roll from tummy to back occasionally"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-ROLL-BT-05",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-ROLL-TB-04",
+      "name": "Rolls from back to tummy",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 5,
+        "typicalEnd": 7
+      },
+      "exitCriteria": [
+        "Rolls completely over without help"
+      ],
+      "description": "Now the baby can roll from their back onto their tummy. This direction typically comes a little later and requires more strength and coordination, indicating improved core and neck control.",
+      "signals": [
+        "Rolls from tummy to back easily",
+        "Begins to twist and roll from back to side or tummy"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-SIT-SUP-05",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-ROLL-TB-04",
+      "name": "Sits with support",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 5,
+        "typicalEnd": 7
+      },
+      "exitCriteria": [
+        "Sits propped or held for 30 seconds"
+      ],
+      "description": "With assistance (like a caregiver holding or a pillow propping), the baby can maintain a sitting position. Supported sitting allows the infant to view the world upright and strengthens trunk muscles.",
+      "signals": [
+        "Rolls from tummy to back easily",
+        "Begins to sit with support (propped up) for short periods"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-SIT-UNSUP-06",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-SIT-SUP-05",
+      "name": "Sits without support (brief)",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 8
+      },
+      "exitCriteria": [
+        "Sits upright without support for 10 seconds"
+      ],
+      "description": "The baby gains the ability to sit upright independently for a short time. Initially they may balance for only a few seconds before toppling, but this shows developing core strength and balance.",
+      "signals": [
+        "Sits with support easily",
+        "Begins to sit unsupported for a few moments before tipping over"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-CRAWL-PREP-07",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-SIT-UNSUP-06",
+      "name": "Rocks on hands and knees",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 7,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Holds hands-and-knees position and rocks back and forth"
+      ],
+      "description": "On all fours, the baby starts rocking back and forth. This crawling preparation strengthens arms and legs and indicates the infant is figuring out how to move forward.",
+      "signals": [
+        "Sits without support (brief) easily",
+        "Begins to get into hands-and-knees position and rock to prepare for crawling"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-CRAWL-08",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-CRAWL-PREP-07",
+      "name": "Crawls on hands and knees",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 8,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Crawls forward at least a few paces"
+      ],
+      "description": "The infant can move forward on hands and knees (classic crawling). They coordinate arm and leg movements to explore the environment, which builds strength and bilateral coordination.",
+      "signals": [
+        "Rocks on hands and knees easily",
+        "Begins to crawl on hands and knees, moving a short distance before stopping"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-PULL-STAND-09",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-CRAWL-08",
+      "name": "Pulls to stand",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 11
+      },
+      "exitCriteria": [
+        "Pulls self to standing using furniture"
+      ],
+      "description": "Using stable support (like furniture or an adult’s hands), the baby pulls themselves up from the floor into a standing position. This milestone shows increased leg strength and curiosity about upright viewing.",
+      "signals": [
+        "Crawls on hands and knees easily",
+        "Begins to pull up to stand while holding onto furniture or a caregiver"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-CRUISE-10",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-PULL-STAND-09",
+      "name": "Cruises along furniture",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 10,
+        "typicalEnd": 12
+      },
+      "exitCriteria": [
+        "Shuffles sideways holding onto furniture"
+      ],
+      "description": "While holding onto furniture for support, the infant steps side-to-side to move around. This cruising behavior allows them to practice weight shifting and leg movements needed for independent walking.",
+      "signals": [
+        "Pulls to stand easily",
+        "Begins to sidestep while holding onto furniture (cruising)"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-STAND-11",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-CRUISE-10",
+      "name": "Stands without support",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 11,
+        "typicalEnd": 13
+      },
+      "exitCriteria": [
+        "Stands alone for 5 seconds"
+      ],
+      "description": "The child can stand upright independently for a brief period. They are finding their balance on two feet without holding onto anything, which is a key step toward walking.",
+      "signals": [
+        "Cruises along furniture easily",
+        "Begins to stand momentarily without holding onto anything"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-WALK-12",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-STAND-11",
+      "name": "Walks independently",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 15
+      },
+      "exitCriteria": [
+        "Takes at least 5 independent steps"
+      ],
+      "description": "Around the one-year mark, the toddler takes their first independent steps. Walking opens up a new world of exploration and requires balance, coordination, and confidence.",
+      "signals": [
+        "Stands without support easily",
+        "Begins to walk independently, taking a few steps before plopping down"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-RUN-16",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-WALK-12",
+      "name": "Runs with coordination",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 16,
+        "typicalEnd": 20
+      },
+      "exitCriteria": [
+        "Runs without falling for several yards"
+      ],
+      "description": "The toddler’s walking speeds up into a true run. They can move quickly on two feet, demonstrating improved balance and coordination, although they may still fall frequently as they refine this skill.",
+      "signals": [
+        "Walks independently easily",
+        "Begins to run (moves faster than a walk) but may still occasionally trip"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-KICK-22",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-RUN-16",
+      "name": "Kicks a ball forward",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 22,
+        "typicalEnd": 26
+      },
+      "exitCriteria": [
+        "Kicks a ball forward at least 2 feet"
+      ],
+      "description": "The child can intentionally kick a ball forward while standing. This skill requires balancing on one foot briefly and coordinating a kicking motion, integrating gross motor and eye-foot coordination.",
+      "signals": [
+        "Runs with coordination easily",
+        "Begins to kick a ball, sometimes only nudging it gently forward"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-JUMP-24",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-KICK-22",
+      "name": "Jumps with two feet",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Jumps forward with both feet leaving the ground"
+      ],
+      "description": "Around age 2, the child learns to jump off the ground with both feet together. This ability to coordinate a simultaneous takeoff and land improves leg strength and balance.",
+      "signals": [
+        "Kicks a ball forward easily",
+        "Begins to jump in place, getting both feet off the ground momentarily"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-STAIRS-28",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-JUMP-24",
+      "name": "Walks up stairs with support",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 28,
+        "typicalEnd": 34
+      },
+      "exitCriteria": [
+        "Climbs up stairs with support or railing"
+      ],
+      "description": "The child can climb up stairs when holding an adult’s hand or a railing. They typically put both feet on each step before advancing (marking time) as they build strength and coordination for stairs.",
+      "signals": [
+        "Jumps with two feet easily",
+        "Begins to walk up stairs when holding a hand or railing, though may take one step at a time with both feet on each step"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-BALANCE-36",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-STAIRS-28",
+      "name": "Balances on one foot briefly",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 40
+      },
+      "exitCriteria": [
+        "Balances on one foot for 2-3 seconds"
+      ],
+      "description": "At about 3 years, the child can stand on one foot without support, though just for a couple of seconds. This balancing act indicates improved postural control and muscle strength.",
+      "signals": [
+        "Walks up stairs with support easily",
+        "Begins to balance momentarily on one foot (often while trying to kick or play)"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "GM-HOP-42",
+      "ladderId": "milestone.tree",
+      "domain": "gross_motor",
+      "parentId": "GM-BALANCE-36",
+      "name": "Hops on one foot",
+      "tags": [
+        "gross_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Hops forward on one foot at least one time"
+      ],
+      "description": "By age 3½ to 4, the child can hop forward on one foot. Hopping requires strength, balance, and coordination to lift off and land on the same foot repeatedly, reflecting advanced gross motor development.",
+      "signals": [
+        "Balances on one foot briefly easily",
+        "Begins to hop forward on one foot, though may manage only one or two hops at first"
+      ],
+      "activities": [
+        "Allow plenty of floor time to practice movements freely",
+        "Use toys to motivate reaching, rolling, crawling or walking"
+      ]
+    },
+    {
+      "id": "FM-SWIPE-03",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "DEV-ROOT",
+      "name": "Swipes at dangling objects",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 3,
+        "typicalEnd": 5
+      },
+      "exitCriteria": [
+        "Bats at a hanging toy repeatedly"
+      ],
+      "description": "Lying on their back, the infant swats at toys or objects hanging above them (like a mobile). These swiping motions are an early form of voluntary arm movement and hand-eye coordination.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to swipe at toys overhead, sometimes making contact"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-REACH-04",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-SWIPE-03",
+      "name": "Reaches for objects intentionally",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 4,
+        "typicalEnd": 6
+      },
+      "exitCriteria": [
+        "Successfully reaches and touches a desired object"
+      ],
+      "description": "The infant begins to reach out deliberately to grab or touch objects within view. This marks a shift from reflexive batting to purposeful fine motor control guided by vision.",
+      "signals": [
+        "Swipes at dangling objects easily",
+        "Begins to reach out toward toys, sometimes grasping them briefly"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-PALMAR-05",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-REACH-04",
+      "name": "Grasps objects with palm",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 5,
+        "typicalEnd": 7
+      },
+      "exitCriteria": [
+        "Grasps a toy in palm for a few seconds"
+      ],
+      "description": "Using a raking motion of the whole hand, the baby can close their fingers around a toy and hold it in their palm (palmar grasp). This skill shows increasing hand strength and control.",
+      "signals": [
+        "Reaches for objects intentionally easily",
+        "Begins to grasp toys placed in hand, though grip may be fleeting"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-TRANSFER-06",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-PALMAR-05",
+      "name": "Transfers object hand-to-hand",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Moves a toy from one hand to the other"
+      ],
+      "description": "The baby can move an object from one hand to the other hand. Transferring items shows improved coordination and that the two sides of the body are beginning to work together intentionally.",
+      "signals": [
+        "Grasps objects with palm easily",
+        "Begins to pass a held object from one hand to the other"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-RAKE-07",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-TRANSFER-06",
+      "name": "Raking grasp of small objects",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 7,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Rakes a small item into hand"
+      ],
+      "description": "Using all fingers in a scratching motion, the baby can rake small objects toward themselves and pick them up. The raking grasp is a precursor to finer thumb-and-finger pinching skills.",
+      "signals": [
+        "Transfers object hand-to-hand easily",
+        "Begins to rake small bits of food or toys toward themselves with fingers"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-CRUDE-PINCER-08",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-RAKE-07",
+      "name": "Crude pincer grasp (thumb and side of finger)",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 8,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Picks up a small item with thumb against side of finger"
+      ],
+      "description": "The infant begins using the thumb in opposition to the fingers. In a crude pincer grasp, the thumb presses against the side of the index finger to hold small items (like a cereal piece), an important step toward precise pinching.",
+      "signals": [
+        "Raking grasp of small objects easily",
+        "Begins to use thumb and forefinger (though not fingertip) to pick up small objects"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-PINCER-10",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-CRUDE-PINCER-08",
+      "name": "Neat pincer grasp (thumb and forefinger)",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 10,
+        "typicalEnd": 12
+      },
+      "exitCriteria": [
+        "Picks up a small item using thumb and index fingertip"
+      ],
+      "description": "The baby can pick up tiny objects using the tips of the thumb and index finger. This neat pincer grasp is a refined fine motor skill that enables tasks like self-feeding small pieces of food.",
+      "signals": [
+        "Crude pincer grasp (thumb and side of finger) easily",
+        "Begins to pick up very small objects between thumb and fingertip"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "SH-FINGERFEED-09",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "FM-RAKE-07",
+      "name": "Feeds self finger foods",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 14
+      },
+      "exitCriteria": [
+        "Eats small finger foods independently"
+      ],
+      "description": "Using their developing grasp, the baby can pick up small bits of food (like cereal or fruit pieces) and feed themselves. Finger feeding reflects growing hand-mouth coordination and independence in eating.",
+      "signals": [
+        "Raking grasp of small objects easily",
+        "Begins to pick up small food pieces and bring them to mouth (with some spills)"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-SPOON-15",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-FINGERFEED-09",
+      "name": "Uses spoon or cup with assistance",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 15,
+        "typicalEnd": 20
+      },
+      "exitCriteria": [
+        "Takes a few bites or sips with a spoon or cup, with help"
+      ],
+      "description": "With an adult’s help, the child practices using a spoon to eat or a sippy cup to drink. They may make a mess, but attempting utensils is a step toward independent feeding and fine motor coordination.",
+      "signals": [
+        "Feeds self finger foods easily",
+        "Begins to try using a spoon (often spills) or holds a cup with help"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-DRESS-ASSIST-12",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-FINGERFEED-09",
+      "name": "Assists in dressing (holds out arm/foot)",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Holds out arm or leg during dressing routine"
+      ],
+      "description": "The child becomes an active participant in dressing. They will extend an arm for a sleeve or a foot for a pant leg when prompted. Assisting with dressing shows growing awareness and motor planning in daily routines.",
+      "signals": [
+        "Feeds self finger foods easily",
+        "Begins to cooperate during dressing, e.g., sticks arm into sleeve when getting dressed"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-DRESS-HELP-18",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-DRESS-ASSIST-12",
+      "name": "Dresses with adult help",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Helps put on or take off at least one clothing item"
+      ],
+      "description": "The toddler participates more in getting dressed. They might push arms through sleeves, attempt to put on a hat, or pull off socks with an adult guiding. This reflects improved motor skills and desire for independence.",
+      "signals": [
+        "Assists in dressing (holds out arm/foot) easily",
+        "Begins to pull off loose clothing (like socks or hat) and helps push arm/leg through clothing when asked"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-UNDRESS-24",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-DRESS-HELP-18",
+      "name": "Removes simple clothing (hat, socks)",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Pulls off an easy clothing item (like socks) independently"
+      ],
+      "description": "Now the toddler can take off some easy clothing pieces on their own, such as pulling off socks, a loose hat, or mittens. Undressing typically comes before independent dressing and shows increased self-care ability.",
+      "signals": [
+        "Dresses with adult help easily",
+        "Begins to pull off accessories or simple clothes (e.g., takes off shoes or hat without help)"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-POTTY-TRAIN-24",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-UNDRESS-24",
+      "name": "Begins potty training with assistance",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Sits on potty when placed and attempts to go"
+      ],
+      "description": "The child shows readiness for toilet training: staying dry for short periods, indicating discomfort with wet diapers, or showing interest in the bathroom. With adult guidance, they start practicing sitting on the potty and understanding its use.",
+      "signals": [
+        "Removes simple clothing (hat, socks) easily",
+        "Begins to show signs of potty readiness (e.g., notices a dirty diaper, sits on potty briefly with encouragement)"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-PULL-PANTS-30",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-UNDRESS-24",
+      "name": "Pulls pants up/down (with help)",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Pulls pants down or up with minimal assistance"
+      ],
+      "description": "The child can tug their pants or underwear down and up, especially during potty training (though they might need help with tricky fasteners). This skill shows improved arm strength and coordination in dressing tasks.",
+      "signals": [
+        "Removes simple clothing (hat, socks) easily",
+        "Begins to push pants down (or pull them up) partway when getting dressed or using the potty"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-POTTY-IND-36",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-POTTY-TRAIN-24",
+      "name": "Uses toilet independently",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Uses the toilet and manages clothing with minimal help"
+      ],
+      "description": "By around 3 years, many children can use the toilet on their own. They recognize the urge to go, communicate their need, manage their clothing (mostly), and handle basic wiping with little or no assistance, achieving a major self-care milestone.",
+      "signals": [
+        "Begins potty training with assistance easily",
+        "Begins to consistently use the potty or toilet when needed, with only occasional accidents or reminders"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "SH-DRESS-IND-36",
+      "ladderId": "milestone.tree",
+      "domain": "self_help",
+      "parentId": "SH-PULL-PANTS-30",
+      "name": "Dresses self with minimal help",
+      "tags": [
+        "self_help"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Puts on most clothes without needing much help"
+      ],
+      "description": "Around age 3 to 4, the child can get dressed mostly by themselves. They can put on pants, a shirt, socks, and shoes (though fasteners like buttons or laces might still be tricky). They now have the coordination and memory of dressing routines to be largely independent in this area.",
+      "signals": [
+        "Pulls pants up/down (with help) easily",
+        "Begins to put on simple clothing (like pants or a shirt) by themselves, needing only a little assistance or a reminder"
+      ],
+      "activities": [
+        "Include the child in daily routines (dressing, feeding) to let them practice skills",
+        "Give choices (\"Which shirt do you want?\") to build decision-making and independence"
+      ]
+    },
+    {
+      "id": "FM-CONTAINER-12",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-TRANSFER-06",
+      "name": "Puts objects into a container",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 16
+      },
+      "exitCriteria": [
+        "Places at least 3 objects into a container"
+      ],
+      "description": "The infant/toddler loves putting toys into boxes or containers (and dumping them out). This simple play behavior is actually a fine motor and cognitive skill, requiring grasp and release control as well as understanding of in/out.",
+      "signals": [
+        "Transfers object hand-to-hand easily",
+        "Begins to drop or place toys into a box or bowl during play"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-STACK-16",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-CONTAINER-12",
+      "name": "Stacks 3-4 blocks",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 16,
+        "typicalEnd": 22
+      },
+      "exitCriteria": [
+        "Stacks at least 3 blocks"
+      ],
+      "description": "The toddler can stack a small tower of blocks (about 3-4 high) before it topples. Stacking demonstrates hand-eye coordination, grasp and release control, and an emerging understanding of spatial balance.",
+      "signals": [
+        "Puts objects into a container easily",
+        "Begins to stack a couple of blocks, though towers may quickly fall"
+      ],
+      "activities": [
+        "Provide safe objects of various sizes to grasp and explore",
+        "Play games that involve picking up, dropping, or stacking objects"
+      ]
+    },
+    {
+      "id": "FM-SCRIBBLE-16",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-CONTAINER-12",
+      "name": "Scribbles spontaneously",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 16,
+        "typicalEnd": 20
+      },
+      "exitCriteria": [
+        "Makes random marks on paper for a few seconds"
+      ],
+      "description": "When given a crayon or marker, the toddler will make uncontrolled scribble marks on paper. These early scribbles are an important fine motor exercise and the very beginning of drawing and writing skills.",
+      "signals": [
+        "Puts objects into a container easily",
+        "Begins to scribble on paper when given a crayon (lots of random lines and dots)"
+      ],
+      "activities": [
+        "Offer crayons and paper for free scribbling and drawing",
+        "Encourage drawing shapes or letters as a game, without pressure"
+      ]
+    },
+    {
+      "id": "FM-DRAW-SHAPE-30",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-SCRIBBLE-16",
+      "name": "Draws simple shapes (circle, line)",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Creates recognizable shape(s) on paper"
+      ],
+      "description": "By around 2½-3 years, the child can deliberately draw simple shapes like a single straight line or a rough circle. This indicates improved fine motor control and hand-eye coordination, as well as the cognitive understanding of shapes.",
+      "signals": [
+        "Scribbles spontaneously easily",
+        "Begins to attempt specific drawings, such as making circular motions or straight lines, instead of just random scribbles"
+      ],
+      "activities": [
+        "Offer crayons and paper for free scribbling and drawing",
+        "Encourage drawing shapes or letters as a game, without pressure"
+      ]
+    },
+    {
+      "id": "FM-DRAW-PERSON-42",
+      "ladderId": "milestone.tree",
+      "domain": "fine_motor",
+      "parentId": "FM-DRAW-SHAPE-30",
+      "name": "Draws a person with features",
+      "tags": [
+        "fine_motor"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Draws a figure with at least head and limbs"
+      ],
+      "description": "Around age 3½-4, the child's drawings of people evolve from mere circles to include features: typically a circular head with eyes (dots) and maybe lines for arms and legs. This milestone shows fine motor precision and representational thinking.",
+      "signals": [
+        "Draws simple shapes (circle, line) easily",
+        "Begins to draw people or animals as circles with lines (adding eyes, arms, etc.)"
+      ],
+      "activities": [
+        "Offer crayons and paper for free scribbling and drawing",
+        "Encourage drawing shapes or letters as a game, without pressure"
+      ]
+    },
+    {
+      "id": "COG-CURIOUS-LOOK-02",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "DEV-ROOT",
+      "name": "Stares at new faces or objects",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 2,
+        "typicalEnd": 5
+      },
+      "exitCriteria": [
+        "Visually fixates on a new object or face for several seconds"
+      ],
+      "description": "Even as a young infant, the child shows curiosity by intently studying unfamiliar sights. They might gaze longer at a new toy or an interesting pattern. This sustained looking is an early sign of curiosity and visual exploration.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to focus attention on new people or toys, quietly observing them"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-EXPLORE-06",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-CURIOUS-LOOK-02",
+      "name": "Explores objects with mouth and hands",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Frequently mouths or shakes new objects to explore them"
+      ],
+      "description": "The baby actively explores by grabbing objects and putting them in the mouth, banging, or shaking them. This sensory exploration is how infants gather information about the world and is a foundation of curiosity and problem-solving.",
+      "signals": [
+        "Stares at new faces or objects easily",
+        "Begins to mouth, bang, or shake every object they get their hands on as a way to explore"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-OBJECT-PERM-08",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-EXPLORE-06",
+      "name": "Searches for hidden objects (object permanence)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 8,
+        "typicalEnd": 12
+      },
+      "exitCriteria": [
+        "Searches for a toy hidden under a cover"
+      ],
+      "description": "The baby understands object permanence – that objects still exist even when out of sight. They will actively look for a toy that’s been partially or fully hidden. This cognitive leap underlies later hide-and-seek play and memory development.",
+      "signals": [
+        "Explores objects with mouth and hands easily",
+        "Begins to look for toys that you cover with a blanket or hide behind your back"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "SE-POINT-ASK-15",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "COG-OBJECT-PERM-08",
+      "name": "Points or gestures to ask about things",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 15,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Points at an object and vocalizes to inquire about it"
+      ],
+      "description": "The child uses nonverbal communication (pointing, showing, reaching) to get information or share interest. For example, they might point to an unfamiliar object or person and vocalize (“Eh?”) to ask \"What is that?\" This joint attention is a key social-cognitive skill fueling language learning and curiosity.",
+      "signals": [
+        "Searches for hidden objects (object permanence) easily",
+        "Begins to point at interesting objects or people and looks to caregiver as if asking about it"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "EX-ASK-WHAT-24",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "SE-POINT-ASK-15",
+      "name": "Asks simple \"what\" or \"where\" questions",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Asks simple questions (uses \"what\" or \"where\" at least once)"
+      ],
+      "description": "With burgeoning language, the toddler starts asking basic questions about the world. They might say “What’s that?” or “Where kitty go?” These simple questions demonstrate growing curiosity, language skills, and the desire to understand explanations from adults.",
+      "signals": [
+        "Points or gestures to ask about things easily",
+        "Begins to use single words like \"what?\" or raise intonation at objects (indicating a question) to learn names or locations"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-ASK-WHY-36",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-ASK-WHAT-24",
+      "name": "Frequently asks \"why\" questions",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 42
+      },
+      "exitCriteria": [
+        "Frequently asks \"why\" during daily activities"
+      ],
+      "description": "Around 3 years old, the classic “Why?” phase begins. The child asks reason-seeking questions about everything (“Why is the sky blue?”). This relentless questioning highlights cognitive development (cause-effect understanding) and growing verbal skills.",
+      "signals": [
+        "Asks simple \"what\" or \"where\" questions easily",
+        "Begins to ask \"Why?\" about various things throughout the day, showing a drive to understand reasons"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "COG-PREDICT-42",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "EX-ASK-WHY-36",
+      "name": "Predicts what might happen next",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Makes a guess about an outcome in a story or game"
+      ],
+      "description": "By age 3½-4, the child can make simple predictions. For example, during a story they might guess what comes next, or they’ll say “It’s going to fall!” about a block tower. This ability to anticipate outcomes shows advanced cognitive processing and understanding of cause and effect.",
+      "signals": [
+        "Frequently asks \"why\" questions easily",
+        "Begins to guess or anticipate outcomes (e.g., says what's going to happen next in a familiar story or when observing an event)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-PULL-CLOTH-08",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-OBJECT-PERM-08",
+      "name": "Pulls cloth or string to obtain object",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 8,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Pulls a cloth to retrieve a toy on it"
+      ],
+      "description": "If a desired toy is on a blanket or attached to a string, the baby figures out to pull the blanket or string to bring the toy closer. This is an early problem-solving strategy (means-ends understanding) demonstrating the child’s ability to use one object to get another.",
+      "signals": [
+        "Searches for hidden objects (object permanence) easily",
+        "Begins to pull on a blanket or string if a toy is out of reach, trying to bring the toy closer"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-TRIAL-ERROR-12",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-PULL-CLOTH-08",
+      "name": "Tries different ways to solve a problem (trial and error)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Uses more than one method when first attempt fails"
+      ],
+      "description": "The young toddler will attempt multiple approaches to get what they want. For example, if a toy is inside a box, they might try reaching, then tipping the box, then perhaps ask for help. This persistence in trying new solutions shows emerging problem-solving and cognitive flexibility.",
+      "signals": [
+        "Pulls cloth or string to obtain object easily",
+        "Begins to use trial-and-error: if one way doesn't work (like pushing a door, then tries pulling) to get what they want"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-TOOL-USE-18",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-TRIAL-ERROR-12",
+      "name": "Uses objects as tools to solve problems",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Uses an object (stick, stool) to try to get a desired item"
+      ],
+      "description": "The toddler learns to use one object to achieve a goal involving another object. For instance, they might use a stool to reach a cookie on the counter, or push a chair to a door to climb. Using tools in this way indicates understanding of indirect solutions and planning.",
+      "signals": [
+        "Tries different ways to solve a problem (trial and error) easily",
+        "Begins to grab nearby objects (like a stick or stool) to reach something they can't get with just their hands"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-PLAN-STEP-24",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-TOOL-USE-18",
+      "name": "Plans simple steps to reach a goal",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Performs two actions in order to reach a goal"
+      ],
+      "description": "The child begins to demonstrate planning by executing multi-step solutions. For example, to get a toy on a high shelf, they might first move a stool (step 1), then climb up to grab the toy (step 2). This indicates they can foresee a sequence of actions to solve a problem.",
+      "signals": [
+        "Uses objects as tools to solve problems easily",
+        "Begins to do at least two things in sequence for a result (e.g., opens a container then reaches in to get item) without being shown"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-PERSIST-30",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-PLAN-STEP-24",
+      "name": "Keeps trying when faced with challenges (persistence)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Continues trying to solve a task even if not successful at first"
+      ],
+      "description": "The toddler shows determination by not giving up immediately when a task is hard. For instance, if a puzzle piece doesn’t fit one way, they’ll try to rotate it or try a different piece rather than quitting. This growing persistence is important for learning and problem-solving.",
+      "signals": [
+        "Plans simple steps to reach a goal easily",
+        "Begins to stick with a difficult task a bit longer (e.g., tries multiple pieces in a shape sorter hole before asking for help)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-MULTI-STEP-36",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-PERSIST-30",
+      "name": "Solves multi-step problems with planning",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Solves a problem requiring at least 2 steps (with minimal help)"
+      ],
+      "description": "Around preschool age, the child can tackle more complex problems that require sequencing several actions. For example, building a bridge with blocks to get a toy car across a gap involves forethought and executing a plan. They increasingly can hold a goal in mind and figure out intermediate steps to reach it.",
+      "signals": [
+        "Keeps trying when faced with challenges (persistence) easily",
+        "Begins to approach challenges (like a simple obstacle course or multi-piece puzzle) by planning steps or trying solutions in order until it works"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "NUM-NUM-SONG-09",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "DEV-ROOT",
+      "name": "Claps or babbles along to number rhymes",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 14
+      },
+      "exitCriteria": [
+        "Participates in number rhymes by moving or vocalizing"
+      ],
+      "description": "During playful number songs like “One, Two, Buckle My Shoe,” the baby shows engagement by bouncing, clapping, or babbling. While they don’t understand the concept of numbers, they enjoy the rhythm and repetition, which lays groundwork for number familiarity.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to show excitement (claps hands, bounces) when hearing familiar counting songs or rhymes"
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "NUM-MORE-12",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "NUM-NUM-SONG-09",
+      "name": "Understands \"more\" vs \"all gone\"",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Uses gesture or sound to indicate wanting 'more'"
+      ],
+      "description": "The infant/toddler grasps the basic concept of wanting more of something versus when something is finished. For example, they might use baby sign or say \"mo!\" for more food, or react when a bowl is empty, indicating they comprehend the difference between \"more\" and \"all gone.\"",
+      "signals": [
+        "Claps or babbles along to number rhymes easily",
+        "Begins to signal for more (e.g., signing \"more\" or reaching) when they finish a favorite food, and notices when things are all gone"
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "NUM-SIZE-WORDS-18",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "NUM-MORE-12",
+      "name": "Uses words like \"big\" and \"small\" to describe objects",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Uses \"big\" or \"small\" to describe an object correctly"
+      ],
+      "description": "The toddler starts using basic size words. They might say \"big ball\" or \"little cookie.\" While their understanding of relative size is approximate, using these words appropriately shows they can compare objects and apply simple quantitative descriptions.",
+      "signals": [
+        "Understands \"more\" vs \"all gone\" easily",
+        "Begins to label things as big or small (though might overgeneralize) — for instance, calling a large toy \"big\" and a smaller one \"baby\""
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "NUM-COMPARE-LENGTH-30",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "NUM-SIZE-WORDS-18",
+      "name": "Understands comparisons like longer vs shorter",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Chooses or identifies the longer of two items correctly"
+      ],
+      "description": "By age 2½-3, the child can compare objects by length or size when differences are obvious. For example, they can pick the \"longer\" stick from two or understand when one line is shorter than another. This reflects a grasp of comparative concepts, a pre-numeracy skill.",
+      "signals": [
+        "Uses words like \"big\" and \"small\" to describe objects easily",
+        "Begins to correctly identify the \"big one\" or the \"long one\" when shown two items of different sizes"
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "NUM-COUNT-30",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "NUM-COMPARE-LENGTH-30",
+      "name": "Recites numbers up to 5 (though may skip some)",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 40
+      },
+      "exitCriteria": [
+        "Recites numbers up to 3-5 (with possible mistakes)"
+      ],
+      "description": "The child can verbally count (by rote memory) to around 5. They likely sing-song the numbers and might omit one or two, but they have memorized the counting sequence. This skill is more about recall than true quantity understanding, but it's a crucial numeracy foundation.",
+      "signals": [
+        "Understands comparisons like longer vs shorter easily",
+        "Begins to \"count\" out loud (e.g., \"one, two, three...\") when playing, though might mix up the order or skip numbers"
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "NUM-NUMERALS-42",
+      "ladderId": "milestone.tree",
+      "domain": "early_numeracy",
+      "parentId": "NUM-COUNT-30",
+      "name": "Recognizes numerals and counts small quantities",
+      "tags": [
+        "early_numeracy"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Identifies numerals 1 through 5 and counts objects to 5"
+      ],
+      "description": "By age 3½-4, the child can recognize printed numerals (especially 1-5) and count a handful of objects accurately. They might point to each object as they count (“1, 2, 3…” up to 5). This indicates a connection between the counting sequence and actual quantities, marking true numeracy understanding.",
+      "signals": [
+        "Recites numbers up to 5 (though may skip some) easily",
+        "Begins to recognize written numbers (like points out '2' or '3' in a book) and can count 3-5 objects correctly when asked \"how many?\""
+      ],
+      "activities": [
+        "Use fun rhymes or songs to develop listening and sound awareness",
+        "Talk to child often and give simple directions"
+      ]
+    },
+    {
+      "id": "COG-CAUSE-EFFECT-09",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-EXPLORE-06",
+      "name": "Repeats actions to see effects (cause and effect)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 14
+      },
+      "exitCriteria": [
+        "Repeats an action (like dropping toy) to watch result"
+      ],
+      "description": "The baby/toddler deliberately performs an action to see what happens, and may do it over and over (for example, dropping food from the high chair to watch a caregiver pick it up). This behavior shows they’re learning that their actions have consistent outcomes—a fundamental understanding of cause and effect.",
+      "signals": [
+        "Explores objects with mouth and hands easily",
+        "Begins to perform experiments, like repeatedly dropping or banging an object to see the interesting noise or reaction it causes"
+      ],
+      "activities": [
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity",
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age"
+      ]
+    },
+    {
+      "id": "COG-SPATIAL-PLAY-10",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-CAUSE-EFFECT-09",
+      "name": "Explores spatial concepts (in, out, open, close)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 10,
+        "typicalEnd": 14
+      },
+      "exitCriteria": [
+        "Puts objects in and out of containers during play"
+      ],
+      "description": "The baby loves putting objects into containers and dumping them out, opening and closing doors or boxes, etc. Through these play actions, they are exploring basic spatial concepts like inside/outside and open/closed. This curiosity-driven play is a building block for understanding space and position.",
+      "signals": [
+        "Repeats actions to see effects (cause and effect) easily",
+        "Begins to eagerly put toys into a box and then dump them out, or repeatedly open and close flaps and doors on toys"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-MATCH-12",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-SPATIAL-PLAY-10",
+      "name": "Matches similar objects during play",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 16
+      },
+      "exitCriteria": [
+        "Pairs or groups similar objects together"
+      ],
+      "description": "The toddler begins to notice similarities and will pair like with like (for example, matching two identical shapes or grouping toy animals together). This early matching is a cognitive milestone indicating recognition of attributes and is a precursor to more complex sorting and categorization.",
+      "signals": [
+        "Explores spatial concepts (in, out, open, close) easily",
+        "Begins to put similar toys together (e.g., places all cars in one pile, or matches lids to the right containers) while playing"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-SHAPE-AWARE-18",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-MATCH-12",
+      "name": "Recognizes and names basic shapes",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Identifies a circle or square correctly by name or selection"
+      ],
+      "description": "The child learns basic shapes like circle, square, or triangle. They may not say the names perfectly, but they can pick out a shape when asked (e.g., point to a circle) or utter something like “round” for a circle. Recognizing shapes is an important cognitive categorization skill and ties into early geometry understanding.",
+      "signals": [
+        "Matches similar objects during play easily",
+        "Begins to differentiate shapes (for example, consistently picks out the circle when asked, or says “ball” for all round items indicating recognition of roundness)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-SORT-ONE-20",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-SHAPE-AWARE-18",
+      "name": "Sorts objects by one attribute (color or shape)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 20,
+        "typicalEnd": 26
+      },
+      "exitCriteria": [
+        "Sorts items by one property (color OR shape) for multiple items"
+      ],
+      "description": "The toddler can separate items into groups based on one characteristic. For instance, they might put all the red blocks in one pile and blue blocks in another, or group all the circles separate from squares. Sorting by a single attribute shows the ability to categorize using consistent criteria.",
+      "signals": [
+        "Recognizes and names basic shapes easily",
+        "Begins to sort toys during clean-up or play (e.g., all red pieces together, regardless of shape, or all blocks vs all cars in separate groups)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Play cause-and-effect games (like dropping toys into a box) to encourage curiosity"
+      ]
+    },
+    {
+      "id": "COG-POSITION-WORDS-24",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-SORT-ONE-20",
+      "name": "Understands basic position words (in, on, under)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Places or finds objects correctly when told \"in\", \"on\", or \"under\""
+      ],
+      "description": "The child demonstrates understanding of simple spatial prepositions. If asked to put a toy “in the box” or find the ball “under the table,” they can follow through. Grasping terms like in/on/under indicates cognitive and language development related to space and location.",
+      "signals": [
+        "Sorts objects by one attribute (color or shape) easily",
+        "Begins to correctly respond when you say location instructions (e.g., will put a cup on the table when asked, or look under the couch for a missing toy)"
+      ],
+      "activities": [
+        "Talk to child often and give simple directions",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "COG-COLORS-30",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-POSITION-WORDS-24",
+      "name": "Names basic colors",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Names at least one color correctly"
+      ],
+      "description": "The child can identify and name common colors (like red, blue, yellow). They may not get them all correct at first, but they show preference or consistency in color naming. Knowing color names is a cognitive milestone involving visual discrimination and memory for labels.",
+      "signals": [
+        "Understands basic position words (in, on, under) easily",
+        "Begins to consistently label some colors (might correctly say \"red\" when pointing to a red crayon, even if other colors are still mixed up)"
+      ],
+      "activities": [
+        "Talk to child often and give simple directions",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "COG-SORT-TWO-36",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-COLORS-30",
+      "name": "Sorts by two features (e.g., color and shape)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Sorts items by both color and shape for at least one set (with help)"
+      ],
+      "description": "By around 3 years old, the child can handle sorting tasks that involve two characteristics. For example, given a mix of different shapes in various colors, they can group all the red circles separate from the blue circles and red squares. This indicates more advanced categorization ability and cognitive flexibility.",
+      "signals": [
+        "Names basic colors easily",
+        "Begins to sort using two rules in simple play scenarios (like all the red cars in one pile and blue cars in another, effectively combining color and item type)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "COG-PATTERN-36",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-COLORS-30",
+      "name": "Creates and continues simple patterns",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Repeats a simple ABAB pattern with blocks or claps with assistance"
+      ],
+      "description": "The child understands how to continue a simple repeating pattern (like red-blue-red-blue). They might clap a sequence (clap-stomp, clap-stomp) or line up toys in alternating colors. Recognizing and creating patterns is a key cognitive skill that lays the groundwork for math and logical thinking.",
+      "signals": [
+        "Names basic colors easily",
+        "Begins to follow along or extend simple patterns in play (e.g., if you line up car, truck, car, truck... they will place a car next to the truck to continue the sequence)"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "COG-SHAPE-COMPARE-40",
+      "ladderId": "milestone.tree",
+      "domain": "cognition",
+      "parentId": "COG-PATTERN-36",
+      "name": "Describes and compares shapes (e.g., triangle vs square)",
+      "tags": [
+        "cognition"
+      ],
+      "ageBand": {
+        "typicalStart": 40,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Points out a difference between two shapes (like number of sides)"
+      ],
+      "description": "At the older end of the 0–4 range, the child not only names shapes but can talk about how they are alike or different. They might say “This is a triangle; it has three sides, but a square has four.” This comparative ability shows an analytical approach to concepts and prepares them for geometry and classification tasks.",
+      "signals": [
+        "Creates and continues simple patterns easily",
+        "Begins to note differences in shapes verbally (e.g., \"This one has pointy corners and that one is round\")"
+      ],
+      "activities": [
+        "Offer problem-solving toys (like shape sorters or puzzles) appropriate for age",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "RC-CALM-VOICE-00",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "DEV-ROOT",
+      "name": "Quiets or smiles at a familiar voice",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 0,
+        "typicalEnd": 2
+      },
+      "exitCriteria": [
+        "Calms or smiles upon hearing a caregiver's voice"
+      ],
+      "description": "Even as a newborn, the baby recognizes and prefers familiar voices, especially their primary caregiver’s. Hearing that voice might cause them to pause crying, turn toward the sound, or even smile. This receptive response to voice is an early sign of listening and social connection.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to quiet down or look alert when hearing a familiar caregiver's voice (often stops crying briefly or shows contentment)"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-TURN-SOUND-03",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-CALM-VOICE-00",
+      "name": "Turns head toward sounds or voices",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 3,
+        "typicalEnd": 6
+      },
+      "exitCriteria": [
+        "Turns toward a sound source consistently"
+      ],
+      "description": "By a few months old, the baby will localize sound. If someone speaks or a noise occurs off to one side, the baby will turn their head or eyes in that direction. This behavior indicates that they are processing auditory information and directing their attention to its source, an important foundation for listening to speech.",
+      "signals": [
+        "Quiets or smiles at a familiar voice easily",
+        "Begins to turn head or eyes toward interesting sounds (like a rattle or a speaking voice) reliably"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-RESPOND-NAME-06",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-TURN-SOUND-03",
+      "name": "Responds to own name",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Looks or turns when name is called from across room"
+      ],
+      "description": "Between 6-9 months, the infant clearly recognizes their own name. When someone calls their name, they will turn toward the voice or stop what they’re doing in acknowledgment. This milestone shows increasing auditory discrimination and social awareness, as they realize \"that word means me!\"",
+      "signals": [
+        "Turns head toward sounds or voices easily",
+        "Begins to consistently look toward you or stop and attend when you call their name"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-UNDERSTAND-WORDS-09",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-RESPOND-NAME-06",
+      "name": "Understands a few common words (e.g., \"no\", \"bye-bye\")",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 12
+      },
+      "exitCriteria": [
+        "Shows understanding of at least 3 everyday words (e.g., waves at 'bye')"
+      ],
+      "description": "The baby demonstrates comprehension of some frequently used words. For instance, they may stop briefly when they hear \"no-no,\" or wave when they hear \"bye-bye.\" They might look toward Mommy when someone says \"Mama.\" Understanding these familiar words shows the baby’s receptive language is blooming even before they can speak them.",
+      "signals": [
+        "Responds to own name easily",
+        "Begins to react appropriately to a few words: may look toward Daddy when you say \"Where's Daddy?\", pause at \"no\", or wave when you say \"bye-bye\""
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-FOLLOW-1STEP-12",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-UNDERSTAND-WORDS-09",
+      "name": "Follows simple one-step instructions with gestures",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Carries out a simple command (with gesture if needed)"
+      ],
+      "description": "The young toddler can carry out basic directions especially when given with a pointing gesture or demonstration. For example, \"Give me the ball\" or \"Come here\" accompanied by a hand motion. This milestone shows they connect language with actions and can comply with requests, indicating growing comprehension and memory.",
+      "signals": [
+        "Understands a few common words (e.g., \"no\", \"bye-bye\") easily",
+        "Begins to obey simple commands (especially if you also gesture), such as \"Come here\" or \"Give me the toy,\" at least some of the time"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-POINT-OBJECT-18",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-FOLLOW-1STEP-12",
+      "name": "Points to familiar objects or body parts when named",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Points to at least one body part or object when asked"
+      ],
+      "description": "The toddler can identify objects or body parts upon request. If you ask \"Where’s your nose?\" they’ll point to it, or \"Show me the ball\" and they indicate the ball. This receptive skill demonstrates their growing vocabulary comprehension and ability to connect words with the correct referents.",
+      "signals": [
+        "Follows simple one-step instructions with gestures easily",
+        "Begins to point to body parts (like nose, tummy) or familiar things (dog, ball) when prompted (\"Where is...?\")"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-FOLLOW-2STEP-24",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-POINT-OBJECT-18",
+      "name": "Follows two-step directions",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Carries out a two-part instruction in order"
+      ],
+      "description": "By age 2-2½, the child can handle simple multi-step commands. For example, “Pick up the ball and give it to Mommy.” They will (in the correct sequence) retrieve the ball, then bring it over. Successfully following two-step instructions indicates strong understanding of language and working memory to hold both steps in mind.",
+      "signals": [
+        "Points to familiar objects or body parts when named easily",
+        "Begins to follow combined requests (\"Go to your room and get your shoes\") in the correct order, though sometimes may need a reminder for the second step"
+      ],
+      "activities": [
+        "Narrate everyday activities and name objects around the child",
+        "Give simple one-step directions during play (\"Give me the ball\")"
+      ]
+    },
+    {
+      "id": "RC-STORY-UNDERSTAND-30",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-FOLLOW-2STEP-24",
+      "name": "Listens to short stories and answers simple questions",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 40
+      },
+      "exitCriteria": [
+        "Listens to a short story and answers a simple question about it"
+      ],
+      "description": "The toddler can attend to an entire short picture book or story (for a few minutes) and demonstrate understanding by answering basic questions or pointing to story elements when asked (e.g., “Where’s the cat?”). This skill indicates improved attention span, comprehension of narratives, and memory for details.",
+      "signals": [
+        "Follows two-step directions easily",
+        "Begins to engage during storytime, e.g., points to things in the book when asked and can respond to very simple questions about a story (like \"Who says moo?\")"
+      ],
+      "activities": [
+        "Read picture books together daily, pointing to and naming pictures",
+        "Use fun rhymes or songs to develop listening and sound awareness"
+      ]
+    },
+    {
+      "id": "RC-UNDERSTAND-MOST-36",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-STORY-UNDERSTAND-30",
+      "name": "Understands most everyday conversations",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Understands main points of routine conversations at home"
+      ],
+      "description": "By age 3-4, the child comprehends the majority of what is said around them in daily life. They understand routine questions, comments, and explanations from adults and older children. Essentially, if it’s a familiar context, the child can follow along with the conversation even if they might not catch every single word.",
+      "signals": [
+        "Listens to short stories and answers simple questions easily",
+        "Begins to follow along with adult conversations around them (e.g., will react or butt in appropriately when family is discussing something familiar, showing they grasp what's being said)"
+      ],
+      "activities": [
+        "Talk to child often and give simple directions",
+        "Narrate everyday activities and name objects around the child"
+      ]
+    },
+    {
+      "id": "RC-RHYME-AWARE-42",
+      "ladderId": "milestone.tree",
+      "domain": "communication_receptive",
+      "parentId": "RC-UNDERSTAND-MOST-36",
+      "name": "Notices rhymes or repeated sounds in words",
+      "tags": [
+        "communication_receptive"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Recognizes when two words rhyme or start with same sound"
+      ],
+      "description": "Toward the end of this age range, the child develops phonological awareness. They might giggle at rhyming words or point out “Cat–Hat, they sound the same!” Similarly, they notice when words share starting sounds. This sensitivity to sound patterns is a critical pre-reading skill, indicating they're tuning into the components of spoken language.",
+      "signals": [
+        "Understands most everyday conversations easily",
+        "Begins to enjoy and pick up on rhymes or alliterations in songs and books (for example, might shout out \"dog, frog – they rhyme!\" or notice that \"ball\" and \"baby\" both start with a 'b' sound)"
+      ],
+      "activities": [
+        "Read picture books together daily, pointing to and naming pictures",
+        "Use fun rhymes or songs to develop listening and sound awareness"
+      ]
+    },
+    {
+      "id": "EX-CRY-00",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "DEV-ROOT",
+      "name": "Expresses needs by crying or fussing",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 0,
+        "typicalEnd": 2
+      },
+      "exitCriteria": [
+        "Uses different cries to indicate hunger, discomfort, etc."
+      ],
+      "description": "From birth, the infant’s primary way to communicate is through crying. They use varying cries or fussing sounds to signal basic needs (hunger, discomfort, fatigue). Caregivers often learn to distinguish these cries. This is the first stage of expressive communication, laying the groundwork for intentional sound-making.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to have different cries for different needs (for instance, an intense cry when hungry versus a whiny fuss when tired)"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-COO-02",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-CRY-00",
+      "name": "Coos (makes vowel sounds)",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 2,
+        "typicalEnd": 4
+      },
+      "exitCriteria": [
+        "Coos (makes vowel sounds) when spoken to"
+      ],
+      "description": "At a couple of months old, the baby begins to make soft vowel sounds like “oooh” and “aahh” – their first coos. Coos are often in response to pleasant interactions and represent the baby’s early attempts at vocal play and social interaction. This sweet babbling is a key expressive language milestone beyond crying.",
+      "signals": [
+        "Expresses needs by crying or fussing easily",
+        "Begins to produce gentle \"oooh\" or \"aaah\" sounds, especially when content or when a caregiver is talking and smiling"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-LAUGH-04",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-COO-02",
+      "name": "Laughs and squeals",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 4,
+        "typicalEnd": 6
+      },
+      "exitCriteria": [
+        "Laughs out loud during play"
+      ],
+      "description": "By around 4-6 months, babies show delight through laughter and high-pitched squeals. They might laugh when tickled or during a game of peekaboo. This emotional vocal expression not only warms caregivers’ hearts but also indicates the baby’s engagement and enjoyment, as well as evolving voice control.",
+      "signals": [
+        "Coos (makes vowel sounds) easily",
+        "Begins to produce giggles or squealing sounds when excited or during fun interactions"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-BABBLE-06",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-LAUGH-04",
+      "name": "Babbles repetitive consonant sounds",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Babbles using repeated syllables (\"bababa\")"
+      ],
+      "description": "The baby starts stringing together consonant-vowel sounds, such as \"bababa\" or \"mamama,\" in a repetitive, song-like babble. This babbling is a crucial language milestone, where infants practice the sounds of their native language. It often sounds like they’re “talking” in their own language and invites responsive chatter from adults.",
+      "signals": [
+        "Laughs and squeals easily",
+        "Begins to babble multiple syllables (like \"ba-ba\" or \"da-da\") repeatedly, especially when playing alone or with caregivers"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-IMITATE-SOUND-08",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-BABBLE-06",
+      "name": "Imitates sounds or gestures",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 8,
+        "typicalEnd": 12
+      },
+      "exitCriteria": [
+        "Tries to copy an adult's sound or action at least once"
+      ],
+      "description": "The infant/toddler begins actively copying others. They may mimic a caregiver’s cough, attempt to say a sound they just heard, or copy gestures like clapping hands or waving bye-bye. This imitation is a powerful learning tool for language and social behaviors, showing the child’s increasing awareness and desire to interact.",
+      "signals": [
+        "Babbles repetitive consonant sounds easily",
+        "Begins to mimic some sounds (like repeating a cough or \"ba\" after you say it) or simple gestures (waves back when someone waves)"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-FIRST-WORD-10",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-IMITATE-SOUND-08",
+      "name": "Says first meaningful word",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 10,
+        "typicalEnd": 14
+      },
+      "exitCriteria": [
+        "Says one clear word (\"mama\", \"dada\" or other) with meaning"
+      ],
+      "description": "Often around their first birthday, the child utters their first real word, like “Mama,” “Dada,” “ball,” or “bye.” This word is used consistently to refer to a specific person or object. The first word is a landmark expressive language milestone, marking the transition from babbling to meaningful speech.",
+      "signals": [
+        "Imitates sounds or gestures easily",
+        "Begins to use one specific sound consistently to mean something (for example, says \"Mama\" specifically to call mother or \"ba\" while pointing at a ball)"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-WORDS-10-12",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-FIRST-WORD-10",
+      "name": "Uses ~5–10 words",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Uses at least 5 different words meaningfully"
+      ],
+      "description": "After the first word, vocabulary growth accelerates. By around 15-18 months, the toddler typically has about 5-10 words they use regularly (like names of family or favorite items). These might not all be perfectly pronounced, but each word stands for something consistent. This burgeoning lexicon indicates rapid language development.",
+      "signals": [
+        "Says first meaningful word easily",
+        "Begins to use several words (around half a dozen) in the right context, even if some are fragments (e.g., uses \"juice,\" \"dog,\" \"up,\" \"no,\" \"Mama\" consistently to convey those meanings)"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-TWO-WORD-18",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-WORDS-10-12",
+      "name": "Combines two words (\"more milk\")",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Uses two-word phrases (\"want milk\", \"go out\")"
+      ],
+      "description": "The toddler begins stringing two words together to express a more complex idea, such as “more milk” or “Daddy go.” These two-word combinations (telegraphic speech) get the point across with essential words only, reflecting an explosion in language use and the understanding of syntax.",
+      "signals": [
+        "Uses ~5–10 words easily",
+        "Begins to say two words together as a mini-phrase, like \"Mama up\" (meaning 'Mom, pick me up') or \"Doggy go\" (meaning the dog went away)"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "EX-SENTENCE-24",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-TWO-WORD-18",
+      "name": "Speaks in short sentences (2–3 words)",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Speaks in 2-3 word sentences to express ideas"
+      ],
+      "description": "Approaching age 2½, the child's utterances grow to short sentences like \"Mommy go work\" or \"I want cookie.\" These mini-sentences typically lack small connecting words, but they follow a logical order and clearly convey the child’s meaning. This development shows rapidly expanding grammar and vocabulary.",
+      "signals": [
+        "Combines two words (\"more milk\") easily",
+        "Begins to use two- and three-word combinations regularly, for example \"Baby sleep now\" or \"I want ball,\" forming rudimentary sentences"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-PRONOUN-30",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-SENTENCE-24",
+      "name": "Uses pronouns (me, you) and plurals",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Uses pronouns like 'me' and plural forms in speech"
+      ],
+      "description": "The child’s sentences become more complex and grammatically correct. They start using pronouns for themselves and others (\"me do it,\" \"you help\") and begin to add plural -s or other simple grammar markers. This indicates that they are absorbing the rules of language, not just individual words.",
+      "signals": [
+        "Speaks in short sentences (2–3 words) easily",
+        "Begins to include pronouns in speech (says \"mine\" or \"me\" instead of name, uses \"you\" for others) and often adds -s for more than one item, even if sometimes incorrectly"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-STORY-TELL-36",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-PRONOUN-30",
+      "name": "Tells simple stories or ideas",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 42
+      },
+      "exitCriteria": [
+        "Says a few sentences in a row to describe an event or story"
+      ],
+      "description": "Around 3-3½ years, the child begins to string together several sentences to convey a narrative or explain something that happened. The stories are simple (often about immediate experiences or imagination) and may not always follow a perfect sequence, but they show the child’s grasp of conveying events and using language to share ideas.",
+      "signals": [
+        "Uses pronouns (me, you) and plurals easily",
+        "Begins to talk in longer stretches — you might hear them recount something that happened (\"I go park. I swing. I fall down.\") or make up a little story with a few connected ideas"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "EX-FULL-SENTENCE-42",
+      "ladderId": "milestone.tree",
+      "domain": "communication_expressive",
+      "parentId": "EX-STORY-TELL-36",
+      "name": "Speaks in complete sentences clearly",
+      "tags": [
+        "communication_expressive"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Speaks in 4-6 word sentences clearly understandable to others"
+      ],
+      "description": "By 3½ to 4 years old, the child’s speech is composed of full, grammatically correct sentences most of the time. They might say, \"I want to go outside because it’s sunny.\" Strangers can understand them easily. This ability reflects a mature grasp of language structure and pronunciation, rounding off the early childhood speech development.",
+      "signals": [
+        "Tells simple stories or ideas easily",
+        "Begins to speak in long, complex sentences (often 5-6 words or more) in conversations, and unfamiliar listeners can understand most of what they say"
+      ],
+      "activities": [
+        "Respond to the child's sounds and attempts to communicate",
+        "Encourage imitation games (like animal sounds or simple words)"
+      ]
+    },
+    {
+      "id": "SE-NOTICE-PEER-06",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "DEV-ROOT",
+      "name": "Notices and smiles at other children",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Smiles or babbles when seeing another child"
+      ],
+      "description": "By around 6 months, babies become very interested in other babies and children. They may stare, smile, or reach toward a peer. This interest in others their size is the beginning of social interaction and shows that the child recognizes peers as something special or exciting in their environment.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to pay keen attention to other babies or children — will watch them, smile, or get visibly excited when a peer is nearby"
+      ],
+      "activities": [
+        "Arrange short play interactions with peers or siblings when possible",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "SE-PARALLEL-PLAY-12",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-NOTICE-PEER-06",
+      "name": "Plays alongside other children (parallel play)",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Plays near other children without trying to engage them directly"
+      ],
+      "description": "The young toddler will play in the presence of other children (often with similar toys), but not directly with them. This side-by-side play, known as parallel play, is common at this age. They observe and occasionally imitate peers but largely engage in their own activity. It's an important step toward interactive play.",
+      "signals": [
+        "Notices and smiles at other children easily",
+        "Begins to play in the same area as other children, maybe watching or imitating them, but without attempting to coordinate play or share toys"
+      ],
+      "activities": [
+        "Arrange short play interactions with peers or siblings when possible",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "SE-SIMPLE-INTERACT-18",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-PARALLEL-PLAY-12",
+      "name": "Interacts briefly with peers (offers toys, imitates)",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 24
+      },
+      "exitCriteria": [
+        "Engages in a short interaction with another child (e.g., trading a toy)"
+      ],
+      "description": "The toddler starts to have fleeting interactions with other children. They may hand a toy to a peer, imitate what the other is doing, or chase each other for a few moments. These simple social exchanges are the building blocks of friendship and cooperative play, even though sharing and turn-taking are still developing.",
+      "signals": [
+        "Plays alongside other children (parallel play) easily",
+        "Begins to occasionally engage another child — might hand over a toy, copy the other child's actions, or participate in a short game of chase or peekaboo with a peer"
+      ],
+      "activities": [
+        "Arrange short play interactions with peers or siblings when possible",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "SE-TURN-TAKE-30",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-SIMPLE-INTERACT-18",
+      "name": "Takes turns during play with help",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Participates in taking turns with a peer when guided"
+      ],
+      "description": "As the toddler nears 3, they begin to grasp turn-taking in play (with adult guidance). For example, rolling a ball back and forth or taking turns on a slide when prompted. They still need reminders and might be possessive of toys, but this milestone shows the emergence of social rules understanding and cooperative behavior.",
+      "signals": [
+        "Interacts briefly with peers (offers toys, imitates) easily",
+        "Begins to manage short turn-taking activities (like sharing pieces in a simple game or alternating turns on a toy) when an adult coaches or reminds them"
+      ],
+      "activities": [
+        "Arrange short play interactions with peers or siblings when possible",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "SE-COOP-PLAY-36",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-TURN-TAKE-30",
+      "name": "Plays cooperatively with peers",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 36,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Collaborates with peers on a simple play goal for a few minutes"
+      ],
+      "description": "By 3-4 years old, children start engaging in true cooperative play. They have shared goals or storylines (like building something together or role-playing in a game of house). They communicate about the play, assign roles, or take turns more spontaneously. This stage indicates significant social maturity and ability to understand others' perspectives during play.",
+      "signals": [
+        "Takes turns during play with help easily",
+        "Begins to truly play *with* other children (not just side-by-side) — for instance, working together to build a block tower or pretending together in the same scenario, with minimal adult direction"
+      ],
+      "activities": [
+        "Arrange short play interactions with peers or siblings when possible",
+        "Engage in face-to-face play and respond to child's social cues"
+      ]
+    },
+    {
+      "id": "SE-SOCIAL-SMILE-02",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "DEV-ROOT",
+      "name": "Smiles in response to caregiver (social smile)",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 2,
+        "typicalEnd": 4
+      },
+      "exitCriteria": [
+        "Smiles back when an adult smiles and talks to them"
+      ],
+      "description": "At around 6-8 weeks, the baby begins to smile deliberately in response to people, not just from internal reflexes. This social smile—usually triggered by a familiar caregiver’s face or voice—is a major social-emotional milestone, reflecting pleasure and engagement in interactions and often reinforcing bonding between baby and caregiver.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to smile back at caregivers during face-to-face interaction (a bright social smile when you talk sweetly to them)"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust"
+      ]
+    },
+    {
+      "id": "SE-PREF-CAREGIVER-04",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-SOCIAL-SMILE-02",
+      "name": "Shows preference for familiar caregivers",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 4,
+        "typicalEnd": 8
+      },
+      "exitCriteria": [
+        "Calms and smiles more with primary caregiver than strangers"
+      ],
+      "description": "The baby clearly favors their primary caregivers, often parents. They may become upset when handed to an unfamiliar person or calm more quickly for Mom/Dad. They track caregivers’ movements and may fuss when they leave the room. This preference is a sign of healthy attachment forming and recognition of those who provide comfort and care.",
+      "signals": [
+        "Smiles in response to caregiver (social smile) easily",
+        "Begins to be noticeably more content with a familiar person (e.g., settles faster with a parent) and may show wariness or less enthusiasm with unfamiliar people"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust"
+      ]
+    },
+    {
+      "id": "SE-SEEKS-COMFORT-06",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-PREF-CAREGIVER-04",
+      "name": "Seeks comfort from caregivers when upset",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 10
+      },
+      "exitCriteria": [
+        "Actively reaches or cries for caregiver when upset"
+      ],
+      "description": "When distressed (like after a bump or a scare), the infant actively reaches out or cries specifically for their caregiver. This shows they have formed an attachment and trust that the caregiver will soothe them. It’s different from general crying; the baby may literally extend arms toward the caregiver or crawl/climb into their lap for reassurance.",
+      "signals": [
+        "Shows preference for familiar caregivers easily",
+        "Begins to go towards or call out for primary caregiver when something is wrong (will lift arms to be picked up or crawl to caregiver if hurt or frightened)"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust"
+      ]
+    },
+    {
+      "id": "SE-EXPLORE-AWAY-12",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-SEEKS-COMFORT-06",
+      "name": "Explores away from caregiver but checks back",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Moves a short distance away from caregiver to explore, then returns or looks back"
+      ],
+      "description": "The toddler uses the caregiver as a secure base. They will venture out to examine a toy or another person, but regularly glance back at the caregiver or return periodically for reassurance. This behavior shows growing confidence in exploring the world while maintaining the emotional safety net of the caregiver’s presence.",
+      "signals": [
+        "Seeks comfort from caregivers when upset easily",
+        "Begins to wander a little further from you in a familiar place (like a park), but frequently looks back, calls out, or comes back for a quick hug before exploring more"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust"
+      ]
+    },
+    {
+      "id": "SE-EXPRESS-EMOTION-12",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-SEEKS-COMFORT-06",
+      "name": "Shows basic emotions (happy, sad, angry) clearly",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 12,
+        "typicalEnd": 18
+      },
+      "exitCriteria": [
+        "Clearly shows happiness, anger, or sadness in appropriate contexts"
+      ],
+      "description": "By about 1 year, the child openly expresses a range of basic emotions. They grin or laugh when joyful, may throw a brief tantrum or yell when frustrated, and look sad or cry when hurt. These expressions become more recognizable and tied to specific events (like tantrum if a toy is taken away), indicating emotional development and communication of feelings.",
+      "signals": [
+        "Seeks comfort from caregivers when upset easily",
+        "Begins to have very obvious emotional reactions: for example, claps and laughs with delight, scowls or cries angrily when you set a limit, or looks sad/tearful when a favorite object is gone"
+      ],
+      "activities": [
+        "Engage in face-to-face play and respond to child's social cues",
+        "Talk about feelings in simple terms (\"You're happy!\", \"I see you're mad\") to help them start linking words to emotions"
+      ]
+    },
+    {
+      "id": "SE-EMPATHY-24",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-EXPRESS-EMOTION-12",
+      "name": "Notices when others are upset or happy",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Looks concerned or changes behavior when someone is upset"
+      ],
+      "description": "The young child begins to show early empathy. They might frown or look concerned when another child cries, or smile and clap when others are happy. They may even attempt to comfort a distressed friend by patting them or offering a toy. This awareness of others’ emotions marks a significant social-emotional step, reflecting that they can understand that others have feelings too.",
+      "signals": [
+        "Shows basic emotions (happy, sad, angry) clearly easily",
+        "Begins to react to the emotions of people around them: for example, might get quiet and concerned if a sibling is crying, or giggle along when others are laughing"
+      ],
+      "activities": [
+        "Play with dolls or stuffed animals to practice naming and soothing \"feelings\" (\"The teddy looks sad—let's hug him\")",
+        "Talk about feelings in simple terms (\"You're happy!\", \"I see you're mad\") to help them start linking words to emotions"
+      ]
+    },
+    {
+      "id": "SE-NAME-FEELING-30",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-EMPATHY-24",
+      "name": "Names basic feelings (happy, sad, mad)",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Names at least one emotion (happy, sad, etc.) correctly"
+      ],
+      "description": "The child starts to use words for simple emotions. They might say \"I happy!\" or label a character in a book as \"sad.\" They may also use \"mad\" for angry. Being able to name their feelings (or others’ feelings) is an early step in emotional intelligence and self-awareness, even if they still need help managing those emotions.",
+      "signals": [
+        "Notices when others are upset or happy easily",
+        "Begins to use words like \"happy,\" \"mad,\" or \"sad\" when talking about themselves or story characters (even if they might not always get it exactly right)"
+      ],
+      "activities": [
+        "Read books about feelings and ask your child how the characters feel, to practice identifying emotions",
+        "Talk about feelings in simple terms (\"You're happy!\", \"I see you're mad\") to help them start linking words to emotions"
+      ]
+    },
+    {
+      "id": "SE-MANAGE-EMOTION-30",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-NAME-FEELING-30",
+      "name": "Manages emotions with adult support",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 40
+      },
+      "exitCriteria": [
+        "Can calm down with a comfort item or adult soothing"
+      ],
+      "description": "Tantrums and big feelings are still common, but by around 2½-3 years the child can accept help to calm down or use simple strategies. For example, they might be comforted by a favorite stuffed animal or by a hug and some deep breaths with a caregiver. They’re beginning to learn self-regulation techniques, though they can’t consistently do it on their own yet.",
+      "signals": [
+        "Names basic feelings (happy, sad, mad) easily",
+        "Begins to recover from being upset more quickly when given a comfort (like a favorite blanket or a hug), and might even seek that comfort on their own"
+      ],
+      "activities": [
+        "Model calming strategies (\"Let's take a deep breath together\") when your child is upset, to teach them methods to self-soothe",
+        "Offer a comfort object or quiet corner for your child to calm down when emotions run high"
+      ]
+    },
+    {
+      "id": "SE-EXPRESS-CHOICE-40",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-MANAGE-EMOTION-30",
+      "name": "Expresses own preferences and opinions",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 40,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "States likes or dislikes clearly (e.g., \"I like apples\")"
+      ],
+      "description": "The child confidently voices their own thoughts and choices. They’ll say things like \"I don’t like carrots\" or \"My favorite is the blue one.\" They might offer opinions about story characters or how to solve a problem. This assertiveness about their own ideas shows self-awareness and cognitive maturity in forming and stating opinions.",
+      "signals": [
+        "Manages emotions with adult support easily",
+        "Begins to clearly articulate what they want or prefer (\"I want to wear my red shirt\" or \"I don't like that game, let's play another\") and gives simple reasons sometimes"
+      ],
+      "activities": [
+        "Offer limited choices throughout the day (\"Do you want the red cup or the blue cup?\") to encourage decision-making and expression of preferences",
+        "Listen and acknowledge your child's opinions and ideas, even if they differ from yours, to validate their expression"
+      ]
+    },
+    {
+      "id": "SE-COMPLEX-EMOTION-42",
+      "ladderId": "milestone.tree",
+      "domain": "social_emotional",
+      "parentId": "SE-EXPRESS-CHOICE-40",
+      "name": "Understands more complex emotions (like guilt or surprise)",
+      "tags": [
+        "social_emotional"
+      ],
+      "ageBand": {
+        "typicalStart": 42,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Identifies or discusses a more complex feeling (like surprise) in a story or situation"
+      ],
+      "description": "By around 3½-4 years, children start to grasp emotions beyond the basics. They might recognize when someone feels shy, surprised, or proud. For instance, they may say \"He’s scared\" about a timid character, or “I’m sorry” and actually feel guilty after doing something wrong. This indicates a deeper understanding of emotional nuances and empathy.",
+      "signals": [
+        "Expresses own preferences and opinions easily",
+        "Begins to use or understand words for feelings beyond happy/sad (like \"He's scared of the dark\" or recognizing when they themselves feel \"nervous\" or \"excited\")"
+      ],
+      "activities": [
+        "Read books about feelings and ask your child how the characters feel, to practice identifying emotions",
+        "Model talking about your own feelings (\"I was really surprised by that loud noise!\") to expose your child to complex emotion concepts"
+      ]
+    },
+    {
+      "id": "SENS-CO-REG-0",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "DEV-ROOT",
+      "name": "Calms with caregiver's soothing (co-regulation)",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 0,
+        "typicalEnd": 3
+      },
+      "exitCriteria": [
+        "Stops crying when rocked, sung to, or otherwise soothed by caregiver"
+      ],
+      "description": "In the first months, infants rely on caregivers to help regulate their sensations and emotions. A baby typically stops crying and calms down when given gentle sensory input like rocking, soft singing, or swaddling. This co-regulation is crucial for an infant’s sense of security and lays the groundwork for self-soothing later.",
+      "signals": [
+        "Birth: Reflexive responses easily",
+        "Begins to quiet when a familiar soothing method is used (like immediately stops fussing once you start gently rocking or humming their favorite lullaby)"
+      ],
+      "activities": [
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated",
+        "Provide gentle support and comfort (swaddling, skin-to-skin contact) to help newborn adjust"
+      ]
+    },
+    {
+      "id": "SENS-POS-CHANGE-02",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-CO-REG-0",
+      "name": "Tolerates changes in position and movement",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 2,
+        "typicalEnd": 5
+      },
+      "exitCriteria": [
+        "Does not cry or startle when moved into new positions or orientations"
+      ],
+      "description": "As the infant’s vestibular (balance) system develops, they become more comfortable with being moved into different positions (back, tummy, upright) and with gentle swinging or rocking motions. The baby is less likely to fuss during routine position changes (like burping over a shoulder or being placed in a carrier), indicating improving sensory processing of movement.",
+      "signals": [
+        "Calms with caregiver's soothing (co-regulation) easily",
+        "Begins to handle being picked up, laid down, or shifted between positions without startling or crying as much (seems more at ease with motion and gravity changes)"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-TACTILE-EXPLORE-04",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-POS-CHANGE-02",
+      "name": "Explores textures with hands and mouth",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 4,
+        "typicalEnd": 8
+      },
+      "exitCriteria": [
+        "Touches at least 2 different textures without distress"
+      ],
+      "description": "The baby begins actively touching everything — feeling fabric, scratching surfaces, and of course, mouthing objects. They are exploring a variety of textures (soft blanket, hard plastic, dad’s scratchy chin) with curiosity rather than aversion. This tactile exploration is key for sensory integration and learning about the environment.",
+      "signals": [
+        "Tolerates changes in position and movement easily",
+        "Begins to eagerly touch various surfaces (rubs fuzzy toys, pats a cold window) and often brings objects to the mouth to feel them there too"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-SOUND-LOCALIZE-06",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-TACTILE-EXPLORE-04",
+      "name": "Turns toward sounds to find where they come from",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 6,
+        "typicalEnd": 9
+      },
+      "exitCriteria": [
+        "Turns head to locate where a sound is coming from"
+      ],
+      "description": "As auditory processing sharpens, the baby becomes adept at locating a sound’s source. For instance, if a toy makes noise behind them, they will turn their head or body to seek it. This skill, auditory localization, shows the integration of sensory input (sound) with motor response (turning) and is important for focus and safety.",
+      "signals": [
+        "Explores textures with hands and mouth easily",
+        "Begins to reliably turn toward a sound — if someone calls from the doorway or a toy starts playing music on the floor, the baby orients toward it, indicating they know which direction it's coming from"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-FOOD-TEXTURE-09",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-SOUND-LOCALIZE-06",
+      "name": "Accepts a variety of food textures",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 9,
+        "typicalEnd": 15
+      },
+      "exitCriteria": [
+        "Eats foods of different textures (puree, soft solid) without refusing most"
+      ],
+      "description": "As solid foods are introduced, the baby handles different textures in their mouth (smooth purees, soft chunks, harder teething biscuits) without gagging or rejecting most of them. This indicates their oral sensory system is adapting. They might have preferences, but they can manage a range (from creamy yogurt to lumpy mashed veggies) which is important for nutrition and feeding development.",
+      "signals": [
+        "Turns toward sounds to find where they come from easily",
+        "Begins to handle new foods in the diet pretty well – for example, transitioning from smooth baby cereal to thicker purees and small soft pieces without much fuss or gagging"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-MESSY-PLAY-18",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-FOOD-TEXTURE-09",
+      "name": "Enjoys messy play (sand, finger paint) without distress",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 18,
+        "typicalEnd": 30
+      },
+      "exitCriteria": [
+        "Touches and plays with messy materials (sand, paint) willingly"
+      ],
+      "description": "Many toddlers initially hesitate with messy substances, but by 1½-2½ years, most delight in squishing, splashing, and smearing during play. They might dig hands into sand, smear finger paint, or jump in puddles eagerly. Enjoyment of messy play suggests their tactile sensory system can handle various stimuli and they associate these sensations with fun, not discomfort.",
+      "signals": [
+        "Accepts a variety of food textures easily",
+        "Begins to get really into messy activities – for instance, loves splashing water, finger painting, or digging in sandbox, and doesn't pull away from the textures on their hands"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-LOUD-NOISE-24",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-MESSY-PLAY-18",
+      "name": "Copes with loud noises or bright lights (may cover ears)",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 24,
+        "typicalEnd": 36
+      },
+      "exitCriteria": [
+        "Recovers from exposure to loud noise or bright light with minimal fuss"
+      ],
+      "description": "By age 2-3, the child has better strategies and tolerance for sudden sensory input. For example, if a loud sound occurs (vacuum, blender, thunder), they might flinch or cover their ears but not meltdown like before, especially if warned. Similarly, bright sunlight might make them squint or ask for sunglasses but not cry. This shows improved sensory modulation — they can handle moderate sensory stressors or use simple coping actions (covering ears, closing eyes) to self-protect.",
+      "signals": [
+        "Enjoys messy play (sand, finger paint) without distress easily",
+        "Begins to handle surprising loud sounds or bright lights with less extreme reactions – might say \"Too loud!\" and cover ears or request the light off, rather than just bursting into tears"
+      ],
+      "activities": [
+        "Provide a variety of sensory experiences (different textures, sounds, movements) in a calm way",
+        "Use soothing activities (gentle rocking, white noise) if the child becomes overstimulated"
+      ]
+    },
+    {
+      "id": "SENS-SEEK-INPUT-30",
+      "ladderId": "milestone.tree",
+      "domain": "sensory",
+      "parentId": "SENS-LOUD-NOISE-24",
+      "name": "Seeks sensory input (bouncing, squeezing) to self-soothe",
+      "tags": [
+        "sensory"
+      ],
+      "ageBand": {
+        "typicalStart": 30,
+        "typicalEnd": 48
+      },
+      "exitCriteria": [
+        "Engages in sensory activities (e.g., jumping, squeezing a toy) to self-calm"
+      ],
+      "description": "By age 3-4, when upset or needing input, the child will actively seek sensory experiences to regulate themselves. For example, they might jump up and down when excited or anxious, ask to be held tight, chew on objects, or wrap in a blanket. These behaviors indicate the child is beginning to use sensory strategies on their own to feel right (more calm or more alert as needed).",
+      "signals": [
+        "Copes with loud noises or bright lights (may cover ears) easily",
+        "Begins to intentionally engage in certain sensory actions to feel better (for instance, runs around or jumps when overstimulated, or squeezes a pillow when needing comfort)"
+      ],
+      "activities": [
+        "Provide a cozy corner or sensory box with items like squeeze balls, soft blankets, or chew-safe toys that your child can use when they want to calm down",
+        "Model using simple sensory strategies (like taking a deep breath or doing a big stretch) when you yourself need to calm or focus, to teach by example"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "GM-FOREARM-PROP-03",
+      "target": "FM-PALMAR-05",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Proximal stability supports grasp"
+    },
+    {
+      "source": "SENS-POS-CHANGE-02",
+      "target": "GM-SIT-UNSUP-06",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Movement tolerance aids sitting"
+    },
+    {
+      "source": "SENS-SOUND-LOCALIZE-06",
+      "target": "RC-RESPOND-NAME-06",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Sound localization helps name recognition"
+    },
+    {
+      "source": "FM-RAKE-07",
+      "target": "SH-FINGERFEED-09",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Finger coordination supports self-feeding"
+    },
+    {
+      "source": "GM-CRUISE-10",
+      "target": "SE-RHYTHM-MOVE-09",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Standing with support enables dancing"
+    },
+    {
+      "source": "RC-UNDERSTAND-WORDS-09",
+      "target": "EX-FIRST-WORD-10",
+      "kind": "gate",
+      "style": "cross",
+      "rationale": "Understanding words precedes speaking them"
+    },
+    {
+      "source": "FM-SCRIBBLE-16",
+      "target": "LIT-SCRIBBLE-RANDOM-12",
+      "kind": "related",
+      "style": "cross",
+      "rationale": "Early writing uses fine motor scribbling"
+    },
+    {
+      "source": "COG-CAUSE-EFFECT-09",
+      "target": "COG-TRIAL-ERROR-12",
+      "kind": "related",
+      "style": "cross",
+      "rationale": "Exploring cause and effect aids problem-solving"
+    }
   ]
 }

@@ -1,67 +1,79 @@
-import type { Node, ChildState, ActivityIndex, Environment } from './types'
+/**
+ * Tiny gate evaluator to power cross-domain readiness.
+ * Expression DSL supports:
+ *  - level('NODE_ID') : number in [0,2]  (0=not started, 1=emerging, 2=mastered)
+ *  - confidence('NODE_ID') : number (0..1)
+ *  - age() : months (number)
+ * Operators: > >= < <= && || ( ) and numbers
+ *
+ * You can wire real child data here. For now we expose a default state provider
+ * that marks mastered when exit criteria met in a portfolio, or all zeros if none.
+ */
 
-export function parentMastery(node: Node, state: ChildState){ 
-  const s = state[node.id]; return s ? Math.min(1, s.level/2.0) : 0 
-}
+import { Gate } from "./types";
 
-export function gateSatisfied(node: Node, state: ChildState){
-  if (!node.gates || node.gates.length===0) return 1
-  let ok = 1
-  for (const g of node.gates){
-    if (g.type !== 'node_min_level') continue
-    const min = g.minLevel ?? 1
-    const all = g.nodes.every(id => (state[id]?.level ?? 0) >= min)
-    ok = Math.min(ok, all ? 1 : 0)
-  }
-  return ok
-}
+export type StateProvider = {
+  level: (nodeId: string) => number;
+  confidence: (nodeId: string) => number;
+  ageMonths: () => number;
+};
 
-export function ageProximityScore(ageMo: number, band?: {typicalStart:number; typicalEnd:number}){
-  if (!band) return 0.8
-  const s = band.typicalStart, e = band.typicalEnd
-  if (ageMo >= s && ageMo <= e) return 1
-  if (ageMo < s) return Math.max(0.5, 1 - (s - ageMo) * 0.2)  // 2mo early -> 0.6
-  return Math.max(0.6, 1 - (ageMo - e) * 0.1)                  // 3mo late -> 0.7
-}
+// naive default: everything 0, age unknown -> 0
+export const makeDefaultState = (ageM = 0): StateProvider => ({
+  level: () => 0,
+  confidence: () => 0,
+  ageMonths: () => ageM,
+});
 
-export function activityCoverage(node: Node, acts: ActivityIndex, filters: { env?: Environment[]; maxMin?: number }){
-  const links = nodeLinks(node, acts)
-  if (links.length === 0) return 0
-  const candidates = links
-    .map(l => acts[l.activityId!])
-    .filter(Boolean)
-    .filter(a => (!filters.env || filters.env.some(x => a.environment.includes(x))))
-    .filter(a => (!filters.maxMin || a.durationMin <= filters.maxMin))
-  return Math.min(1, candidates.length / Math.max(2, links.length))
-}
+// very small expression evaluator (safe subset)
+export function evalGateExpr(expr: string, state: StateProvider): boolean {
+  // token replacement
+  const replaced = expr
+    .replace(/age\(\)/g, String(state.ageMonths()))
+    .replace(/level\(\s*'([^']+)'\s*\)/g, (_, id) => String(state.level(id)))
+    .replace(/confidence\(\s*'([^']+)'\s*\)/g, (_, id) =>
+      String(state.confidence(id))
+    );
 
-export function readyScorePlus(node: Node, state: ChildState, ageMo: number, acts: ActivityIndex, filters:{env?:Environment[], maxMin?:number}){
-  const w = { parent:0.35, gates:0.30, conf:0.15, age:0.10, acts:0.10 }
-  const parent = parentMastery(node, state)
-  const gates  = gateSatisfied(node, state)
-  const conf   = Math.min(1, state[node.id]?.confidence ?? 0)
-  const ageS   = ageProximityScore(ageMo, node.ageBand)
-  const actsS  = activityCoverage(node, acts, filters)
-  return w.parent*parent + w.gates*gates + w.conf*conf + w.age*ageS + w.acts*actsS
-}
-
-export function statusColor(n: Node, state: ChildState, nextIds: Set<string>){
-  const lvl = state[n.id]?.level ?? 0
-  if (lvl >= 2) return '#16a34a' // mastered
-  if (nextIds.has(n.id)) return '#7C5CFF' // recommended
-  // ready if gates ok and within age-ish
-  const gates = gateSatisfied(n, state)
-  if (gates >= 1) return '#f59e0b'
-  return '#e5e7eb'
-}
-
-// Utility: get all links for a node from activity index
-export function nodeLinks(node: Node, acts: ActivityIndex){
-  const links: { activityId: string, meetsExit: string }[] = []
-  for (const a of Object.values(acts)){
-    for (const link of (a.links || [])){
-      if (link.nodeId === node.id) links.push({ activityId: a.id, meetsExit: link.meetsExit })
+  // whitelist check (only numbers, operators, parentheses, spaces, dots)
+  if (!/^[\d\s\.\+\-\*\/\(\)<>=&|!]+$/.test(replaced)) {
+    // Allow && and || explicitly
+    const allowed = replaced.replace(/&&/g, "").replace(/\|\|/g, "");
+    if (!/^[\d\s\.\+\-\*\/\(\)<>=!]+$/.test(allowed)) {
+      console.warn("Blocked unsafe expr:", expr, "->", replaced);
+      return false;
     }
   }
-  return links
+
+  try {
+    // eslint-disable-next-line no-new-func
+    const fn = new Function(`return (${replaced});`);
+    const out = fn();
+    return Boolean(out);
+  } catch (e) {
+    console.warn("Gate eval error:", e, { expr, replaced });
+    return false;
+  }
+}
+
+// Decide readiness score for a node (0..1); include gates as boosts/blocks.
+export function readinessScore(
+  nodeId: string,
+  gates: Gate[] | undefined,
+  state: StateProvider
+): number {
+  if (!gates || gates.length === 0) return 0.5; // neutral default
+  let score = 0.5;
+  for (const g of gates) {
+    const passed = evalGateExpr(g.expr, state);
+    if (g.kind === "prereq") {
+      if (!passed) return 0; // hard stop
+      score = Math.max(score, 0.6);
+    } else if (g.kind === "block") {
+      if (passed) return 0; // blocked
+    } else if (g.kind === "boost") {
+      if (passed) score = Math.min(1, score + 0.2);
+    }
+  }
+  return score;
 }

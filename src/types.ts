@@ -1,55 +1,78 @@
-export type Environment = 'home' | 'school' | 'outdoors' | 'clinic'
+export type AgeBand = {
+  typicalStart: number; // months
+  typicalEnd: number;   // months
+};
 
-export type AgeBand = { typicalStart: number; typicalEnd: number }
-
-export type Gate = { type: 'node_min_level'; nodes: string[]; minLevel?: number }
+export type Gate = {
+  kind: "prereq" | "boost" | "block";
+  expr: string;              // simple boolean expression (see logic.ts)
+  rationale?: string;
+};
 
 export type Node = {
-  id: string
-  ladderId: string
-  domain: string
-  parentId: string | null
-  name: string
-  description?: string
-  ageBand?: AgeBand
-  exitCriteria?: string[]
-  gates?: Gate[]
-  signals?: string[]
-  tags?: string[]
-}
+  id: string;
+  ladderId: string;
+  domain?: string;          // still supported for coloring
+  parentId: string | null;  // tree parent (single parent)
+  name: string;
+  description?: string;
+  ageBand?: AgeBand;
+  exitCriteria?: string[];
+  tags?: string[];
+  gates?: Gate[];
+};
 
-export type Ladder = { id: string; name: string; rootNodeId: string }
+export type Ladder = {
+  id: string;
+  name: string;
+  rootNodeId: string;
+};
 
-export type Genome = { meta?: any; ladders: Ladder[]; nodes: Node[] }
+export type Edge = {
+  source: string;                 // node.id
+  target: string;                 // node.id
+  kind?: "gate" | "related" | "prereq";
+  style?: "cross" | "intra";
+  rationale?: string;
+};
 
-export type ChildNodeState = {
-  level: number     // 0..3 continuous
-  confidence: number // 0..1
-  evidence?: number  // 0..∞ heuristic
-}
-export type ChildState = Record<string, ChildNodeState>
-
-export type ActivityStep = { text: string; tip?: string; emoji?: string }
-export type MaterialsRef = { id?: string; name: string; quantity?: string }
+export type Genome = {
+  meta: Record<string, any>;
+  ladders: Ladder[];
+  nodes: Node[];
+  edges?: Edge[];                 // optional
+};
 
 export type ActivityLink = {
-  nodeId: string
-  meetsExit: string // verbatim phrase showing how this activity proves mastery
-}
+  nodeId: string;
+  meetsExit?: string;
+};
 
 export type Activity = {
-  id: string
-  title: string
-  emoji?: string
-  environment: Environment[]
-  durationMin: number
-  materials?: MaterialsRef[]
-  steps: ActivityStep[]
-  observe?: string[]
-  variations?: string[]
-  cautions?: string[]
-  links: ActivityLink[]
-  tags?: string[]
-}
+  id: string;
+  title: string;
+  emoji?: string;
+  environment?: Array<"home" | "school" | "outdoors">;
+  durationMin?: number;
+  materials?: Array<{ name: string }>;
+  steps: Array<{ text: string }>;
+  observe?: string[];
+  links: ActivityLink[];
+  tags?: string[];
+};
 
-export type ActivityIndex = Record<string, Activity>
+export type ActivitiesDoc = {
+  activities: Activity[];
+};
+
+// UI view models
+export type ChildNode = Node & {
+  children: Node[];
+};
+
+export type LayoutPoint = { x: number; y: number };
+
+export type LayoutResult = {
+  positions: Map<string, LayoutPoint>; // nodeId -> position
+  bounds: { x: number; y: number; w: number; h: number };
+};

@@ -1,278 +1,526 @@
-// src/ui/App.tsx
-import React from 'react'
-import type { Genome, ChildState, Node, ActivityIndex, Environment } from '../types'
-import { loadGenome, loadActivities } from '../dataLoader'
-import { readyScorePlus, statusColor, gateSatisfied, parentMastery, nodeLinks } from '../logic'
-import { NextList } from './NextList'
-import { TreeCanvas } from './TreeCanvas'
+import React, { useEffect, useMemo, useState } from "react";
+import { loadActivities, loadDomainOrder, loadDomains, loadGenome, loadIcons } from "../dataLoader";
+import { ActivitiesDoc, Genome, Node } from "../types";
+import TreeCanvas from "./TreeCanvas";
 
-type ExpandedMap = Record<string, Set<string>>
-const cloneExpanded = (m: ExpandedMap) => {
-  const out: ExpandedMap = {}
-  for (const k in m) out[k] = new Set(m[k])
-  return out
-}
-const initialChildState = (g: Genome): ChildState => {
-  const s: ChildState = {}
-  for (const n of g.nodes) s[n.id] = { level: 0, confidence: 0, evidence: 0 }
-  return s
-}
+export default function App() {
+  const [genome, setGenome] = useState<Genome | null>(null);
+  const [activities, setActivities] = useState<ActivitiesDoc | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const [icons, setIcons] = useState<Record<string, string>>({});
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [completed, setCompleted] = useState<Set<string>>(new Set());
+  const [domainOrder, setDomainOrder] = useState<Record<string, number>>({});
+  const [domains, setDomains] = useState<Array<{ id: string; name: string; emoji?: string }>>([]);
+  const [showLegend, setShowLegend] = useState(false);
+  const [childLevels, setChildLevels] = useState<Record<string, number>>({});
+  const [childAge, setChildAge] = useState<number>(12);
+  const [showPlan, setShowPlan] = useState(false);
+  const [planItems, setPlanItems] = useState<Array<{ nodeId: string; activityId?: string }>>([]);
+  const [planEnv, setPlanEnv] = useState<Array<'home'|'school'|'outdoors'>>(['home','school']);
+  const [planMaxMin, setPlanMaxMin] = useState<number>(10);
+  const [focusId, setFocusId] = useState<string | null>(null);
+  const [planExpanded, setPlanExpanded] = useState<Set<string>>(new Set());
 
-export function App() {
-  // --- loading state ---
-  const [genome, setGenome] = React.useState<Genome | null>(null)
-  const [activities, setActivities] = React.useState<ActivityIndex>({})
-  const [loadError, setLoadError] = React.useState<string | null>(null)
-
-  // --- app state ---
-  const [state, setState] = React.useState<ChildState>({})
-  const [age, setAge] = React.useState(12)
-  const [expanded, setExpanded] = React.useState<ExpandedMap>({})
-  const [selected, setSelected] = React.useState<Node | null>(null)
-  const [envFilter, setEnvFilter] = React.useState<Environment[]>(['home', 'school'])
-  const [maxMinutes, setMaxMinutes] = React.useState<number>(10)
-
-  // load JSON (public/data/...)
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       try {
-        const [g, a] = await Promise.all([loadGenome(), loadActivities()])
-        setGenome(g)
-        setActivities(a)
-        setState(initialChildState(g))
-        const m: ExpandedMap = {}
-        for (const lad of g.ladders) m[lad.id] = new Set() // collapsed by default
-        setExpanded(m)
+        const [g, a, ic, doms, domMeta] = await Promise.all([
+          loadGenome(),
+          loadActivities(),
+          loadIcons(),
+          loadDomainOrder(),
+          loadDomains(),
+        ]);
+        setGenome(g);
+        setActivities(a);
+        setIcons(ic || {});
+        const orderMap: Record<string, number> = {};
+        (doms || []).forEach((id, i) => (orderMap[id] = i));
+        setDomainOrder(orderMap);
+        setDomains(domMeta || []);
       } catch (e: any) {
-        console.error(e)
-        setLoadError(e?.message || String(e))
+        setErr(e?.message || "Failed to load data");
       }
-    })()
-  }, [])
+    })();
+  }, []);
 
-  // ---- early renders (INSIDE component) ----
-  if (loadError) {
-    return (
-      <div style={{ padding: 16, color: '#b91c1c', fontFamily: 'system-ui' }}>
-        <h3>Failed to load data</h3>
-        <div style={{ whiteSpace: 'pre-wrap' }}>{loadError}</div>
-        <p style={{ marginTop: 8, color: '#111' }}>
-          Check that these files exist and contain valid JSON:
-        </p>
-        <ul>
-          <li><code>public/data/genome.json</code></li>
-          <li><code>public/data/activities/activities.json</code> (or <code>public/data/activities.json</code>)</li>
-        </ul>
-        <p>Then hard refresh (Cmd/Ctrl+Shift+R).</p>
-      </div>
+  // load/save completion state
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("completedNodes");
+      if (raw) setCompleted(new Set(JSON.parse(raw)));
+    } catch {}
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem("completedNodes", JSON.stringify(Array.from(completed)));
+    } catch {}
+  }, [completed]);
+
+  // load/save child levels, age, and plan
+  useEffect(() => {
+    try {
+      const lv = localStorage.getItem("childLevels");
+      if (lv) setChildLevels(JSON.parse(lv));
+      const ag = localStorage.getItem("childAge");
+      if (ag) setChildAge(parseInt(ag) || 12);
+      const pl = localStorage.getItem("sessionPlan");
+      if (pl) setPlanItems(JSON.parse(pl));
+    } catch {}
+  }, []);
+  useEffect(() => { try { localStorage.setItem("childLevels", JSON.stringify(childLevels)); } catch {} }, [childLevels]);
+  useEffect(() => { try { localStorage.setItem("childAge", String(childAge)); } catch {} }, [childAge]);
+  useEffect(() => { try { localStorage.setItem("sessionPlan", JSON.stringify(planItems)); } catch {} }, [planItems]);
+
+  const selectedNode: Node | null = useMemo(() => {
+    if (!genome || !selectedId) return null;
+    return genome.nodes.find((n) => n.id === selectedId) || null;
+  }, [genome, selectedId]);
+
+  // derive completed set from explicit completes + levels >=2
+  const computedCompleted = useMemo(() => {
+    const s = new Set<string>(Array.from(completed));
+    for (const [id, lvl] of Object.entries(childLevels)) if (lvl >= 2) s.add(id);
+    return s;
+  }, [completed, childLevels]);
+
+  // --- next milestones calculation ---
+  function levelOf(id: string): number {
+    if (childLevels[id] != null) return childLevels[id];
+    return completed.has(id) ? 3 : 0;
+  }
+  function evalGateExpr(expr: string): boolean {
+    try {
+      const substituted = expr.replace(/level\('([^']+)'\)/g, (_: any, id: string) => String(levelOf(id)));
+      if (!/^[-+*!<>=&|().\d\s]+$/.test(substituted)) return false;
+      // eslint-disable-next-line no-new-func
+      const fn = new Function(`return (${substituted});`); return !!fn();
+    } catch { return false }
+  }
+  function gatesAllow(n: Node): boolean {
+    const gs: any = (n as any).gates; if (!gs || gs.length===0) return true;
+    for (const g of gs) { if (g.kind === 'block' && evalGateExpr(g.expr)) return false }
+    for (const g of gs) { if (g.kind === 'prereq' && !evalGateExpr(g.expr)) return false }
+    return true
+  }
+  const nextMilestones: Node[] = useMemo(() => {
+    if (!genome) return []
+    const byId: Record<string, Node> = Object.fromEntries(
+      genome.nodes.map((n) => [n.id, n])
     )
-  }
-  if (!genome) {
-    return <div style={{ padding: 16 }}>Loading data…</div>
-  }
-
-  // --- compute Next Steps ---
-  const next = genome.ladders.map(lad => {
-    const nodes = genome.nodes.filter(n => n.ladderId === lad.id)
-    const scored = nodes
-      .filter(n => gateSatisfied(n, state) >= 1 && (state[n.id]?.level ?? 0) < 2)
-      .map(n => ({
-        ladderId: lad.id,
-        node: n,
-        score: readyScorePlus(n, state, age, activities, { env: envFilter, maxMin: maxMinutes })
-      }))
-      .sort((a, b) => b.score - a.score)
-    return scored[0] || null
-  }).filter(Boolean) as { ladderId: string; node: Node; score: number }[]
-  const nextIds = new Set(next.map(x => x.node.id))
-
-  // --- expand/collapse ---
-  const toggleNode = (ladderId: string, nodeId: string) => {
-    setExpanded(prev => {
-      const m = cloneExpanded(prev)
-      const s = m[ladderId] ?? new Set<string>()
-      s.has(nodeId) ? s.delete(nodeId) : s.add(nodeId)
-      m[ladderId] = s
-      return m
+    return genome.nodes.filter(n => {
+      if (completed.has(n.id)) return false
+      const parent = n.parentId ? byId[n.parentId] : undefined
+      const parentIsCluster = parent && !parent.ageBand
+      const parentOk = n.parentId==null || levelOf(n.parentId)>=2 || parentIsCluster
+      if (!parentOk) return false
+      return gatesAllow(n)
+    }).sort((a,b)=>{
+      const as = a.ageBand?.typicalStart ?? 999
+      const bs = b.ageBand?.typicalStart ?? 999
+      return as - bs || a.name.localeCompare(b.name)
     })
-  }
-  const expandAllInLadder = (ladderId: string) => {
-    setExpanded(prev => {
-      const m = cloneExpanded(prev)
-      const set = m[ladderId] ?? new Set<string>()
-      for (const n of genome.nodes.filter(n => n.ladderId === ladderId)) set.add(n.id)
-      m[ladderId] = set
-      return m
-    })
-  }
-  const collapseAllInLadder = (ladderId: string) => {
-    setExpanded(prev => {
-      const m = cloneExpanded(prev); m[ladderId] = new Set(); return m
-    })
-  }
+  }, [genome, completed])
 
-  // --- evidence bump ---
-  function bump(nodeId: string, deltaLevel = 0.2, deltaConf = 0.1) {
-    setState(s => ({
-      ...s,
-      [nodeId]: {
-        level: Math.min(3, (s[nodeId]?.level ?? 0) + deltaLevel),
-        confidence: Math.min(1, (s[nodeId]?.confidence ?? 0) + deltaConf),
-        evidence: (s[nodeId]?.evidence ?? 0) + 1
-      }
-    }))
-  }
+  // Age-relevant milestones for rapid assessment
+  const ageRelevant: Node[] = useMemo(() => {
+    if (!genome) return [];
+    return genome.nodes
+      .filter(n => n.ageBand && childAge >= (n.ageBand!.typicalStart) && childAge <= (n.ageBand!.typicalEnd))
+      .sort((a,b)=>{
+        const da = domainOrder[a.domain || ''] ?? 999;
+        const db = domainOrder[b.domain || ''] ?? 999;
+        const as = a.ageBand!.typicalStart, bs = b.ageBand!.typicalStart;
+        return da - db || as - bs || a.name.localeCompare(b.name);
+      });
+  }, [genome, childAge, domainOrder]);
 
-  // --- path to selected node ---
-  const idToNode: Record<string, Node> = Object.fromEntries(genome.nodes.map(n => [n.id, n]))
-  const progression: Node[] = []
-  if (selected) {
-    let cur: Node | undefined = selected
-    while (cur) {
-      progression.unshift(cur)
-      cur = cur.parentId ? idToNode[cur.parentId] : undefined
-    }
-  }
-
-  // --- render ---
-  return (
-    <>
-      <div className="topbar">
-        <div className="brand">Learning Genome – Actionable</div>
-        <div className="legend">
-          <span><span className="dot" style={{ display: 'inline-block', width: 10, height: 10, background: '#16a34a', borderRadius: 999 }}></span>{' '}mastered (≥2)</span>
-          <span><span className="dot" style={{ display: 'inline-block', width: 10, height: 10, background: '#f59e0b', borderRadius: 999 }}></span>{' '}ready</span>
-          <span><span className="dot" style={{ display: 'inline-block', width: 10, height: 10, background: '#e5e7eb', borderRadius: 999 }}></span>{' '}locked</span>
-          <span><span className="dot" style={{ display: 'inline-block', width: 10, height: 10, background: '#7C5CFF', borderRadius: 999 }}></span>{' '}recommended</span>
+  if (err) {
+    return (
+      <div style={{ padding: 16, fontFamily: "system-ui", color: "#b91c1c" }}>
+        <h3>Failed to load data</h3>
+        <div style={{ whiteSpace: "pre-wrap", fontSize: 14 }}>{err}</div>
+        <div style={{ marginTop: 8 }}>
+          Check that these files exist and contain valid JSON:
+          <ul>
+            <li>public/data/genome.json</li>
+            <li>public/data/activities/activities.json (or public/data/activities.json)</li>
+          </ul>
+          Then hard refresh (Cmd/Ctrl+Shift+R).
         </div>
       </div>
+    );
+  }
 
-      <div className="layout">
-        {/* Controls */}
-        <div className="card controls">
-          <h3>Controls</h3>
-          <div className="row">
-            <label>Age (months): {age}</label>
-            <input type="range" min={0} max={36} value={age} onChange={e => setAge(parseInt(e.target.value))} />
-          </div>
+  if (!genome) {
+    return <div style={{ padding: 16, fontFamily: "system-ui" }}>Loading…</div>;
+  }
 
-          <div className="row">
-            <div style={{ fontWeight: 600, marginBottom: 4 }}>Environment</div>
-            {(['home', 'school', 'outdoors'] as Environment[]).map(env => {
-              const on = envFilter.includes(env)
-              return (
-                <button key={env} className={`btn ${on ? '' : 'ghost'}`}
-                  onClick={() => setEnvFilter(prev => on ? prev.filter(x => x !== env) : [...prev, env])}
-                  style={{ marginRight: 6 }}>
-                  {env}
-                </button>
-              )
-            })}
-          </div>
+  const activityForSelected =
+    selectedNode && activities
+      ? activities.activities.filter((a) =>
+          a.links?.some((l) => l.nodeId === selectedNode.id)
+        )
+      : [];
 
-          <div className="row">
-            <label>Max minutes: {maxMinutes}</label>
-            <input type="range" min={3} max={20} step={1} value={maxMinutes} onChange={e => setMaxMinutes(parseInt(e.target.value))} />
-          </div>
-
-          <div className="row">
-            <h4>Next Steps</h4>
-            <NextList next={next} />
-          </div>
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 360px",
+        height: "100vh",
+        fontFamily: "Inter, system-ui, sans-serif",
+      }}
+    >
+      <TreeCanvas
+        genome={genome}
+        icons={icons}
+        completed={computedCompleted}
+        domainOrder={domainOrder}
+        focusId={focusId || selectedId}
+        onSelect={(id) => setSelectedId(id)}
+        selectedId={selectedId}
+      />
+      <aside
+        style={{
+          borderLeft: "1px solid #e5e7eb",
+          padding: 12,
+          overflow: "auto",
+          background: "#fafafa",
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, gap: 8 }}>
+          <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowPlan(true)}>Plan</button>
+          <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowLegend(true)}>Legend</button>
         </div>
-
-        {/* Graph */}
-        <div className="card" style={{ padding: 0 }}>
-          <TreeCanvas
-            genome={genome}
-            state={state}
-            age={age}
-            nextIds={new Set(next.map(n => n.node.id))}
-            expanded={expanded}
-            colorFor={(n) => statusColor(n, state, new Set(next.map(x => x.node.id)))}
-            onToggleNode={toggleNode}
-            onSelect={setSelected}
-            onExpandAll={expandAllInLadder}
-            onCollapseAll={collapseAllInLadder}
-          />
-        </div>
-
-        {/* Side panel */}
-        <div className="card">
-          <h3>Skill</h3>
-          {!selected && <div style={{ color: '#666' }}>Click a node to view details and activities.</div>}
-          {selected && (
-            <>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
-                {progression.map((n, i) => (
-                  <React.Fragment key={n.id}>
-                    <span className="pill" style={{ background: '#f8fafc' }}>
-                      {n.name}
-                      <span style={{ marginLeft: 6, fontSize: 11, color: '#666' }}>lvl {(state[n.id]?.level ?? 0).toFixed(1)}</span>
-                    </span>
-                    {i < progression.length - 1 && <span style={{ opacity: 0.6 }}>{'→'}</span>}
-                  </React.Fragment>
-                ))}
-              </div>
-
-              <div style={{ fontSize: 12, color: '#555', marginTop: 6 }}>{selected.id}</div>
-              {selected.ageBand && (
-                <div style={{ marginTop: 6 }}>
-                  <span className="badge">typical: {selected.ageBand.typicalStart}-{selected.ageBand.typicalEnd} mo</span>
-                </div>
-              )}
-
-              <div style={{ marginTop: 12 }}>
-                <div style={{ fontWeight: 600 }}>Exit criteria</div>
-                <ul>{(selected.exitCriteria || ['-']).map((x, i) => <li key={i}>{x}</li>)}</ul>
-              </div>
-
-              {/* Activities for this node (filtered) */}
-              <div style={{ marginTop: 12 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <h4 style={{ margin: 0 }}>Activities</h4>
-                  <span style={{ fontSize: 12, color: '#666' }}>env: {envFilter.join(', ')} · ≤{maxMinutes} min</span>
-                </div>
-                {(() => {
-                  const links = nodeLinks(selected, activities)
-                  const candidates = links
-                    .map(l => ({ link: l, act: activities[l.activityId] }))
-                    .filter(x => !!x.act)
-                    .filter(x => envFilter.some(e => x.act!.environment.includes(e)))
-                    .filter(x => x.act!.durationMin <= maxMinutes)
-
-                  if (candidates.length === 0) return <div style={{ color: '#666', marginTop: 6 }}>No matching activities under current filters.</div>
-
-                  return (
-                    <div style={{ display: 'grid', gap: 8, marginTop: 8 }}>
-                      {candidates.map(({ act, link }) => (
-                        <div key={act!.id} className="pill" style={{ alignItems: 'center', gap: 8 }}>
-                          <span style={{ fontSize: 18 }}>{act!.emoji || '🎯'}</span>
-                          <div style={{ display: 'grid' }}>
-                            <div style={{ fontWeight: 600 }}>{act!.title}</div>
-                            <div style={{ fontSize: 12, color: '#555' }}>⏱ {act!.durationMin} min · {act!.environment.join(', ')}</div>
-                          </div>
-                          <span className="badge" title="How this proves mastery">meets exit: {link.meetsExit}</span>
-                          <button className="btn" style={{ marginLeft: 'auto' }} onClick={() => bump(selected.id, 0.2, 0.1)}>
-                            Observed
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )
-                })()}
-              </div>
-
-              {/* Readiness rationale */}
-              <div style={{ marginTop: 12, fontSize: 13 }}>
-                <div><b>Parent mastery</b>: {Math.round(parentMastery(selected, state) * 100)}%</div>
-                <div>Gates satisfied: {Math.round(gateSatisfied(selected, state) * 100)}%</div>
-                <div>Within age band: {selected.ageBand ? (age >= selected.ageBand.typicalStart && age <= selected.ageBand.typicalEnd ? 'yes' : 'nearby') : 'n/a'}</div>
-              </div>
-            </>
+        
+        <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 10, background: "#fff", marginBottom: 12 }}>
+          <div style={{ fontWeight: 700, marginBottom: 6 }}>Next milestones</div>
+          {nextMilestones.length===0 ? (
+            <div style={{ color: '#6b7280', fontSize: 13 }}>No items yet. Mark something complete to unlock next steps.</div>
+          ) : (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+              {nextMilestones.slice(0,6).map(n => (
+                <li key={n.id} style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 8, background: '#f8fafc', cursor: 'pointer' }} onClick={() => setSelectedId(n.id)}>
+                  <div style={{ fontWeight: 600, fontSize: 13 }}>
+                    {n.name}
+                    {n.ageBand && (
+                      <span style={{ marginLeft: 6, fontSize: 12, color: '#6b7280' }}>
+                        ({n.ageBand.typicalStart}–{n.ageBand.typicalEnd}m)
+                      </span>
+                    )}
+                  </div>
+                  {activities?.activities && (() => {
+                    const acts = activities.activities.filter(a => a.links?.some(l => l.nodeId===n.id)).slice(0,2)
+                    if (acts.length===0) return null
+                    return (
+                      <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' }}>
+                        {acts.map(a => (
+                          <span key={a.id} style={{ fontSize: 12, background: '#eef2ff', color: '#3730a3', border: '1px solid #e0e7ff', borderRadius: 999, padding: '2px 8px' }}>
+                            {a.emoji ? a.emoji+' ' : ''}{a.title}
+                          </span>
+                        ))}
+                      </div>
+                    )
+                  })()}
+                </li>
+              ))}
+            </ul>
           )}
         </div>
-      </div>
-    </>
-  )
+        <h3 style={{ margin: "8px 0" }}>
+          {selectedNode ? selectedNode.name : "Select a milestone"}
+        </h3>
+        {selectedNode && selectedNode.description && (
+          <p style={{ marginTop: 4, color: "#374151" }}>
+            {selectedNode.description}
+          </p>
+        )}
+        {selectedNode?.ageBand && (
+          <div style={{ marginTop: 8, fontSize: 13, color: "#6b7280" }}>
+            Age band: {selectedNode.ageBand.typicalStart}–{selectedNode.ageBand.typicalEnd} months
+          </div>
+        )}
+        {selectedNode && (
+          (() => {
+            const byId: Record<string, Node> = Object.fromEntries(genome.nodes.map(n => [n.id, n]))
+            const parents: Node[] = []
+            let cur: Node | undefined = selectedNode
+            while (cur && cur.parentId){ cur = byId[cur.parentId]; if(cur) parents.unshift(cur) }
+            const children = genome.nodes.filter(n => n.parentId === selectedNode.id).sort((a,b)=> (a.ageBand?.typicalStart ?? 999) - (b.ageBand?.typicalStart ?? 999))
+            return (
+              <div style={{ marginTop: 10 }}>
+                {parents.length>0 && (
+                  <div style={{ marginBottom: 8 }}>
+                    <div style={{ fontWeight:600, fontSize:13, marginBottom:4 }}>Parents</div>
+                    <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
+                      {parents.map(p => (
+                        <span key={p.id} className="pill" style={{ background:'#f8fafc' }} onClick={()=> setSelectedId(p.id)}>{p.name}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div>
+                  <div style={{ fontWeight:600, fontSize:13, marginBottom:4 }}>Next children</div>
+                  {children.length===0 ? (
+                    <div style={{ color:'#6b7280', fontSize:12 }}>No direct children.</div>
+                  ) : (
+                    <ul style={{ listStyle:'none', padding:0, margin:0, display:'grid', gap:6 }}>
+                      {children.map(c => (
+                        <li key={c.id} style={{ display:'flex', alignItems:'center', gap:8 }}>
+                          <button className="btn" style={{ background:'#e5e7eb', color:'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> setSelectedId(c.id)}>Open</button>
+                          <div style={{ fontSize:13, fontWeight:600, flex:1 }}>{c.name}</div>
+                          {c.ageBand && (<span className="badge">{c.ageBand.typicalStart}–{c.ageBand.typicalEnd}m</span>)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            )
+          })()
+        )}
+        {selectedNode && selectedNode.ageBand && (
+          <div style={{ marginTop: 8 }}>
+            <div style={{ fontSize: 13, color: '#374151', marginBottom: 4 }}>Current level: {Number(levelOf(selectedNode.id)).toFixed(1)}</div>
+            <input type="range" min={0} max={3} step={0.5} value={levelOf(selectedNode.id)} onChange={e => setChildLevels(prev => ({ ...prev, [selectedNode.id]: parseFloat(e.target.value) }))} />
+            <div style={{ fontSize: 12, color: '#6b7280' }}>0 = not yet, 1 = emerging, 2 = consistent, 3 = mastered</div>
+          </div>
+        )}
+        {selectedNode?.exitCriteria && selectedNode.exitCriteria.length > 0 && (
+          <div style={{ marginTop: 8 }}>
+            <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>
+              Exit criteria
+            </div>
+            <ul style={{ paddingLeft: 16, margin: 0 }}>
+              {selectedNode.exitCriteria.map((e) => (
+                <li key={e} style={{ fontSize: 13, color: "#374151" }}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {activityForSelected && activityForSelected.length > 0 && (
+          <div style={{ marginTop: 16 }}>
+            <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 6 }}>
+              Recommended activities
+            </div>
+            <ul style={{ paddingLeft: 0, listStyle: "none", margin: 0 }}>
+              {activityForSelected.map((a) => (
+                <li
+                  key={a.id}
+                  style={{
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 12,
+                    padding: 10,
+                    marginBottom: 8,
+                    background: "#fff",
+                  }}
+                >
+                  <div style={{ fontWeight: 600 }}>
+                    {a.emoji ? a.emoji + " " : ""}
+                    {a.title}
+                  </div>
+                  {a.steps?.length ? (
+                    <ol style={{ margin: "4px 0 0 16px", fontSize: 13 }}>
+                      {a.steps.map((s, i) => (
+                        <li key={i}>{s.text}</li>
+                      ))}
+                    </ol>
+                  ) : null}
+                  {a.links?.length ? (
+                    <div style={{ marginTop: 6, fontSize: 12, color: "#6b7280" }}>
+                      Meets:{" "}
+                      {a.links
+                        .filter((l) => l.nodeId === selectedNode?.id)
+                        .map((l) => l.meetsExit)
+                        .filter(Boolean)
+                        .join(" • ")}
+                    </div>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+      {showPlan && (
+        <div role="dialog" aria-modal="true" aria-label="Planning" onClick={() => setShowPlan(false)} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.35)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:60 }}>
+          <div onClick={e=>e.stopPropagation()} style={{ background:'#fff', borderRadius:12, padding:16, width:720, maxHeight:'84vh', overflow:'auto', boxShadow:'0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+              <h3 style={{ margin:0 }}>Session Planner</h3>
+              <button className="btn" style={{ background:'#e5e7eb', color:'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=>setShowPlan(false)}>Close</button>
+            </div>
+            <div style={{ display:'grid', gap:12, marginTop:12 }}>
+              <div style={{ display:'flex', gap:12, alignItems:'center' }}>
+                <label style={{ fontWeight:600 }}>Age (months)</label>
+                <input type="number" min={0} max={60} value={childAge} onChange={e=>setChildAge(parseInt(e.target.value)||0)} style={{ width:80 }} />
+              </div>
+              <div style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:10 }}>
+                <div style={{ fontWeight:700, marginBottom:6 }}>Assess this month</div>
+                <div style={{ fontSize:12, color:'#6b7280', marginBottom:6 }}>Set current level for milestones typical at {childAge}m. 0 = not yet, 1 = emerging, 2 = consistent, 3 = mastered.</div>
+                {ageRelevant.length === 0 ? (
+                  <div style={{ color:'#6b7280', fontSize:13 }}>No milestones match this month. Try adjusting age.</div>
+                ) : (
+                  <ul style={{ listStyle:'none', padding:0, margin:0, display:'grid', gap:10 }}>
+                    {ageRelevant.map(n => {
+                      const icon = (()=>{
+                        if (n.tags && n.tags.length) { for (const t of n.tags) { if ((icons as any)[t]) return (icons as any)[t] } }
+                        if (n.domain && (icons as any)[n.domain]) return (icons as any)[n.domain];
+                        return '';
+                      })();
+                      const isOpen = planExpanded.has(n.id);
+                      return (
+                      <li key={n.id} style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:8, background:'#f8fafc' }}>
+                        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+                          <button aria-label={isOpen? 'Collapse':'Expand'} onClick={()=> setPlanExpanded(prev => { const s=new Set(prev); s.has(n.id)? s.delete(n.id): s.add(n.id); return s; })} style={{ border:0, background:'transparent', cursor:'pointer', fontSize:16, lineHeight:1 }}>{isOpen?'▾':'▸'}</button>
+                          <div style={{ fontWeight:600, fontSize:13, flex:1 }}>{icon? icon+' ' : ''}{n.name}</div>
+                          <div style={{ display:'flex', gap:6 }}>
+                            {[0,1,2,3].map(v => (
+                              <button key={v} className="btn" style={{ background: (childLevels[n.id]??0)===v? '#111827':'#e5e7eb', color:(childLevels[n.id]??0)===v? '#fff':'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> setChildLevels(prev => ({ ...prev, [n.id]: v }))}>{v}</button>
+                            ))}
+                          </div>
+                          <button className="btn" style={{ background:'#111827', color:'#fff', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> { setSelectedId(n.id); setFocusId(n.id); setShowPlan(false); }}>Open in graph</button>
+                        </div>
+                        {isOpen && (
+                          <div style={{ marginTop:8, fontSize:13, color:'#374151' }}>
+                            {n.ageBand && (<div style={{ marginBottom:4 }}><b>Age:</b> {n.ageBand.typicalStart}–{n.ageBand.typicalEnd}m</div>)}
+                            {n.exitCriteria && n.exitCriteria.length>0 && (
+                              <div style={{ marginTop:4 }}>
+                                <div style={{ fontWeight:600 }}>Exit criteria</div>
+                                <ul style={{ margin:0, paddingLeft:16 }}>
+                                  {n.exitCriteria.map((e,i)=>(<li key={i}>{e}</li>))}
+                                </ul>
+                              </div>
+                            )}
+                            {n.description && (<div style={{ marginTop:6 }}>{n.description}</div>)}
+                          </div>
+                        )}
+                      </li>
+                      )})}
+                  </ul>
+                )}
+              </div>
+
+              <div style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:10 }}>
+                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                  <div style={{ fontWeight:700 }}>Activities for this month</div>
+                  <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+                    <span style={{ fontSize:12, color:'#6b7280' }}>Env:</span>
+                    {(['home','school','outdoors'] as const).map(env => (
+                      <button key={env} className="btn" style={{ background: planEnv.includes(env)? '#111827':'#e5e7eb', color: planEnv.includes(env)? '#fff':'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> setPlanEnv(prev => prev.includes(env)? prev.filter(e=>e!==env) : [...prev, env])}>{env}</button>
+                    ))}
+                    <span style={{ fontSize:12, color:'#6b7280', marginLeft:8 }}>≤ {planMaxMin} min</span>
+                    <input type="range" min={3} max={20} step={1} value={planMaxMin} onChange={e=> setPlanMaxMin(parseInt(e.target.value))} />
+                  </div>
+                </div>
+                <ul style={{ listStyle:'none', padding:0, marginTop:8, display:'grid', gap:10 }}>
+                  {ageRelevant.filter(n => (childLevels[n.id]??0) < 2).map(n => {
+                    const acts = (activities?.activities||[])
+                      .filter(a => a.links?.some(l => l.nodeId===n.id))
+                      .filter(a => !a.environment || a.environment.some(e => planEnv.includes(e)))
+                      .filter(a => !a.durationMin || a.durationMin <= planMaxMin)
+                      .slice(0,3)
+                    return (
+                      <li key={n.id} style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:8 }}>
+                        <div style={{ fontWeight:600, fontSize:13, marginBottom:6 }}>{n.name}</div>
+                        {acts.length===0 ? (
+                          <div style={{ color:'#6b7280', fontSize:12 }}>No matching activities under current filters.</div>
+                        ) : (
+                          <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
+                            {acts.map(a => (
+                              <button key={a.id} className="btn" style={{ background:'#10b981', border:0, borderRadius:8, padding:'4px 8px', color:'#fff', cursor:'pointer' }} onClick={()=> setPlanItems(prev => prev.some(p=>p.nodeId===n.id && p.activityId===a.id)? prev : [...prev, { nodeId:n.id, activityId:a.id }])}>
+                                {a.emoji ? a.emoji+' ' : ''}{a.title}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+              <div style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:10 }}>
+                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                  <div style={{ fontWeight:700 }}>Today's Plan</div>
+                  {planItems.length>0 && (
+                    <div style={{ display:'flex', gap:8 }}>
+                      <button className="btn" style={{ background:'#111827', color:'#fff', border:0, borderRadius:8, padding:'6px 10px', cursor:'pointer' }} onClick={()=>{
+                        const payload = planItems.map(p=>({ nodeId:p.nodeId, activityId:p.activityId }))
+                        const blob = new Blob([JSON.stringify({ date:new Date().toISOString().slice(0,10), ageMonths: childAge, items: payload }, null, 2)], { type:'application/json' })
+                        const url = URL.createObjectURL(blob)
+                        const a = document.createElement('a'); a.href=url; a.download='session-plan.json'; a.click(); URL.revokeObjectURL(url)
+                      }}>Export JSON</button>
+                      <button className="btn" style={{ background:'#e11d48', color:'#fff', border:0, borderRadius:8, padding:'6px 10px', cursor:'pointer' }} onClick={()=> setPlanItems([])}>Clear</button>
+                    </div>
+                  )}
+                </div>
+                {planItems.length===0 ? (
+                  <div style={{ color:'#6b7280', fontSize:13, marginTop:6 }}>No items yet. Use "Add" under Suggested targets.</div>
+                ) : (
+                  <ul style={{ listStyle:'none', padding:0, marginTop:8, display:'grid', gap:8 }}>
+                    {planItems.map((p, idx) => {
+                      const node = genome.nodes.find(n=>n.id===p.nodeId)
+                      const acts = activities?.activities.filter(a=> a.links?.some(l=>l.nodeId===p.nodeId)) || []
+                      return (
+                        <li key={p.nodeId} style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:8, background:'#f8fafc' }}>
+                          <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+                            <div style={{ fontWeight:600, flex:1 }}>{node?.name || p.nodeId}</div>
+                            <select value={p.activityId || ''} onChange={e=> setPlanItems(prev => prev.map((x,i)=> i===idx ? { ...x, activityId: e.target.value || undefined } : x))}>
+                              <option value="">Choose activity…</option>
+                              {acts.map(a => (<option key={a.id} value={a.id}>{a.emoji? a.emoji+' ' : ''}{a.title}</option>))}
+                            </select>
+                            <button className="btn" style={{ background:'#e11d48', color:'#fff', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> setPlanItems(prev => prev.filter((x)=> x.nodeId!==p.nodeId))}>Remove</button>
+                          </div>
+                          {p.activityId && (
+                            <div style={{ marginTop:6, fontSize:12, color:'#374151' }}>
+                              {acts.find(a=>a.id===p.activityId)?.steps?.slice(0,3)?.map((s,i)=>(<div key={i}>• {s.text}</div>))}
+                            </div>
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showLegend && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Legend"
+          onClick={() => setShowLegend(false)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}
+        >
+          <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: 12, padding: 16, width: 420, maxHeight: '80vh', overflow: 'auto', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+              <h3 style={{ margin: 0 }}>Legend</h3>
+              <button className="btn" style={{ background:'#e5e7eb', color:'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={() => setShowLegend(false)}>Close</button>
+            </div>
+            <div style={{ marginTop: 10, fontSize: 13, color: '#6b7280' }}>Icons map to domains via metadata/icons.json; custom tags can override per node.</div>
+            <ul style={{ listStyle: 'none', padding: 0, marginTop: 12, display:'grid', gap:8 }}>
+              {domains.map(d => {
+                const icon = (icons && icons[d.id]) || d.emoji || '•'
+                return (
+                  <li key={d.id} style={{ display:'flex', alignItems:'center', gap:10, border:'1px solid #e5e7eb', borderRadius:10, padding:8, background:'#f8fafc' }}>
+                    <span style={{ fontSize: 18 }}>{icon}</span>
+                    <div style={{ display:'grid' }}>
+                      <div style={{ fontWeight: 600 }}>{d.name}</div>
+                      <div style={{ fontSize: 12, color: '#6b7280' }}>{d.id}</div>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

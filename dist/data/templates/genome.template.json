@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "version": "X.Y.Z",
+    "updatedAt": "YYYY-MM-DD",
+    "notes": "Short description of this genome data set"
+  },
+  "ladders": [
+    { "id": "domain.group", "name": "Display Name", "rootNodeId": "ROOT-NODE-ID" }
+  ],
+  "nodes": [
+    {
+      "id": "ROOT-NODE-ID",
+      "ladderId": "domain.group",
+      "domain": "gross_motor",
+      "parentId": null,
+      "name": "Root Node Title",
+      "description": "Optional description",
+      "tags": ["gross_motor"],
+      "ageBand": { "typicalStart": 0, "typicalEnd": 2 },
+      "exitCriteria": ["Observable exit criterion"]
+    },
+    {
+      "id": "CHILD-1",
+      "ladderId": "domain.group",
+      "domain": "gross_motor",
+      "parentId": "ROOT-NODE-ID",
+      "name": "Child Skill",
+      "description": "Short description",
+      "tags": ["gross_motor"],
+      "ageBand": { "typicalStart": 2, "typicalEnd": 4 },
+      "exitCriteria": ["Observable exit criterion"],
+      "gates": [
+        { "kind": "prereq", "expr": "level('ROOT-NODE-ID') >= 1", "rationale": "Explain why" }
+      ]
+    }
+  ],
+  "edges": [
+    { "source": "CHILD-1", "target": "OTHER-NODE", "kind": "related", "style": "cross", "rationale": "Optional cross-domain relation" }
+  ]
+}
+

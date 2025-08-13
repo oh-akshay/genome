@@ -80,6 +80,11 @@ export default function App() {
     return genome.nodes.find((n) => n.id === selectedId) || null;
   }, [genome, selectedId]);
 
+  // Clear one-shot focus after any selection change to avoid sticky autofocus
+  useEffect(() => {
+    if (focusId) setFocusId(null);
+  }, [selectedId]);
+
   // derive completed set from explicit completes + levels >=2
   const computedCompleted = useMemo(() => {
     const s = new Set<string>(Array.from(completed));
@@ -203,7 +208,7 @@ export default function App() {
         icons={icons}
         completed={computedCompleted}
         domainOrder={domainOrder}
-        focusId={focusId || selectedId}
+        focusId={focusId}
         onSelect={(id) => setSelectedId(id)}
         selectedId={selectedId}
       />

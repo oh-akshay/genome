@@ -1,0 +1,12 @@
+{
+  "defaults": {
+    "gross_motor": "🐾",
+    "fine_motor": "✋",
+    "communication_receptive": "👂",
+    "communication_expressive": "🗣️",
+    "social_emotional": "🤝",
+    "sensory": "🌈",
+    "cognition": "🧠",
+    "root": "🍼"
+  }
+}

@@ -8,10 +8,19 @@ export type Genome = { nodes: GenomeNode[]; edges: {from:string; to:string; type
 
 export type ActivityLevel = 'foundational'|'core'|'stretch';
 export type Activity = {
-  activityId:string;
-  title:string;
-  levels:{ level:ActivityLevel; targets:string[]; adaptations:string[] }[];
-  requirements:{ space:string; materials:string[]; duration:number; noise:'low'|'medium'|'high' }
+  activityId: string;
+  title: string;
+  levels: { level: ActivityLevel; targets: string[]; adaptations: string[] }[];
+  requirements: { space: string; materials: string[]; duration: number; noise: 'low'|'medium'|'high' };
+  // Optional rich fields when sourced from visualizer schema
+  emoji?: string;
+  environment?: string[];
+  tags?: string[];
+  steps?: { text: string }[];
+  observe?: string[];
+  variations?: string[];
+  cautions?: string[];
+  links?: { nodeId: string; meetsExit?: string }[];
 };
 
 export type EvidenceSignal = { nodeId:string; observation:string; confidence:number };
@@ -30,6 +39,31 @@ async function tryJson(url:string){
     return null;
   }
 }
+
+// ---- Timetable loader ----
+export type TimetableSlot = { time:string; type:string; desc:string };
+export type TimetableAgeGroup = { id:string; label:string; slots:TimetableSlot[] };
+export type Timetable = { version:number; days:string[]; ageGroups:TimetableAgeGroup[] };
+
+export async function loadTimetable(): Promise<Timetable> {
+  const r = await fetch('/data/metadata/timetable.json');
+  if (!r.ok) throw new Error(`Failed to load timetable.json (${r.status})`);
+  return r.json();
+}
+
+// ---- Weekly plan storage (per day) ----
+export type Day = 'Mon'|'Tue'|'Wed'|'Thu'|'Fri';
+export type PlanItem = { slotType:string; time:string; activityId:string; nodeId?:string; childIds?: string[] };
+
+const LS_WEEKLY = 'planner.weeklyPlan.v1';
+
+export function loadWeeklyPlan(): Record<Day, PlanItem[]> {
+  try { return JSON.parse(localStorage.getItem(LS_WEEKLY) || '{}'); } catch { return {}; }
+}
+export function saveWeeklyPlan(weekly: Record<Day, PlanItem[]>) {
+  localStorage.setItem(LS_WEEKLY, JSON.stringify(weekly));
+}
+
 
 // --- YOUR PATHS: genome from /data/genome.json ---
 export async function loadGenome(): Promise<Genome> {
@@ -71,6 +105,15 @@ export async function loadActivities(): Promise<Activity[]> {
           { level: 'core', targets, adaptations: [] },
         ],
         requirements: { space: 'any', materials, duration, noise: 'medium' },
+        // Preserve rich details for rendering in planner UIs
+        emoji: it.emoji,
+        environment: Array.isArray(it.environment) ? it.environment : undefined,
+        tags: Array.isArray(it.tags) ? it.tags : undefined,
+        steps: Array.isArray(it.steps) ? it.steps : undefined,
+        observe: Array.isArray(it.observe) ? it.observe : undefined,
+        variations: Array.isArray(it.variations) ? it.variations : undefined,
+        cautions: Array.isArray(it.cautions) ? it.cautions : undefined,
+        links: Array.isArray(it.links) ? it.links : undefined,
       };
     });
     return norm;

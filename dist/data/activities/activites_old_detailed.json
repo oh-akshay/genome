@@ -1,0 +1,4954 @@
+{
+  "activities": [
+    {
+      "id": "ACT-GM-ROLL-PRONE-SUP-03",
+      "title": "Play: Rolls prone→supine",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Rolls prone→supine'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Rolls to back 2/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-ROLL-PRONE-SUP-03",
+          "meetsExit": "Rolls to back 2/day"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "rolls"
+      ]
+    },
+    {
+      "id": "ACT-GM-PUSH-UP-HANDS-05",
+      "title": "Game: Pushes up on hands",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Pushes up on hands'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Extended arms support 10s ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-PUSH-UP-HANDS-05",
+          "meetsExit": "Extended arms support 10s ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "pushes",
+        "hands"
+      ]
+    },
+    {
+      "id": "ACT-GM-RUN-18",
+      "title": "Game: Runs 5m without fall",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Runs 5m without fall'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Runs 5m ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-RUN-18",
+          "meetsExit": "Runs 5m ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "runs",
+        "without",
+        "fall"
+      ]
+    },
+    {
+      "id": "ACT-GM-JUMP-24",
+      "title": "Try: Jumps in place (two feet)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Jumps in place (two feet)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Both feet clear ground ×3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-JUMP-24",
+          "meetsExit": "Both feet clear ground ×3"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "jumps",
+        "place",
+        "feet"
+      ]
+    },
+    {
+      "id": "ACT-GM-CRAWL-PREP-07",
+      "title": "Game: Rocks on hands & knees",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Rocks on hands & knees'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Maintains hands–knees 10s and rocks",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-CRAWL-PREP-07",
+          "meetsExit": "Maintains hands–knees 10s and rocks"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "rocks",
+        "hands",
+        "knees"
+      ]
+    },
+    {
+      "id": "ACT-GM-PULL-TO-STAND-09",
+      "title": "Game: Pulls to stand at furniture",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Pulls to stand at furniture'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Pulls to stand ×3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-PULL-TO-STAND-09",
+          "meetsExit": "Pulls to stand ×3"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "pulls",
+        "stand",
+        "furniture"
+      ]
+    },
+    {
+      "id": "ACT-GM-STAIRS-RAIL-30",
+      "title": "Play: Walks stairs with rail (step-to)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Walks stairs with rail (step-to)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Ascend/descend 4 steps with rail",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-STAIRS-RAIL-30",
+          "meetsExit": "Ascend/descend 4 steps with rail"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "walks",
+        "stairs",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-GM-WALK-ROOM-15",
+      "title": "Play: Walks across room with turn",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Walks across room with turn'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Walks 10m incl. turn ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-WALK-ROOM-15",
+          "meetsExit": "Walks 10m incl. turn ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "walks",
+        "across",
+        "room"
+      ]
+    },
+    {
+      "id": "ACT-GM-SIT-SUPPORTED-05",
+      "title": "Try: Sits with support",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Sits with support'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Sits supported 30s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-SIT-SUPPORTED-05",
+          "meetsExit": "Sits supported 30s"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "sits",
+        "with",
+        "support"
+      ]
+    },
+    {
+      "id": "ACT-GM-WALK-STEADY-12",
+      "title": "Try: Independent steps (2–3)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Independent steps (2–3)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Walks 3 unaided steps ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-WALK-STEADY-12",
+          "meetsExit": "Walks 3 unaided steps ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "independent",
+        "steps"
+      ]
+    },
+    {
+      "id": "ACT-GM-CRAWL-09",
+      "title": "Game: Hands-and-knees crawling 5m",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Hands-and-knees crawling 5m'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Crawls 5m ×3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-CRAWL-09",
+          "meetsExit": "Crawls 5m ×3"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "crawling"
+      ]
+    },
+    {
+      "id": "ACT-GM-FOREARM-PROP-04",
+      "title": "Try: Props on forearms",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Props on forearms'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Forearm support 10s ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-FOREARM-PROP-04",
+          "meetsExit": "Forearm support 10s ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "props",
+        "forearms"
+      ]
+    },
+    {
+      "id": "ACT-GM-HEAD-PRONE-00",
+      "title": "Game: Lifts head in prone (brief)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Lifts head in prone (brief)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Head lift ≥2s ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-HEAD-PRONE-00",
+          "meetsExit": "Head lift ≥2s ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "lifts",
+        "head",
+        "prone"
+      ]
+    },
+    {
+      "id": "ACT-GM-BAL-ONEFOOT-32",
+      "title": "Practice: Balances on one foot (brief, assist)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 8,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Balances on one foot (brief, assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Holds 2s with light support",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-BAL-ONEFOOT-32",
+          "meetsExit": "Holds 2s with light support"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "balances",
+        "foot",
+        "assist"
+      ]
+    },
+    {
+      "id": "ACT-GM-SIT-UNSUP-07",
+      "title": "Play: Sits without support (brief)",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Sits without support (brief)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Sits 10s ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-SIT-UNSUP-07",
+          "meetsExit": "Sits 10s ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "sits",
+        "without",
+        "support"
+      ]
+    },
+    {
+      "id": "ACT-GM-ROLL-SUP-PRONE-05",
+      "title": "Game: Rolls supine→prone",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Rolls supine→prone'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Rolls to tummy 2/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-ROLL-SUP-PRONE-05",
+          "meetsExit": "Rolls to tummy 2/day"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "rolls"
+      ]
+    },
+    {
+      "id": "ACT-GM-CRUISE-10",
+      "title": "Game: Cruises 3 steps each side",
+      "emoji": "🏃",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Mat or open floor space"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short gross motor activity matching 'Cruises 3 steps each side'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Cruises both directions ×2",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Create a mini obstacle path to add sequencing."
+      ],
+      "cautions": [
+        "Ensure play area is clear; supervise for falls."
+      ],
+      "links": [
+        {
+          "nodeId": "GM-CRUISE-10",
+          "meetsExit": "Cruises both directions ×2"
+        }
+      ],
+      "tags": [
+        "gross_motor",
+        "cruises",
+        "steps",
+        "each"
+      ]
+    },
+    {
+      "id": "ACT-FM-PALMAR-05",
+      "title": "Game: Palmar grasp (medium object)",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Palmar grasp (medium object)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Holds object ≥10s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-PALMAR-05",
+          "meetsExit": "Holds object ≥10s"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "palmar",
+        "grasp",
+        "medium"
+      ]
+    },
+    {
+      "id": "ACT-FM-SCRIBBLE-18",
+      "title": "Practice: Spontaneous scribble",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Spontaneous scribble'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Makes marks for 3s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-SCRIBBLE-18",
+          "meetsExit": "Makes marks for 3s"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "spontaneous",
+        "scribble"
+      ]
+    },
+    {
+      "id": "ACT-FM-REACH-04",
+      "title": "Practice: Reaches with one hand",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Reaches with one hand'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Contacts toy 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-REACH-04",
+          "meetsExit": "Contacts toy 3/5"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "reaches",
+        "with",
+        "hand"
+      ]
+    },
+    {
+      "id": "ACT-FM-HANDS-OPEN-01",
+      "title": "Play: Hands open from fists",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Hands open from fists'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Hands mostly open in 2 contexts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-HANDS-OPEN-01",
+          "meetsExit": "Hands mostly open in 2 contexts"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "hands",
+        "open",
+        "from"
+      ]
+    },
+    {
+      "id": "ACT-FM-CONTAINER-12",
+      "title": "Explore: Puts objects into container",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Puts objects into container'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Places 6 items into container",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-CONTAINER-12",
+          "meetsExit": "Places 6 items into container"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "puts",
+        "objects",
+        "into"
+      ]
+    },
+    {
+      "id": "ACT-FM-CRUDE-PINCER-08",
+      "title": "Practice: Crude pincer (thumb to side of index)",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Crude pincer (thumb to side of index)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Picks 5 small items (crude)",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-CRUDE-PINCER-08",
+          "meetsExit": "Picks 5 small items (crude)"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "crude",
+        "pincer",
+        "thumb"
+      ]
+    },
+    {
+      "id": "ACT-FM-MIDLINE-03",
+      "title": "Explore: Hands to midline",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Hands to midline'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Touches hands at midline ×3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-MIDLINE-03",
+          "meetsExit": "Touches hands at midline ×3"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "hands",
+        "midline"
+      ]
+    },
+    {
+      "id": "ACT-FM-TRANSFER-06",
+      "title": "Play: Transfers object hand-to-hand",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Transfers object hand-to-hand'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Transfers 5 objects",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-TRANSFER-06",
+          "meetsExit": "Transfers 5 objects"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "transfers",
+        "object"
+      ]
+    },
+    {
+      "id": "ACT-FM-SORT-30",
+      "title": "Game: Sorts by one feature (color/shape)",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Sorts by one feature (color/shape)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Sorts 6 items by one feature",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-SORT-30",
+          "meetsExit": "Sorts 6 items by one feature"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "sorts",
+        "feature"
+      ]
+    },
+    {
+      "id": "ACT-FM-STRING-24",
+      "title": "Practice: Threads large beads (assist)",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Threads large beads (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Laces 2 beads with assist",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-STRING-24",
+          "meetsExit": "Laces 2 beads with assist"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "threads",
+        "large",
+        "beads"
+      ]
+    },
+    {
+      "id": "ACT-FM-STACK-18",
+      "title": "Practice: Stacks 4 blocks",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Stacks 4 blocks'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Stack of 4 stands",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-STACK-18",
+          "meetsExit": "Stack of 4 stands"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "stacks",
+        "blocks"
+      ]
+    },
+    {
+      "id": "ACT-FM-PINCER-09",
+      "title": "Game: Neat pincer grasp",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Neat pincer grasp'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Neat pincer 5 items",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-PINCER-09",
+          "meetsExit": "Neat pincer 5 items"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "neat",
+        "pincer",
+        "grasp"
+      ]
+    },
+    {
+      "id": "ACT-FM-RAKE-07",
+      "title": "Play: Raking grasp (pellets)",
+      "emoji": "✋",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks or small toys"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short fine motor activity matching 'Raking grasp (pellets)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Rakes 5 pellets",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Swap materials (blocks, pegs, stickers) to vary grasp."
+      ],
+      "cautions": [
+        "Avoid choking hazards; use large, safe pieces."
+      ],
+      "links": [
+        {
+          "nodeId": "FM-RAKE-07",
+          "meetsExit": "Rakes 5 pellets"
+        }
+      ],
+      "tags": [
+        "fine_motor",
+        "raking",
+        "grasp",
+        "pellets"
+      ]
+    },
+    {
+      "id": "ACT-RC-OBJECTS-10",
+      "title": "Game: Understands common objects",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Understands common objects'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Identifies 3/5 familiar items",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-OBJECTS-10",
+          "meetsExit": "Identifies 3/5 familiar items"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "understands",
+        "common",
+        "objects"
+      ]
+    },
+    {
+      "id": "ACT-RC-LOCALIZE-04",
+      "title": "Explore: Localizes sound source",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Localizes sound source'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Turns to sound both sides 3×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-LOCALIZE-04",
+          "meetsExit": "Turns to sound both sides 3×"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "localizes",
+        "sound",
+        "source"
+      ]
+    },
+    {
+      "id": "ACT-RC-NAME-08",
+      "title": "Explore: Responds to name",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Responds to name'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Turns to name ≥3/5 trials",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-NAME-08",
+          "meetsExit": "Turns to name ≥3/5 trials"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "responds",
+        "name"
+      ]
+    },
+    {
+      "id": "ACT-RC-CONCEPTS-30",
+      "title": "Practice: Understands size & location words…",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Understands size & location words (big/small, in/on)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Identifies by concept 4/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-CONCEPTS-30",
+          "meetsExit": "Identifies by concept 4/5"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "understands",
+        "size",
+        "location"
+      ]
+    },
+    {
+      "id": "ACT-RC-ALERT-00",
+      "title": "Explore: Alerts to voice/sounds",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Alerts to voice/sounds'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Consistent orient/quieting to voice",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-ALERT-00",
+          "meetsExit": "Consistent orient/quieting to voice"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "alerts"
+      ]
+    },
+    {
+      "id": "ACT-RC-BODY-PARTS-20",
+      "title": "Game: Identifies body parts (3–5)",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Identifies body parts (3–5)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Points to 3 body parts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-BODY-PARTS-20",
+          "meetsExit": "Points to 3 body parts"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "identifies",
+        "body",
+        "parts"
+      ]
+    },
+    {
+      "id": "ACT-RC-ONE-STEP-NO-GEST-20",
+      "title": "Play: Follows 1-step without gesture",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Follows 1-step without gesture'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Completes 1-step verbal only 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-ONE-STEP-NO-GEST-20",
+          "meetsExit": "Completes 1-step verbal only 3/5"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "follows",
+        "without",
+        "gesture"
+      ]
+    },
+    {
+      "id": "ACT-RC-TWO-STEP-28",
+      "title": "Practice: Follows 2-step related command",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Follows 2-step related command'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Completes both steps 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-TWO-STEP-28",
+          "meetsExit": "Completes both steps 3/5"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "follows",
+        "related",
+        "command"
+      ]
+    },
+    {
+      "id": "ACT-RC-ONE-STEP-16",
+      "title": "Try: Follows 1-step routine command (with gesture)",
+      "emoji": "👂",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication receptive activity matching 'Follows 1-step routine command (with gesture)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Completes 1-step with gesture 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Reduce background noise to aid listening."
+      ],
+      "links": [
+        {
+          "nodeId": "RC-ONE-STEP-16",
+          "meetsExit": "Completes 1-step with gesture 3/5"
+        }
+      ],
+      "tags": [
+        "communication_receptive",
+        "follows",
+        "routine",
+        "command"
+      ]
+    },
+    {
+      "id": "ACT-EX-PRONOUNS-30",
+      "title": "Try: Uses simple pronouns (I/me/you)",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Uses simple pronouns (I/me/you)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Uses pronouns in context",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-PRONOUNS-30",
+          "meetsExit": "Uses pronouns in context"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "uses",
+        "simple",
+        "pronouns"
+      ]
+    },
+    {
+      "id": "ACT-EX-TWO-WORD-24",
+      "title": "Game: Two-word combinations",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Two-word combinations'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "2-word combos ≥2/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-TWO-WORD-24",
+          "meetsExit": "2-word combos ≥2/day"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "combinations"
+      ]
+    },
+    {
+      "id": "ACT-EX-IMITATE-08",
+      "title": "Explore: Imitates simple sounds",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Imitates simple sounds'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Imitates 3 modeled sounds",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-IMITATE-08",
+          "meetsExit": "Imitates 3 modeled sounds"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "imitates",
+        "simple",
+        "sounds"
+      ]
+    },
+    {
+      "id": "ACT-EX-VOCAB-20",
+      "title": "Explore: Vocabulary 20+ words",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Vocabulary 20+ words'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "20 words used across week",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-VOCAB-20",
+          "meetsExit": "20 words used across week"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "vocabulary",
+        "words"
+      ]
+    },
+    {
+      "id": "ACT-EX-FIRST-WORDS-12",
+      "title": "Try: First words (1–3)",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'First words (1–3)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "3 distinct meaningful words",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-FIRST-WORDS-12",
+          "meetsExit": "3 distinct meaningful words"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "first",
+        "words"
+      ]
+    },
+    {
+      "id": "ACT-EX-BABBLE-REDUP-06",
+      "title": "Try: Canonical babble (reduplicated)",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Canonical babble (reduplicated)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "CV repetitions ≥10s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-BABBLE-REDUP-06",
+          "meetsExit": "CV repetitions ≥10s"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "canonical",
+        "babble",
+        "reduplicated"
+      ]
+    },
+    {
+      "id": "ACT-EX-COO-01",
+      "title": "Try: Cooing & vowel play",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching 'Cooing & vowel play'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Cooing in 2 contexts/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-COO-01",
+          "meetsExit": "Cooing in 2 contexts/day"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "cooing",
+        "vowel",
+        "play"
+      ]
+    },
+    {
+      "id": "ACT-EX-SENTENCE-36",
+      "title": "Game: 4+ word sentences (intelligible to others)",
+      "emoji": "🗣️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 8,
+      "materials": [
+        {
+          "name": "Picture cards or familiar objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short communication expressive activity matching '4+ word sentences (intelligible to others)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "4-word sentences clear to others",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster.",
+        "Switch contexts (bath time, outdoors) to generalize."
+      ],
+      "cautions": [
+        "Model gentle voice; avoid pressure to speak."
+      ],
+      "links": [
+        {
+          "nodeId": "EX-SENTENCE-36",
+          "meetsExit": "4-word sentences clear to others"
+        }
+      ],
+      "tags": [
+        "communication_expressive",
+        "word",
+        "sentences",
+        "intelligible"
+      ]
+    },
+    {
+      "id": "ACT-SE-POINT-SHOW-14",
+      "title": "Game: Points to show/share",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Points to show/share'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Points to share interest ≥2/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-POINT-SHOW-14",
+          "meetsExit": "Points to share interest ≥2/day"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "points"
+      ]
+    },
+    {
+      "id": "ACT-SE-SHOW-GIVE-16",
+      "title": "Try: Shows or gives to share",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Shows or gives to share'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Shows/gives to share 2/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-SHOW-GIVE-16",
+          "meetsExit": "Shows/gives to share 2/day"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "shows",
+        "gives",
+        "share"
+      ]
+    },
+    {
+      "id": "ACT-SE-POINT-REQUEST-12",
+      "title": "Game: Points to request",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Points to request'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Points to request in 2 contexts/day",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-POINT-REQUEST-12",
+          "meetsExit": "Points to request in 2 contexts/day"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "points",
+        "request"
+      ]
+    },
+    {
+      "id": "ACT-SE-SHARED-AFFECT-05",
+      "title": "Play: Shared affect (smile + eye contact)",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Shared affect (smile + eye contact)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Mutual eye contact + smile 3×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-SHARED-AFFECT-05",
+          "meetsExit": "Mutual eye contact + smile 3×"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "shared",
+        "affect",
+        "smile"
+      ]
+    },
+    {
+      "id": "ACT-SE-SOCIAL-SMILE-02",
+      "title": "Game: Social smile",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Social smile'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Responsive smile in 2 contexts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-SOCIAL-SMILE-02",
+          "meetsExit": "Responsive smile in 2 contexts"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "social",
+        "smile"
+      ]
+    },
+    {
+      "id": "ACT-SE-GAZE-SHIFT-09",
+      "title": "Explore: Alternating gaze adult↔object",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Alternating gaze adult↔object'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Alternates gaze twice within 5s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-GAZE-SHIFT-09",
+          "meetsExit": "Alternates gaze twice within 5s"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "alternating",
+        "gaze"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-CAUSE-08",
+      "title": "Try: Cause–effect play",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Cause–effect play'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Repeats cause–effect 3× intentionally",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-CAUSE-08",
+          "meetsExit": "Repeats cause–effect 3× intentionally"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "play"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-FUNCTIONAL-12",
+      "title": "Play: Functional play with objects",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Functional play with objects'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Uses 3 toys appropriately",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-FUNCTIONAL-12",
+          "meetsExit": "Uses 3 toys appropriately"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "functional",
+        "play",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-PARALLEL-24",
+      "title": "Play: Parallel play near peers",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Parallel play near peers'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Plays near peer 5m without conflict",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-PARALLEL-24",
+          "meetsExit": "Plays near peer 5m without conflict"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "parallel",
+        "play",
+        "near"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-SENSORY-04",
+      "title": "Game: Sensory exploration",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Sensory exploration'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Explores 3+ modalities in a session",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-SENSORY-04",
+          "meetsExit": "Explores 3+ modalities in a session"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "sensory",
+        "exploration"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-TURN-30",
+      "title": "Play: Takes turns in simple game",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Takes turns in simple game'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Waits turn with prompt",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-TURN-30",
+          "meetsExit": "Waits turn with prompt"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "takes",
+        "turns",
+        "simple"
+      ]
+    },
+    {
+      "id": "ACT-SE-PLAY-SIMPLE-PRETEND-18",
+      "title": "Game: Simple pretend (feed doll)",
+      "emoji": "🤝",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Doll/puppet or mirror"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short social emotional activity matching 'Simple pretend (feed doll)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "2 pretend acts in play",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Follow child’s cues; pause if distressed."
+      ],
+      "links": [
+        {
+          "nodeId": "SE-PLAY-SIMPLE-PRETEND-18",
+          "meetsExit": "2 pretend acts in play"
+        }
+      ],
+      "tags": [
+        "social_emotional",
+        "simple",
+        "pretend",
+        "feed"
+      ]
+    },
+    {
+      "id": "ACT-COG-OBJ-PERM-PART-07",
+      "title": "Practice: Looks for partially hidden object",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Looks for partially hidden object'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Finds partially hidden item 3/4",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-OBJ-PERM-PART-07",
+          "meetsExit": "Finds partially hidden item 3/4"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "looks",
+        "partially",
+        "hidden"
+      ]
+    },
+    {
+      "id": "ACT-COG-MATCH-24",
+      "title": "Explore: Matches 2 shapes/colors",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Matches 2 shapes/colors'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Matches circle & square 3/4",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-MATCH-24",
+          "meetsExit": "Matches circle & square 3/4"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "matches"
+      ]
+    },
+    {
+      "id": "ACT-COG-TRACK-02",
+      "title": "Explore: Visual tracking 180°",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Visual tracking 180°'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Tracks 180° smoothly",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-TRACK-02",
+          "meetsExit": "Tracks 180° smoothly"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "visual",
+        "tracking"
+      ]
+    },
+    {
+      "id": "ACT-COG-OBJ-PERM-08",
+      "title": "Explore: Finds fully hidden object (cloth)",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Finds fully hidden object (cloth)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Finds hidden toy ≥3/4",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-OBJ-PERM-08",
+          "meetsExit": "Finds hidden toy ≥3/4"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "finds",
+        "fully",
+        "hidden"
+      ]
+    },
+    {
+      "id": "ACT-COG-IN-OUT-12",
+      "title": "Practice: In/out container play",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'In/out container play'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Places 6 items into container",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-IN-OUT-12",
+          "meetsExit": "Places 6 items into container"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "container",
+        "play"
+      ]
+    },
+    {
+      "id": "ACT-COG-MOUTHS-03",
+      "title": "Play: Explores objects with mouth/hands",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Explores objects with mouth/hands'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Explores 3 actions in session",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-MOUTHS-03",
+          "meetsExit": "Explores 3 actions in session"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "explores",
+        "objects",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-COG-CATEGORY-30",
+      "title": "Practice: Simple categorization (one feature)",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Simple categorization (one feature)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Sorts 6 items by feature",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-CATEGORY-30",
+          "meetsExit": "Sorts 6 items by feature"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "simple",
+        "categorization",
+        "feature"
+      ]
+    },
+    {
+      "id": "ACT-COG-TOWER-18",
+      "title": "Try: Builds tower of 4 blocks",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Builds tower of 4 blocks'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Stacks 4 blocks upright",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-TOWER-18",
+          "meetsExit": "Stacks 4 blocks upright"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "builds",
+        "tower",
+        "blocks"
+      ]
+    },
+    {
+      "id": "ACT-COG-TWO-STEP-30",
+      "title": "Play: Two-step problem (tool + reach)",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Two-step problem (tool + reach)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Solves 2-step problem 2×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-TWO-STEP-30",
+          "meetsExit": "Solves 2-step problem 2×"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "problem",
+        "tool",
+        "reach"
+      ]
+    },
+    {
+      "id": "ACT-COG-PUZZLE-24",
+      "title": "Practice: Inset puzzle (2–3 pieces)",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Inset puzzle (2–3 pieces)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Places 2–3 correctly",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-PUZZLE-24",
+          "meetsExit": "Places 2–3 correctly"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "inset",
+        "puzzle",
+        "pieces"
+      ]
+    },
+    {
+      "id": "ACT-COG-TOOL-10",
+      "title": "Play: Pulls cloth to get toy",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Pulls cloth to get toy'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Retrieves toy via cloth 2×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-TOOL-10",
+          "meetsExit": "Retrieves toy via cloth 2×"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "pulls",
+        "cloth"
+      ]
+    },
+    {
+      "id": "ACT-COG-TRIAL-ERR-18",
+      "title": "Practice: Trial-and-error solutions",
+      "emoji": "🧠",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Containers, simple puzzle, everyday objects"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short cognition activity matching 'Trial-and-error solutions'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Varies actions; finds 2 solutions",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep challenges just-right; avoid frustration."
+      ],
+      "links": [
+        {
+          "nodeId": "COG-TRIAL-ERR-18",
+          "meetsExit": "Varies actions; finds 2 solutions"
+        }
+      ],
+      "tags": [
+        "cognition",
+        "solutions"
+      ]
+    },
+    {
+      "id": "ACT-SH-OPEN-CUP-ASSIST-18",
+      "title": "Game: Sips from open cup (assist)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Sips from open cup (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Sips 3× with assist",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-OPEN-CUP-ASSIST-18",
+          "meetsExit": "Sips 3× with assist"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "sips",
+        "from",
+        "open"
+      ]
+    },
+    {
+      "id": "ACT-SH-HANDS-SOOTH-02",
+      "title": "Try: Hands to mouth (self-soothe)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Hands to mouth (self-soothe)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Self-soothes with hands 2 contexts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-HANDS-SOOTH-02",
+          "meetsExit": "Self-soothes with hands 2 contexts"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "hands",
+        "mouth"
+      ]
+    },
+    {
+      "id": "ACT-SH-SPOON-ASSIST-15",
+      "title": "Explore: Attempts self-spoon (assist)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Attempts self-spoon (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Self-spoon 3 bites, minimal spill",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-SPOON-ASSIST-15",
+          "meetsExit": "Self-spoon 3 bites, minimal spill"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "attempts",
+        "assist"
+      ]
+    },
+    {
+      "id": "ACT-SH-OPEN-CUP-INDEP-30",
+      "title": "Try: Drinks from open cup (indep)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Drinks from open cup (indep)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Drinks 30ml with minimal spill",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-OPEN-CUP-INDEP-30",
+          "meetsExit": "Drinks 30ml with minimal spill"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "drinks",
+        "from",
+        "open"
+      ]
+    },
+    {
+      "id": "ACT-SH-TOILET-READINESS-30",
+      "title": "Explore: Toileting readiness signs",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Toileting readiness signs'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Stays dry >2h; signals need",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-TOILET-READINESS-30",
+          "meetsExit": "Stays dry >2h; signals need"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "toileting",
+        "readiness",
+        "signs"
+      ]
+    },
+    {
+      "id": "ACT-SH-FINGER-FOODS-10",
+      "title": "Play: Finger-feeds soft pieces",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Finger-feeds soft pieces'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Self-feeds 6 pieces safely",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-FINGER-FOODS-10",
+          "meetsExit": "Self-feeds 6 pieces safely"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "soft",
+        "pieces"
+      ]
+    },
+    {
+      "id": "ACT-SH-HOLDS-BOTTLE-06",
+      "title": "Practice: Holds bottle with help",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Holds bottle with help'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Assists holding bottle 2×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-HOLDS-BOTTLE-06",
+          "meetsExit": "Assists holding bottle 2×"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "holds",
+        "bottle",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-SH-REMOVE-SOCKS-18",
+      "title": "Practice: Removes socks/hat",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Removes socks/hat'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Removes without help",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-REMOVE-SOCKS-18",
+          "meetsExit": "Removes without help"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "removes"
+      ]
+    },
+    {
+      "id": "ACT-SH-WASH-HANDS-30",
+      "title": "Play: Washes hands with help",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Washes hands with help'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Completes sequence with prompts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-WASH-HANDS-30",
+          "meetsExit": "Completes sequence with prompts"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "washes",
+        "hands",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-SH-BRUSH-TEETH-30",
+      "title": "Try: Toothbrushing with help",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Toothbrushing with help'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Brushes with assist 30s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-BRUSH-TEETH-30",
+          "meetsExit": "Brushes with assist 30s"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "toothbrushing",
+        "with",
+        "help"
+      ]
+    },
+    {
+      "id": "ACT-SH-PULL-PANTS-28",
+      "title": "Explore: Pulls pants up/down (assist)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Pulls pants up/down (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Manages waistband with help",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-PULL-PANTS-28",
+          "meetsExit": "Manages waistband with help"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "pulls",
+        "pants",
+        "assist"
+      ]
+    },
+    {
+      "id": "ACT-SH-THREAD-ARM-24",
+      "title": "Game: Threads arm through sleeve (assist)",
+      "emoji": "🧼",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Cup/spoon, cloth, dressing items"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short self help activity matching 'Threads arm through sleeve (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Threads arm with cue",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Ensure hygiene and safety; watch for fatigue."
+      ],
+      "links": [
+        {
+          "nodeId": "SH-THREAD-ARM-24",
+          "meetsExit": "Threads arm with cue"
+        }
+      ],
+      "tags": [
+        "self_help",
+        "threads",
+        "through",
+        "sleeve"
+      ]
+    },
+    {
+      "id": "ACT-SENS-POS-CHANGE-03",
+      "title": "Explore: Tolerates positional change",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Tolerates positional change'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Tolerates 3 position changes",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-POS-CHANGE-03",
+          "meetsExit": "Tolerates 3 position changes"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "tolerates",
+        "positional",
+        "change"
+      ]
+    },
+    {
+      "id": "ACT-SENS-GROOM-TOL-30",
+      "title": "Try: Tolerates grooming routines",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Tolerates grooming routines'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Accepts hair/face/hand wipes in 3/4 contexts",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-GROOM-TOL-30",
+          "meetsExit": "Accepts hair/face/hand wipes in 3/4 contexts"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "tolerates",
+        "grooming",
+        "routines"
+      ]
+    },
+    {
+      "id": "ACT-SENS-MODULATION-24",
+      "title": "Try: Modulates input in play (seeks/avoids suitably)",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Modulates input in play (seeks/avoids suitably)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Sustains play 5m without dysregulation",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-MODULATION-24",
+          "meetsExit": "Sustains play 5m without dysregulation"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "modulates",
+        "input",
+        "play"
+      ]
+    },
+    {
+      "id": "ACT-SENS-COREG-02",
+      "title": "Practice: Calms with co-regulation",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Calms with co-regulation'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Calms in 2m with routine support",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-COREG-02",
+          "meetsExit": "Calms in 2m with routine support"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "calms",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-SENS-TACTILE-06",
+      "title": "Explore: Tactile exploration (hands)",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Tactile exploration (hands)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Explores 3 textures without aversion",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-TACTILE-06",
+          "meetsExit": "Explores 3 textures without aversion"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "tactile",
+        "exploration",
+        "hands"
+      ]
+    },
+    {
+      "id": "ACT-SENS-AUD-LOCALIZE-07",
+      "title": "Play: Localizes sound source",
+      "emoji": "🌈",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Textured items, scarf, shaker"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short sensory activity matching 'Localizes sound source'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Turns to sound both sides 3×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Monitor for overstimulation; offer breaks."
+      ],
+      "links": [
+        {
+          "nodeId": "SENS-AUD-LOCALIZE-07",
+          "meetsExit": "Turns to sound both sides 3×"
+        }
+      ],
+      "tags": [
+        "sensory",
+        "localizes",
+        "sound",
+        "source"
+      ]
+    },
+    {
+      "id": "ACT-LIT-POINTS-PICTURE-15",
+      "title": "Try: Points to pictures on request",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Points to pictures on request'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Identifies 3 pictures",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-POINTS-PICTURE-15",
+          "meetsExit": "Identifies 3 pictures"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "points",
+        "pictures",
+        "request"
+      ]
+    },
+    {
+      "id": "ACT-LIT-LOGO-RECOG-26",
+      "title": "Game: Recognizes familiar logos",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Recognizes familiar logos'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Identifies 2 logos",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-LOGO-RECOG-26",
+          "meetsExit": "Identifies 2 logos"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "recognizes",
+        "familiar",
+        "logos"
+      ]
+    },
+    {
+      "id": "ACT-LIT-PRETEND-READ-20",
+      "title": "Practice: Pretend reads (vocalizes, turns pages)",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Pretend reads (vocalizes, turns pages)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Pretend read 1m",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-PRETEND-READ-20",
+          "meetsExit": "Pretend read 1m"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "pretend",
+        "reads",
+        "turns"
+      ]
+    },
+    {
+      "id": "ACT-LIT-LOOKS-PICTURES-04",
+      "title": "Game: Looks at pictures in book",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Looks at pictures in book'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Visually engages 30s",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-LOOKS-PICTURES-04",
+          "meetsExit": "Visually engages 30s"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "looks",
+        "pictures",
+        "book"
+      ]
+    },
+    {
+      "id": "ACT-LIT-RHYME-COMPLETE-32",
+      "title": "Play: Completes word in a familiar rhyme",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Completes word in a familiar rhyme'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Fills missing word 2/3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-RHYME-COMPLETE-32",
+          "meetsExit": "Fills missing word 2/3"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "completes",
+        "word",
+        "familiar"
+      ]
+    },
+    {
+      "id": "ACT-LIT-TURNS-PAGES-12",
+      "title": "Play: Turns board-book pages (assist)",
+      "emoji": "📚",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Sturdy books, picture cards"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early literacy activity matching 'Turns board-book pages (assist)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Turns 2+ pages",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Choose sturdy, safe books; supervise page turns."
+      ],
+      "links": [
+        {
+          "nodeId": "LIT-TURNS-PAGES-12",
+          "meetsExit": "Turns 2+ pages"
+        }
+      ],
+      "tags": [
+        "early_literacy",
+        "turns",
+        "pages",
+        "assist"
+      ]
+    },
+    {
+      "id": "ACT-NUM-SERIATE-32",
+      "title": "Play: Orders 3 objects by length/size (with model)",
+      "emoji": "🔢",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Blocks/counters, bowls"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early numeracy activity matching 'Orders 3 objects by length/size (with model)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Orders trio correctly 2/3",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Use large pieces; avoid mouthable small parts."
+      ],
+      "links": [
+        {
+          "nodeId": "NUM-SERIATE-32",
+          "meetsExit": "Orders trio correctly 2/3"
+        }
+      ],
+      "tags": [
+        "early_numeracy",
+        "orders",
+        "objects",
+        "with"
+      ]
+    },
+    {
+      "id": "ACT-NUM-COUNT-1-2-26",
+      "title": "Practice: Counts 1–2 items (rote/point)",
+      "emoji": "🔢",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Blocks/counters, bowls"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early numeracy activity matching 'Counts 1–2 items (rote/point)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Counts 2 with correspondence",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Use large pieces; avoid mouthable small parts."
+      ],
+      "links": [
+        {
+          "nodeId": "NUM-COUNT-1-2-26",
+          "meetsExit": "Counts 2 with correspondence"
+        }
+      ],
+      "tags": [
+        "early_numeracy",
+        "counts",
+        "items"
+      ]
+    },
+    {
+      "id": "ACT-NUM-MORE-REQUEST-14",
+      "title": "Game: Understands 'more' in snack/play",
+      "emoji": "🔢",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks/counters, bowls"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early numeracy activity matching 'Understands 'more' in snack/play'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Gestures/requests more appropriately",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Use large pieces; avoid mouthable small parts."
+      ],
+      "links": [
+        {
+          "nodeId": "NUM-MORE-REQUEST-14",
+          "meetsExit": "Gestures/requests more appropriately"
+        }
+      ],
+      "tags": [
+        "early_numeracy",
+        "understands"
+      ]
+    },
+    {
+      "id": "ACT-NUM-SIZE-30",
+      "title": "Game: Sorts 2 sizes (small/large)",
+      "emoji": "🔢",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Blocks/counters, bowls"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early numeracy activity matching 'Sorts 2 sizes (small/large)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Sorts 6 items by size",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Use large pieces; avoid mouthable small parts."
+      ],
+      "links": [
+        {
+          "nodeId": "NUM-SIZE-30",
+          "meetsExit": "Sorts 6 items by size"
+        }
+      ],
+      "tags": [
+        "early_numeracy",
+        "sorts",
+        "sizes"
+      ]
+    },
+    {
+      "id": "ACT-NUM-ONE-IN-ONE-OUT-18",
+      "title": "Try: Puts 1 object in cup/bowl",
+      "emoji": "🔢",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Blocks/counters, bowls"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short early numeracy activity matching 'Puts 1 object in cup/bowl'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Places with intent 3×",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Use large pieces; avoid mouthable small parts."
+      ],
+      "links": [
+        {
+          "nodeId": "NUM-ONE-IN-ONE-OUT-18",
+          "meetsExit": "Places with intent 3×"
+        }
+      ],
+      "tags": [
+        "early_numeracy",
+        "puts",
+        "object"
+      ]
+    },
+    {
+      "id": "ACT-EXEC-ATTN-FOCUS-06",
+      "title": "Game: Sustains attention on toy 1–2m",
+      "emoji": "⚙️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 3,
+      "materials": [
+        {
+          "name": "Timer, simple visual card"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short executive activity matching 'Sustains attention on toy 1–2m'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        },
+        {
+          "text": "Repeat in 2–3 short trials; stop while interest is high."
+        }
+      ],
+      "observe": [
+        "Maintains focus 1m on toy",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep demands short and clear; celebrate efforts."
+      ],
+      "links": [
+        {
+          "nodeId": "EXEC-ATTN-FOCUS-06",
+          "meetsExit": "Maintains focus 1m on toy"
+        }
+      ],
+      "tags": [
+        "executive",
+        "sustains",
+        "attention"
+      ]
+    },
+    {
+      "id": "ACT-EXEC-WORKMEM-30",
+      "title": "Try: Holds 1-step rule in mind briefly",
+      "emoji": "⚙️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Timer, simple visual card"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short executive activity matching 'Holds 1-step rule in mind briefly'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Follows 1-step after delay 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep demands short and clear; celebrate efforts."
+      ],
+      "links": [
+        {
+          "nodeId": "EXEC-WORKMEM-30",
+          "meetsExit": "Follows 1-step after delay 3/5"
+        }
+      ],
+      "tags": [
+        "executive",
+        "holds",
+        "rule",
+        "mind"
+      ]
+    },
+    {
+      "id": "ACT-EXEC-SHIFT-18",
+      "title": "Play: Shifts attention between activities with prompt",
+      "emoji": "⚙️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 5,
+      "materials": [
+        {
+          "name": "Timer, simple visual card"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short executive activity matching 'Shifts attention between activities with prompt'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Transitions with minimal upset",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep demands short and clear; celebrate efforts."
+      ],
+      "links": [
+        {
+          "nodeId": "EXEC-SHIFT-18",
+          "meetsExit": "Transitions with minimal upset"
+        }
+      ],
+      "tags": [
+        "executive",
+        "shifts",
+        "attention",
+        "between"
+      ]
+    },
+    {
+      "id": "ACT-EXEC-INHIBIT-24",
+      "title": "Try: Inhibits action on 'wait' (1–2s)",
+      "emoji": "⚙️",
+      "environment": [
+        "home",
+        "school"
+      ],
+      "durationMin": 7,
+      "materials": [
+        {
+          "name": "Timer, simple visual card"
+        }
+      ],
+      "steps": [
+        {
+          "text": "Set up a short executive activity matching 'Inhibits action on 'wait' (1–2s)'."
+        },
+        {
+          "text": "Model once, then invite the child to try; offer brief cues and wait time."
+        }
+      ],
+      "observe": [
+        "Waits 2s on cue 3/5",
+        "Child shows engagement and attempts independently after modeling."
+      ],
+      "variations": [
+        "Easier: Reduce distance/size/steps or add hand-over-hand support.",
+        "Harder: Increase distance/size/steps or fade prompts faster."
+      ],
+      "cautions": [
+        "Keep demands short and clear; celebrate efforts."
+      ],
+      "links": [
+        {
+          "nodeId": "EXEC-INHIBIT-24",
+          "meetsExit": "Waits 2s on cue 3/5"
+        }
+      ],
+      "tags": [
+        "executive",
+        "inhibits",
+        "action"
+      ]
+    }
+  ]
+}

@@ -1,42 +1,54 @@
 import React from 'react';
 import { PlannerProvider } from './state/PlannerStore';
-import { Today } from './views/Today';
+import Today from './views/Today';
 import { Plan } from './views/Plan';
+import TimetableView from './views/Timetable';
 import { Review } from './views/Review';
+import ContextualisedToday from './views/ContextualisedToday';
 
-type Tab = 'today'|'plan'|'review';
-
-export default function PlannerApp(){
-  const [tab, setTab] = React.useState<Tab>(()=> {
-    const h = window.location.hash.replace('#','');
-    return (h==='plan'||h==='review') ? h as Tab : 'today';
-  });
-  React.useEffect(()=> {
-    const onHash = ()=> {
-      const h = window.location.hash.replace('#','');
-      setTab((h==='plan'||h==='review')? h as Tab : 'today');
-    };
-    window.addEventListener('hashchange', onHash);
-    return ()=>window.removeEventListener('hashchange', onHash);
-  },[]);
+export default function PlannerApp() {
+  const [tab, setTab] = React.useState<'today' | 'context' | 'plan' | 'timetable' | 'review'>('today');
 
   return (
     <PlannerProvider>
-      <div style={{display:'flex',flexDirection:'column',height:'100vh',fontFamily:'Inter, system-ui, sans-serif'}}>
-        <header style={{padding:'12px 16px',borderBottom:'1px solid #eee',display:'flex',gap:12,alignItems:'center'}}>
-          <h1 style={{margin:0,fontSize:18}}>Teacher Planner (Prototype)</h1>
-          <nav style={{display:'flex',gap:8,marginLeft:12}}>
-            <a href="#today"  style={{textDecoration:'none',padding:'6px 10px',borderRadius:8,background: tab==='today'?'#111':'#f3f3f3', color: tab==='today'?'#fff':'#111'}}>Today</a>
-            <a href="#plan"   style={{textDecoration:'none',padding:'6px 10px',borderRadius:8,background: tab==='plan'?'#111':'#f3f3f3',  color: tab==='plan'?'#fff':'#111'}}>Plan</a>
-            <a href="#review" style={{textDecoration:'none',padding:'6px 10px',borderRadius:8,background: tab==='review'?'#111':'#f3f3f3',color: tab==='review'?'#fff':'#111'}}>Review</a>
+      <div style={{ padding: 12 }}>
+        <header style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 12 }}>
+          <h2 style={{ margin: 0 }}>Planner</h2>
+          <nav style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
+            <TabBtn label="Today" on={() => setTab('today')} active={tab === 'today'} />
+            <TabBtn label="Contextualised Today" on={() => setTab('context')} active={tab === 'context'} />
+            <TabBtn label="Plan (Week)" on={() => setTab('plan')} active={tab === 'plan'} />
+            <TabBtn label="Timetable" on={() => setTab('timetable')} active={tab === 'timetable'} />
+            <TabBtn label="Review" on={() => setTab('review')} active={tab === 'review'} />
           </nav>
         </header>
-        <main style={{flex:1,overflow:'auto'}}>
-          {tab==='today'  && <Today/>}
-          {tab==='plan'   && <Plan/>}
-          {tab==='review' && <Review/>}
+
+        <main>
+          {tab === 'today' && <Today />}
+          {tab === 'context' && <ContextualisedToday />}
+          {tab === 'plan' && <Plan />}
+          {tab === 'timetable' && <TimetableView />}
+          {tab === 'review' && <Review />}
         </main>
       </div>
     </PlannerProvider>
-  )
+  );
+}
+
+function TabBtn({ label, on, active }: { label: string; on: () => void; active: boolean }) {
+  return (
+    <button
+      onClick={on}
+      style={{
+        padding: '6px 10px',
+        borderRadius: 8,
+        border: '1px solid #e5e7eb',
+        background: active ? '#111827' : '#fff',
+        color: active ? '#fff' : '#111827',
+        cursor: 'pointer',
+      }}
+    >
+      {label}
+    </button>
+  );
 }

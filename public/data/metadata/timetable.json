@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "days": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  "ageGroups": [
+    {
+      "id": "toddlers",
+      "label": "Toddlers (12–24m)",
+      "slots": [
+        { "time": "09:00–09:30", "type": "Ease-In Play", "desc": "Sandplay / Thematic Pretend / Sensory Table" },
+        { "time": "09:30–10:00", "type": "Circle Time & Read Aloud", "desc": "Song & Story Telling" },
+        { "time": "10:00–10:30", "type": "Activity A", "desc": "Language / Numeracy" },
+        { "time": "10:30–11:00", "type": "Snack Time", "desc": "Snack" },
+        { "time": "11:00–11:30", "type": "Activity B", "desc": "Art / Music & Movement" },
+        { "time": "11:30–12:00", "type": "Activity C", "desc": "Standalone / Thematic Pretend / Sensory" },
+        { "time": "12:00–12:30", "type": "Lunch Time", "desc": "Lunch" },
+        { "time": "12:30–13:00", "type": "Free Play", "desc": "Ball Pool / Sandpit / Pretend Play" }
+      ]
+    },
+    {
+      "id": "prenursery",
+      "label": "Pre-Nursery (2–3y)",
+      "slots": [
+        { "time": "09:00–09:30", "type": "Ease-In Play", "desc": "Sensory / Pretend" },
+        { "time": "09:30–10:00", "type": "Circle Time & Read Aloud", "desc": "Song & Story" },
+        { "time": "10:00–10:30", "type": "Activity B", "desc": "Art / Music & Movement" },
+        { "time": "10:30–11:00", "type": "Snack Time", "desc": "Snack" },
+        { "time": "11:00–11:30", "type": "Activity C", "desc": "Standalone / Thematic / Sensory" },
+        { "time": "11:30–12:00", "type": "Activity A", "desc": "Language / Numeracy" },
+        { "time": "12:00–12:30", "type": "Lunch Time", "desc": "Lunch" },
+        { "time": "12:30–13:00", "type": "Free Play", "desc": "Ball Pool / Sandpit / Pretend Play" }
+      ]
+    },
+    {
+      "id": "nursery",
+      "label": "Nursery (3–4y)",
+      "slots": [
+        { "time": "09:00–09:30", "type": "Ease-In Play", "desc": "Sensory / Pretend" },
+        { "time": "09:30–10:00", "type": "Circle Time & Read Aloud", "desc": "Song & Story" },
+        { "time": "10:00–10:30", "type": "Activity C", "desc": "Standalone / Thematic / Sensory" },
+        { "time": "10:30–11:00", "type": "Snack Time", "desc": "Snack" },
+        { "time": "11:00–11:30", "type": "Activity A", "desc": "Language / Numeracy" },
+        { "time": "11:30–12:00", "type": "Activity B", "desc": "Art / Music & Movement" },
+        { "time": "12:00–12:30", "type": "Lunch Time", "desc": "Lunch" },
+        { "time": "12:30–13:00", "type": "Free Play", "desc": "Ball Pool / Sandpit / Pretend Play" }
+      ]
+    }
+  ]
+}

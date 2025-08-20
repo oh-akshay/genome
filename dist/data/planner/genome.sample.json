@@ -1,0 +1,15 @@
+{
+  "nodes":[
+    {"id":"NUM-1TO1-5","name":"Counts 1:1 to 5","ageBand":{"typicalStart":36,"typicalEnd":42},"tags":["early_numeracy","cognition"]},
+    {"id":"NUM-COUNT-30","name":"Counts aloud to 10 (rote)","ageBand":{"typicalStart":30,"typicalEnd":36},"tags":["early_numeracy"]},
+    {"id":"FM-STACK-16","name":"Stacks blocks","ageBand":{"typicalStart":16,"typicalEnd":24},"tags":["fine_motor"]},
+    {"id":"LIT-SCRIBBLE","name":"Scribbles with intent","ageBand":{"typicalStart":16,"typicalEnd":22},"tags":["early_literacy","fine_motor"]},
+    {"id":"LIT-LETTER-10","name":"Recognises 10+ letter names","ageBand":{"typicalStart":36,"typicalEnd":42},"tags":["early_literacy"]},
+    {"id":"LIT-SOUNDS-5","name":"Knows initial sounds for 5 letters","ageBand":{"typicalStart":42,"typicalEnd":48},"tags":["early_literacy"]},
+    {"id":"COMM-LISTEN","name":"Listens and follows 1-step","ageBand":{"typicalStart":24,"typicalEnd":36},"tags":["communication_receptive"]},
+    {"id":"COMM-VOCAB","name":"Uses new words in play","ageBand":{"typicalStart":30,"typicalEnd":42},"tags":["communication_expressive"]},
+    {"id":"COMM-SEQUENCE","name":"Sequences 2–3 events","ageBand":{"typicalStart":36,"typicalEnd":48},"tags":["communication_expressive","cognition"]},
+    {"id":"NUM-COMPARE-SET","name":"Compares sets (more/less)","ageBand":{"typicalStart":36,"typicalEnd":42},"tags":["early_numeracy","cognition"]},
+    {"id":"EF-INHIBIT-34","name":"Inhibits impulse (wait turn)","ageBand":{"typicalStart":34,"typicalEnd":40},"tags":["executive_function","social_emotional"]}
+  ]
+}

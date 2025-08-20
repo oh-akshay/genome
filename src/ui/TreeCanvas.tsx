@@ -87,8 +87,8 @@ export default function TreeCanvas({ genome, icons, domainOrder, completed, onSe
           const rb = domainOrder[b.domain || ""] ?? 999;
           return ra - rb || (a.name || "").localeCompare(b.name || "");
         }
-        const as = a.ageBand?.typicalStart ?? 999;
-        const bs = b.ageBand?.typicalStart ?? 999;
+        const as = a.ageBand?.typicalStart ?? 0;
+        const bs = b.ageBand?.typicalStart ?? 0;
         return as - bs || a.name.localeCompare(b.name);
       });
       const isOpen = expanded.has(node.id);

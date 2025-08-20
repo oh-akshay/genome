@@ -1,94 +1,117 @@
-
 import React from 'react';
+import {
+  loadChildrenAndAchievements,
+  loadActivities,
+  loadGenome,
+  saveEvidence,
+  listEvidence,
+  saveSchedule,
+  loadSchedule,
+  listAchievementsOverlay,
+  saveAchievement as svcSaveAchievement,
+  initGenomeIndex,
+  getGenomeIndex,
+  expandWithParents,
+  computeLevelsFromAchievements,
+} from '../services';
+import type {
+  Activity,
+  ActivityLevel,
+  Child,
+  Evidence,
+  GenomeNode,
+  Achievement,
+  AchievementsByChild,
+} from '../services';
 
-export type GenomeState = {
-  nodeId: string;
-  status: 'emerging' | 'secured' | 'stretch';
-  pMastery: number;
-  lastEvidenceAt?: string;
-};
-
-export type Child = {
-  childId: string;
-  name: string;
-  dob: string;
-  genome: GenomeState[];
-};
-
-export type ActivityLevel = 'foundational' | 'core' | 'stretch';
-export type Activity = {
-  activityId: string;
-  title: string;
-  levels: { level: ActivityLevel; targets: string[]; adaptations: string[] }[];
-  requirements: { space: string; materials: string[]; duration: number; noise: 'low'|'medium'|'high' };
-};
-
-export type EvidenceSignal = { nodeId: string; observation: string; confidence: number };
-export type Evidence = {
-  evidenceId: string;
-  childId: string;
-  activityId: string;
-  time: string;
-  signals: EvidenceSignal[];
-  notes?: string;
-  media?: string[];
-};
+export type ScheduleBlock = { blockId:string; title:string; assigned: { activityId:string; childIds:string[]; level:ActivityLevel }[] };
 
 type PlannerContextType = {
   children: Child[];
+  genome: GenomeNode[];
   activities: Activity[];
-  schedule: { blockId: string; title: string; assigned: { activityId: string; childIds: string[]; level: ActivityLevel }[] }[];
+  schedule: ScheduleBlock[];
   addEvidence: (ev: Evidence) => void;
-  getChild: (id: string) => Child | undefined;
-  setSchedule: (sched: PlannerContextType['schedule']) => void;
+  evidence: Evidence[];
+  setSchedule: (s: ScheduleBlock[]) => void;
+  getChildAchievements: (childId: string) => Achievement[];
+  saveAchievement: (childId: string, a: Achievement) => void;
 };
 
 const PlannerContext = React.createContext<PlannerContextType | null>(null);
 
-const sampleChildren: Child[] = [
-  { childId: 'c1', name: 'Aarav', dob: '2021-04-10', genome: [{ nodeId: 'NUM-1TO1-5', status:'emerging', pMastery:0.62 }]},
-  { childId: 'c2', name: 'Mira', dob: '2021-10-22', genome: [{ nodeId: 'LIT-SCRIBBLE', status:'secured', pMastery:0.91 }]},
-  { childId: 'c3', name: 'Zoya', dob: '2022-02-14', genome: [{ nodeId: 'EF-INHIBIT-34', status:'emerging', pMastery:0.44 }]}
-];
-
-const sampleActivities: Activity[] = [
-  { activityId:'act_tower_01', title:'Build a Tower to 8', levels:[
-      { level:'foundational', targets:['FM-STACK-16','NUM-COUNT-30'], adaptations:['bigger blocks','teacher model first']},
-      { level:'core', targets:['NUM-1TO1-5'], adaptations:['standard blocks']},
-      { level:'stretch', targets:['NUM-COMPARE-SET','EF-INHIBIT-34'], adaptations:['timer challenge','describe plan first']}
-    ], requirements:{ space:'floor', materials:['blocks'], duration:10, noise:'medium' } },
-  { activityId:'act_soundmatch_01', title:'Sound & Match', levels:[
-      { level:'foundational', targets:['COMM-LISTEN','LIT-SCRIBBLE'], adaptations:['fewer cards','model sound clearly']},
-      { level:'core', targets:['LIT-LETTER-10','COMM-VOCAB'], adaptations:['mix 6 cards','child says sound']},
-      { level:'stretch', targets:['LIT-SOUNDS-5','COMM-SEQUENCE'], adaptations:['initial sound sort','tell mini-story']}
-    ], requirements:{ space:'table', materials:['picture cards'], duration:10, noise:'low' } }
-];
-
-const defaultSchedule: PlannerContextType['schedule'] = [
+const defaultSchedule: ScheduleBlock[] = [
   { blockId:'arrival', title:'Arrival', assigned:[] },
-  { blockId:'centers', title:'Centers', assigned:[
-      { activityId:'act_tower_01', childIds:['c1','c3'], level:'core' },
-      { activityId:'act_soundmatch_01', childIds:['c2'], level:'stretch' }
-    ]},
+  { blockId:'centers', title:'Centers', assigned:[] },
   { blockId:'circle', title:'Circle Time', assigned:[] },
   { blockId:'outdoor', title:'Outdoor', assigned:[] },
   { blockId:'closing', title:'Closing', assigned:[] }
 ];
 
-export function PlannerProvider({children: kids}:{children: React.ReactNode}){
-  const [childrenState] = React.useState<Child[]>(sampleChildren);
-  const [activitiesState] = React.useState<Activity[]>(sampleActivities);
-  const [schedule, setSchedule] = React.useState(defaultSchedule);
-  const addEvidence = (ev: Evidence) => {
-    console.log('Evidence added', ev);
-    // In a real app, push to queue/IndexedDB and trigger genome update.
-  };
-  const getChild = (id:string)=>childrenState.find(c=>c.childId===id);
-  return <PlannerContext.Provider value={{children:childrenState, activities:activitiesState, schedule, setSchedule, addEvidence, getChild}}>{kids}</PlannerContext.Provider>
-}
+export function PlannerProvider({children}:{children: React.ReactNode}){
+  const [kids, setKids] = React.useState<Child[]>([]);
+  const [genome, setGenome] = React.useState<GenomeNode[]>([]);
+  const [activities, setActivities] = React.useState<Activity[]>([]);
+  const [schedule, setSchedule] = React.useState<ScheduleBlock[]>(loadSchedule() || defaultSchedule);
+  const [evidence, setEvidence] = React.useState<Evidence[]>(listEvidence());
+  const [baseAchieved, setBaseAchieved] = React.useState<AchievementsByChild>({});
+  const [overlayAchieved, setOverlayAchieved] = React.useState<AchievementsByChild>(listAchievementsOverlay());
 
-export function usePlanner(){
-  const ctx = React.useContext(PlannerContext);
-  if(!ctx) throw new Error('PlannerContext missing');
-  return ctx;
+  React.useEffect(()=>{ (async()=>{
+    // Load children + achievements
+    const { children: ckids, achieved } = await loadChildrenAndAchievements();
+    setKids(ckids || []);
+    setBaseAchieved(achieved || {});
+
+    // Load genome and init index for recommendations
+    try {
+      const g = await loadGenome();
+      setGenome(g?.nodes || []);
+      initGenomeIndex(g as any);
+    } catch (e) {
+      // non-fatal for planner views; recommender will throw if used before init
+      // eslint-disable-next-line no-console
+      console.warn('Genome load failed (planner will still work):', e);
+    }
+
+    // Load activities (array)
+    const acts = await loadActivities();
+    setActivities(acts || []);
+  })(); },[]);
+
+  const addEvidence = (ev: Evidence)=>{ saveEvidence(ev); setEvidence(listEvidence()); };
+
+  React.useEffect(()=>{ saveSchedule(schedule); }, [schedule]);
+
+  const getChildAchievements = (childId: string): Achievement[] => {
+    const base = baseAchieved?.[childId] || [];
+    const overlay = overlayAchieved?.[childId] || [];
+    return [...base, ...overlay];
+  };
+
+  const saveAchievement = (childId: string, a: Achievement) => {
+    // Expand to include parents so hierarchy stays consistent
+    const ids = expandWithParents([a.nodeId]);
+    const current = listAchievementsOverlay();
+    const existing = new Set<string>((current[childId] || []).map(x => x.nodeId));
+    for (const id of ids) {
+      if (!existing.has(id)) svcSaveAchievement(childId, { nodeId: id, at: a.at });
+    }
+    setOverlayAchieved(listAchievementsOverlay());
+
+    // Write per-child levels for the visualizer to ensure immediate consistency
+    try {
+      const base = (baseAchieved?.[childId] || []).map(x => x.nodeId);
+      const overlay = (listAchievementsOverlay()?.[childId] || []).map(x => x.nodeId);
+      const levels = computeLevelsFromAchievements([...base, ...overlay]);
+      localStorage.setItem(`planner.child.${childId}.levels`, JSON.stringify(levels));
+    } catch {}
+  };
+
+  return (
+    <PlannerContext.Provider value={{children:kids, genome, activities, schedule, setSchedule, addEvidence, evidence, getChildAchievements, saveAchievement}}>
+      {children}
+    </PlannerContext.Provider>
+  )
 }
+export function usePlanner(){ const ctx = React.useContext(PlannerContext); if(!ctx) throw new Error('PlannerContext missing'); return ctx; }

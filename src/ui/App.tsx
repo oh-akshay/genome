@@ -2,8 +2,22 @@ import React, { useEffect, useMemo, useState } from "react";
 import { loadActivities, loadDomainOrder, loadDomains, loadGenome, loadIcons } from "../dataLoader";
 import { ActivitiesDoc, Genome, Node } from "../types";
 import TreeCanvas from "./TreeCanvas";
+import RecommendedLibrary from "./RecommendedLibrary";
+import BaselineModal from "./BaselineModal";
 
 export default function App() {
+  const [activeChildId, setActiveChildId] = useState<string | null>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('child');
+    } catch { return null }
+  });
+  const initialFocusId = useMemo(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('focus');
+    } catch { return null }
+  }, []);
   const [genome, setGenome] = useState<Genome | null>(null);
   const [activities, setActivities] = useState<ActivitiesDoc | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -23,6 +37,8 @@ export default function App() {
   const [planExpanded, setPlanExpanded] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [searchOpen, setSearchOpen] = useState(false);
+  const [showBaseline, setShowBaseline] = useState(false);
+  const [childList, setChildList] = useState<Array<{ id:string; name:string; dob?:string }>>([]);
 
   useEffect(() => {
     (async () => {
@@ -47,6 +63,69 @@ export default function App() {
     })();
   }, []);
 
+  // Load children metadata for dropdown; fallback to localStorage keys
+  useEffect(() => {
+    (async () => {
+      try {
+        const resp = await fetch('/data/metadata/children.json');
+        if (resp.ok) {
+          const j = await resp.json();
+          const arr = Array.isArray(j?.children) ? j.children : [];
+          setChildList(arr.map((c:any) => ({ id: c.childId, name: c.name || c.childId, dob: c.dob })));
+          return;
+        }
+      } catch {}
+      try {
+        const found: Record<string, true> = {};
+        for (let i=0; i<localStorage.length; i++){
+          const k = localStorage.key(i) || '';
+          const m = k.match(/^planner\.child\.(.+)\.levels$/);
+          if (m) found[decodeURIComponent(m[1])] = true;
+        }
+        const list = Object.keys(found).map(id => ({ id, name: id }));
+        setChildList(list);
+      } catch {}
+    })();
+  }, []);
+
+  // Accept initial focus from URL param to deep-link into a node
+  useEffect(() => {
+    if (initialFocusId) {
+      setFocusId(initialFocusId);
+      setSelectedId(initialFocusId);
+    }
+  }, [initialFocusId]);
+
+  // Merge achievements overlay for active child into levels/completion
+  useEffect(() => {
+    function mergeOverlay(){
+      try {
+        if (!genome || !activeChildId) return;
+        const raw = localStorage.getItem('planner.achieved.v1');
+        if (!raw) return;
+        const byChild = JSON.parse(raw || '{}') || {};
+        const list: Array<{nodeId:string}> = byChild[activeChildId] || [];
+        if (!Array.isArray(list)) return;
+        const byId: Record<string, Node> = Object.fromEntries(genome.nodes.map(n=>[n.id, n]));
+        const addWithParents = (id:string, out:Set<string>) => {
+          let cur: Node | undefined = byId[id];
+          while (cur) { out.add(cur.id); cur = cur.parentId ? byId[cur.parentId] : undefined; }
+        };
+        const expanded = new Set<string>();
+        list.forEach(a => a?.nodeId && addWithParents(a.nodeId, expanded));
+        setChildLevels(prev => {
+          const next = { ...prev };
+          expanded.forEach(id => { next[id] = Math.max(next[id] || 0, 3); });
+          return next;
+        });
+      } catch {}
+    }
+    mergeOverlay();
+    function onStorage(e: StorageEvent){ if (e.key === 'planner.achieved.v1') mergeOverlay(); }
+    window.addEventListener('storage', onStorage);
+    return ()=> window.removeEventListener('storage', onStorage);
+  }, [genome, activeChildId]);
+
   // load/save completion state
   useEffect(() => {
     try {
@@ -63,16 +142,34 @@ export default function App() {
   // load/save child levels, age, and plan
   useEffect(() => {
     try {
-      const lv = localStorage.getItem("childLevels");
-      if (lv) setChildLevels(JSON.parse(lv));
-      const ag = localStorage.getItem("childAge");
-      if (ag) setChildAge(parseInt(ag) || 12);
+      // Prefer per-child state if a child is specified
+      if (activeChildId) {
+        const lv = localStorage.getItem(`planner.child.${activeChildId}.levels`);
+        if (lv) setChildLevels(JSON.parse(lv));
+        const ag = localStorage.getItem(`planner.child.${activeChildId}.ageMonths`);
+        if (ag) setChildAge(parseInt(ag) || 12);
+      } else {
+        const lv = localStorage.getItem("childLevels");
+        if (lv) setChildLevels(JSON.parse(lv));
+        const ag = localStorage.getItem("childAge");
+        if (ag) setChildAge(parseInt(ag) || 12);
+      }
       const pl = localStorage.getItem("sessionPlan");
       if (pl) setPlanItems(JSON.parse(pl));
     } catch {}
-  }, []);
-  useEffect(() => { try { localStorage.setItem("childLevels", JSON.stringify(childLevels)); } catch {} }, [childLevels]);
-  useEffect(() => { try { localStorage.setItem("childAge", String(childAge)); } catch {} }, [childAge]);
+  }, [activeChildId]);
+  useEffect(() => {
+    try {
+      if (activeChildId) localStorage.setItem(`planner.child.${activeChildId}.levels`, JSON.stringify(childLevels));
+      else localStorage.setItem("childLevels", JSON.stringify(childLevels));
+    } catch {}
+  }, [childLevels, activeChildId]);
+  useEffect(() => {
+    try {
+      if (activeChildId) localStorage.setItem(`planner.child.${activeChildId}.ageMonths`, String(childAge));
+      else localStorage.setItem("childAge", String(childAge));
+    } catch {}
+  }, [childAge, activeChildId]);
   useEffect(() => { try { localStorage.setItem("sessionPlan", JSON.stringify(planItems)); } catch {} }, [planItems]);
 
   const selectedNode: Node | null = useMemo(() => {
@@ -80,10 +177,7 @@ export default function App() {
     return genome.nodes.find((n) => n.id === selectedId) || null;
   }, [genome, selectedId]);
 
-  // Clear one-shot focus after any selection change to avoid sticky autofocus
-  useEffect(() => {
-    if (focusId) setFocusId(null);
-  }, [selectedId]);
+  // Keep focus active to ensure ancestors expand and camera centers reliably
 
   // derive completed set from explicit completes + levels >=2
   const computedCompleted = useMemo(() => {
@@ -112,23 +206,31 @@ export default function App() {
     return true
   }
   const nextMilestones: Node[] = useMemo(() => {
-    if (!genome) return []
-    const byId: Record<string, Node> = Object.fromEntries(
-      genome.nodes.map((n) => [n.id, n])
-    )
-    return genome.nodes.filter(n => {
-      if (completed.has(n.id)) return false
-      const parent = n.parentId ? byId[n.parentId] : undefined
-      const parentIsCluster = parent && !parent.ageBand
-      const parentOk = n.parentId==null || levelOf(n.parentId)>=2 || parentIsCluster
-      if (!parentOk) return false
-      return gatesAllow(n)
-    }).sort((a,b)=>{
-      const as = a.ageBand?.typicalStart ?? 999
-      const bs = b.ageBand?.typicalStart ?? 999
-      return as - bs || a.name.localeCompare(b.name)
-    })
-  }, [genome, completed])
+    if (!genome) return [];
+    const byParent: Record<string, Node[]> = {};
+    genome.nodes.forEach(n => { const k = n.parentId || ''; (byParent[k] ||= []).push(n); });
+    const frontier = new Set<string>();
+    // Unachieved immediate children of all achieved nodes
+    computedCompleted.forEach(id => {
+      const kids = byParent[id] || [];
+      kids.forEach(k => { if (!computedCompleted.has(k.id)) frontier.add(k.id); });
+    });
+    const list = Array.from(frontier).map(id => genome.nodes.find(n => n.id === id)!).filter(Boolean) as Node[];
+    return list.sort((a,b)=>{
+      const as = a.ageBand?.typicalStart ?? 0;
+      const bs = b.ageBand?.typicalStart ?? 0;
+      const ae = a.ageBand?.typicalEnd ?? Number.POSITIVE_INFINITY;
+      const be = b.ageBand?.typicalEnd ?? Number.POSITIVE_INFINITY;
+      return (as - bs) || (ae - be) || a.name.localeCompare(b.name);
+    });
+  }, [genome, computedCompleted])
+
+  const frontierIds = useMemo(
+    () => (nextMilestones || []).map(n => n.id),
+    [nextMilestones]
+  );
+
+  // latest achieved by branch removed per request
 
   // Age-relevant milestones for rapid assessment
   const ageRelevant: Node[] = useMemo(() => {
@@ -150,7 +252,7 @@ export default function App() {
     if (!q) return [] as Node[];
     const arr = genome.nodes.filter(n => n.name.toLowerCase().includes(q));
     return arr
-      .sort((a,b)=> (a.ageBand?.typicalStart ?? 999) - (b.ageBand?.typicalStart ?? 999) || a.name.localeCompare(b.name))
+      .sort((a,b)=> (a.ageBand?.typicalStart ?? 0) - (b.ageBand?.typicalStart ?? 0) || a.name.localeCompare(b.name))
       .slice(0,10);
   }, [genome, searchQuery]);
 
@@ -256,9 +358,28 @@ export default function App() {
           )}
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, gap: 8 }}>
-          <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowPlan(true)}>Plan</button>
-          <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer' }} onClick={() => setShowLegend(true)}>Legend</button>
+          <div style={{ display:'grid', gap:8, marginBottom:8 }}>
+            <div style={{ display:'flex', gap:8 }}>
+              <label style={{ flex:1 }}>
+                <span style={{ fontSize:12, color:'#6b7280' }}>Child</span>
+                <select value={activeChildId || ''} onChange={e => {
+                  const id = e.target.value || null;
+                  setActiveChildId(id);
+                  try {
+                    const url = new URL(window.location.href);
+                    if (id) url.searchParams.set('child', id); else url.searchParams.delete('child');
+                    window.history.replaceState({}, '', url.toString());
+                  } catch {}
+                }} style={{ width:'100%', padding:'6px 8px', border:'1px solid #e5e7eb', borderRadius:8 }}>
+                  <option value="">(none)</option>
+                  {childList.map(c => (<option key={c.id} value={c.id}>{c.name}</option>))}
+                </select>
+              </label>
+            <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', alignSelf:'end' }} onClick={() => setShowPlan(true)}>Plan</button>
+            <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', alignSelf:'end' }} onClick={() => setShowBaseline(true)}>Evaluate</button>
+            <button className="btn" style={{ background: '#111827', color: '#fff', border: 0, borderRadius: 8, padding: '6px 10px', cursor: 'pointer', alignSelf:'end' }} onClick={() => setShowLegend(true)}>Legend</button>
+          </div>
+          {/* Latest achieved by branch intentionally removed */}
         </div>
         
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 10, background: "#fff", marginBottom: 12 }}>
@@ -267,8 +388,8 @@ export default function App() {
             <div style={{ color: '#6b7280', fontSize: 13 }}>No items yet. Mark something complete to unlock next steps.</div>
           ) : (
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
-              {nextMilestones.slice(0,6).map(n => (
-                <li key={n.id} style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 8, background: '#f8fafc', cursor: 'pointer' }} onClick={() => setSelectedId(n.id)}>
+          {nextMilestones.slice(0,6).map(n => (
+            <li key={n.id} style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 8, background: '#f8fafc', cursor: 'pointer' }} onClick={() => { setSelectedId(n.id); setFocusId(n.id); }}>
                   <div style={{ fontWeight: 600, fontSize: 13 }}>
                     {n.name}
                     {n.ageBand && (
@@ -314,7 +435,7 @@ export default function App() {
             const parents: Node[] = []
             let cur: Node | undefined = selectedNode
             while (cur && cur.parentId){ cur = byId[cur.parentId]; if(cur) parents.unshift(cur) }
-            const children = genome.nodes.filter(n => n.parentId === selectedNode.id).sort((a,b)=> (a.ageBand?.typicalStart ?? 999) - (b.ageBand?.typicalStart ?? 999))
+            const children = genome.nodes.filter(n => n.parentId === selectedNode.id).sort((a,b)=> (a.ageBand?.typicalStart ?? 0) - (b.ageBand?.typicalStart ?? 0))
             return (
               <div style={{ marginTop: 10 }}>
                 {parents.length>0 && (
@@ -322,7 +443,7 @@ export default function App() {
                     <div style={{ fontWeight:600, fontSize:13, marginBottom:4 }}>Parents</div>
                     <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
                       {parents.map(p => (
-                        <span key={p.id} className="pill" style={{ background:'#f8fafc' }} onClick={()=> setSelectedId(p.id)}>{p.name}</span>
+                        <span key={p.id} className="pill" style={{ background:'#f8fafc' }} onClick={()=> { setSelectedId(p.id); setFocusId(p.id); }}>{p.name}</span>
                       ))}
                     </div>
                   </div>
@@ -335,7 +456,7 @@ export default function App() {
                     <ul style={{ listStyle:'none', padding:0, margin:0, display:'grid', gap:6 }}>
                       {children.map(c => (
                         <li key={c.id} style={{ display:'flex', alignItems:'center', gap:8 }}>
-                          <button className="btn" style={{ background:'#e5e7eb', color:'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> setSelectedId(c.id)}>Open</button>
+                          <button className="btn" style={{ background:'#e5e7eb', color:'#111', border:0, borderRadius:8, padding:'4px 8px', cursor:'pointer' }} onClick={()=> { setSelectedId(c.id); setFocusId(c.id); }}>Open</button>
                           <div style={{ fontSize:13, fontWeight:600, flex:1 }}>{c.name}</div>
                           {c.ageBand && (<span className="badge">{c.ageBand.typicalStart}–{c.ageBand.typicalEnd}m</span>)}
                         </li>
@@ -512,6 +633,29 @@ export default function App() {
               <div style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:10 }}>
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
                   <div style={{ fontWeight:700 }}>Today's Plan</div>
+                  {/* ---- Recommended Library (frontier-based) ---- */}
+                  <div style={{ border:'1px solid #e5e7eb', borderRadius:10, padding:10, marginTop:12 }}>
+                    <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                      <div style={{ fontWeight:700 }}>Recommended for Current Progress</div>
+                      <div style={{ fontSize:12, color:'#6b7280' }}>
+                        Based on your next milestones ({frontierIds.length})
+                      </div>
+                    </div>
+                    <div style={{ marginTop:8 }}>
+                      <RecommendedLibrary
+                        activities={activities}
+                        frontierIds={frontierIds}
+                        onAdd={(activityId, targetNodeId) => {
+                          // avoid duplicates (same node + activity)
+                          setPlanItems(prev =>
+                            prev.some(p => p.nodeId === targetNodeId && p.activityId === activityId)
+                              ? prev
+                              : [...prev, { nodeId: targetNodeId, activityId }]
+                          );
+                        }}
+                      />
+                    </div>
+                  </div>
                   {planItems.length>0 && (
                     <div style={{ display:'flex', gap:8 }}>
                       <button className="btn" style={{ background:'#111827', color:'#fff', border:0, borderRadius:8, padding:'6px 10px', cursor:'pointer' }} onClick={()=>{
@@ -586,6 +730,22 @@ export default function App() {
             </ul>
           </div>
         </div>
+      )}
+      {showBaseline && (
+        <BaselineModal
+          open={showBaseline}
+          onClose={()=>setShowBaseline(false)}
+          genome={genome}
+          childId={activeChildId}
+          icons={icons}
+          onSaved={()=>{
+            try{
+              if (!activeChildId) return;
+              const lv = localStorage.getItem(`planner.child.${activeChildId}.levels`);
+              if (lv) setChildLevels(JSON.parse(lv));
+            }catch{}
+          }}
+        />
       )}
     </div>
   );

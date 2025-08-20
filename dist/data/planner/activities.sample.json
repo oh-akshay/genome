@@ -1,0 +1,20 @@
+{
+  "activities":[
+    {"activityId":"act_tower_01","title":"Build a Tower to 8",
+     "levels":[
+       {"level":"foundational","targets":["FM-STACK-16","NUM-COUNT-30"],"adaptations":["bigger blocks","teacher model first"]},
+       {"level":"core","targets":["NUM-1TO1-5"],"adaptations":["standard blocks"]},
+       {"level":"stretch","targets":["NUM-COMPARE-SET","EF-INHIBIT-34"],"adaptations":["timer challenge","describe plan first"]}
+     ],
+     "requirements":{"space":"floor","materials":["blocks"],"duration":10,"noise":"medium"}
+    },
+    {"activityId":"act_soundmatch_01","title":"Sound & Match",
+     "levels":[
+       {"level":"foundational","targets":["COMM-LISTEN","LIT-SCRIBBLE"],"adaptations":["fewer cards","model sound clearly"]},
+       {"level":"core","targets":["LIT-LETTER-10","COMM-VOCAB"],"adaptations":["mix 6 cards","child says sound"]},
+       {"level":"stretch","targets":["LIT-SOUNDS-5","COMM-SEQUENCE"],"adaptations":["initial sound sort","tell mini-story"]}
+     ],
+     "requirements":{"space":"table","materials":["picture cards"],"duration":10,"noise":"low"}
+    }
+  ]
+}

@@ -9,6 +9,14 @@ export type AISuggestion = {
   notes: string[];
 };
 
+export type AISuggestionGroup = {
+  readiness: 'ready'|'stretch'|'scaffold';
+  focusTargets: { id:string; name:string }[];
+  notes: string[];
+  childIds: string[];
+  childNames: string[];
+};
+
 /**
  * Try to call an external LLM endpoint to contextualise an activity for a roster of children.
  * Configure via localStorage:
@@ -26,7 +34,7 @@ export async function contextualiseActivity({
   children: { childId:string; name:string }[];
   nodeById: Record<string, any>;
   getChildAchievements: (id:string)=>{nodeId:string}[];
-}): Promise<AISuggestion[]> {
+}): Promise<AISuggestionGroup[]> {
   const endpoint = safeGet('planner.ai.endpoint');
   const apikey = safeGet('planner.ai.apikey');
   const openaiKey = safeGet('planner.ai.openai.apikey');
@@ -58,7 +66,8 @@ export async function contextualiseActivity({
       if (r.ok) {
         const data = await r.json();
         // Expected shape: { suggestions: AISuggestion[] }
-        if (Array.isArray(data?.suggestions)) return data.suggestions as AISuggestion[];
+        if (Array.isArray(data?.groups)) return data.groups as AISuggestionGroup[];
+        if (Array.isArray(data?.suggestions)) return groupFromSuggestions(data.suggestions as AISuggestion[]);
       }
       // eslint-disable-next-line no-console
       console.warn('[ai] endpoint returned non-OK or unexpected payload:', r.status);
@@ -69,7 +78,7 @@ export async function contextualiseActivity({
   }
 
   // fallback
-  return rulesBasedFallback(activity, children, nodeById, getChildAchievements);
+  return rulesBasedFallbackGrouped(activity, children, nodeById, getChildAchievements);
 }
 
 function safeGet(k:string){ try{ return localStorage.getItem(k) || ''; }catch{ return ''; } }
@@ -151,14 +160,34 @@ function rulesBasedFallback(activity:any, children:{childId:string; name:string}
   });
 }
 
-async function callOpenAI(apiKey:string, model:string, payload:any): Promise<AISuggestion[]|null> {
+function rulesBasedFallbackGrouped(activity:any, children:{childId:string; name:string}[], nodeById:Record<string, any>, getChildAchievements:(id:string)=>{nodeId:string}[]): AISuggestionGroup[] {
+  const sugg = rulesBasedFallback(activity, children, nodeById, getChildAchievements);
+  return groupFromSuggestions(sugg);
+}
+
+function groupFromSuggestions(sugg: AISuggestion[]): AISuggestionGroup[] {
+  const groups: Record<string, AISuggestionGroup> = {};
+  for (const sg of sugg) {
+    const key = JSON.stringify({ r: sg.readiness, n: sg.notes });
+    if (!groups[key]) groups[key] = { readiness: sg.readiness, notes: sg.notes, focusTargets: sg.focusTargets, childIds: [], childNames: [] };
+    groups[key].childIds.push(sg.childId);
+    groups[key].childNames.push(sg.childName);
+    // Merge focus targets by id to avoid duplicates
+    const ftIds = new Set(groups[key].focusTargets.map(f => f.id));
+    for (const f of sg.focusTargets) if (!ftIds.has(f.id)) groups[key].focusTargets.push(f);
+  }
+  return Object.values(groups);
+}
+
+async function callOpenAI(apiKey:string, model:string, payload:any): Promise<AISuggestionGroup[]|null> {
   try{
     const sys = [
-      'You are an expert early childhood educator and special educator.',
-      'Given a base activity and a roster of children with genome states (achieved and frontier node IDs),',
-      'produce per-child, actionable facilitation guidance for today\'s session.',
-      'Output strict JSON with {"suggestions": [{"childId","childName","readiness","focusTargets":[{"id","name"}],"notes":["..."]}...]}.',
-      'Use readiness values: "ready" | "stretch" | "scaffold". Keep notes concise and teacher-friendly.',
+      'You are an expert early childhood and special educator.',
+      'Given a base classroom activity and a roster of children with genome states (achieved and frontier node IDs),',
+      'produce grouped, actionable facilitation guidance for today\'s session.',
+      'Cluster children who should receive materially identical instructions to reduce teacher load.',
+      'Output strict JSON with {"groups": [{"readiness","focusTargets":[{"id","name"}],"notes":["..."],"childIds":["..."],"childNames":["..."]}...]}.',
+      'Use readiness values: "ready" | "stretch" | "scaffold". Keep notes concrete and classroom-friendly.',
     ].join(' ');
 
     const body = {
@@ -188,14 +217,16 @@ async function callOpenAI(apiKey:string, model:string, payload:any): Promise<AIS
     if (typeof content === 'string' && content.trim().length > 0) {
       try {
         const obj = JSON.parse(content);
-        if (Array.isArray(obj?.suggestions)) return obj.suggestions as AISuggestion[];
+        if (Array.isArray(obj?.groups)) return obj.groups as AISuggestionGroup[];
+        if (Array.isArray(obj?.suggestions)) return groupFromSuggestions(obj.suggestions as AISuggestion[]);
       } catch {
         // try to extract from code fence if present
         const m = content.match(/```json\s*([\s\S]*?)```/i);
         if (m) {
           try {
             const obj2 = JSON.parse(m[1]);
-            if (Array.isArray(obj2?.suggestions)) return obj2.suggestions as AISuggestion[];
+            if (Array.isArray(obj2?.groups)) return obj2.groups as AISuggestionGroup[];
+            if (Array.isArray(obj2?.suggestions)) return groupFromSuggestions(obj2.suggestions as AISuggestion[]);
           } catch {}
         }
       }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePlanner } from '../state/PlannerStore';
 import { type GenomeIndex } from '../services/genomeEngine';
-import { contextualiseActivity, type AISuggestion } from '../services/ai';
+import { contextualiseActivity, type AISuggestionGroup } from '../services/ai';
 
 type CtxSuggestion = {
   childId: string;
@@ -33,7 +33,7 @@ export default function ContextualisedToday(){
   const idxRef = React.useRef<GenomeIndex|null>(null);
   React.useEffect(()=>{ try{ idxRef.current = getGenomeIndex(); }catch{ idxRef.current = null; } }, []);
 
-  const [aiCache, setAiCache] = React.useState<Record<string, AISuggestion[]>>({});
+  const [aiCache, setAiCache] = React.useState<Record<string, AISuggestionGroup[]>>({});
   const [aiLoading, setAiLoading] = React.useState<Record<string, boolean>>({});
 
   async function ensureAISuggestions(activityId:string, activity:any){
@@ -87,18 +87,13 @@ export default function ContextualisedToday(){
               const title = a?.title || it.activityId;
               const actKey = a?.activityId || it.activityId || `${idx}:${i}`;
               React.useEffect(()=>{ ensureAISuggestions(actKey, a); }, [actKey, selectedDay, selectedAgeGroupId, children.length]);
-              const sugg = aiCache[actKey] || [];
-              // Group children with identical instructions (same readiness + notes)
-              type Group = { key:string; readiness:CtxSuggestion['readiness']; notes:string[]; childNames:string[]; childIds:string[]; focusNames:Set<string> };
-              const groups: Record<string, Group> = {};
-              for (const sg of sugg){
-                const k = JSON.stringify({ r: sg.readiness, n: sg.notes });
-                if (!groups[k]) groups[k] = { key:k, readiness: sg.readiness, notes: sg.notes, childNames:[], childIds:[], focusNames:new Set<string>() };
-                groups[k].childNames.push(sg.childName);
-                groups[k].childIds.push(sg.childId);
-                sg.focusTargets.forEach(ft => groups[k].focusNames.add(ft.name));
-              }
-              const grouped = Object.values(groups);
+              // Only render non-empty groups. Some AI providers may return
+              // placeholder groups for ready/stretch/scaffold even when no
+              // children fall into a bucket. Filter those out here.
+              const grouped = (aiCache[actKey] || []).filter(g =>
+                (Array.isArray((g as any).childIds) && (g as any).childIds.length > 0) ||
+                (Array.isArray((g as any).childNames) && (g as any).childNames.length > 0)
+              );
               return (
                 <div key={`${idx}:${i}`} style={{border:'1px solid #e5e7eb', borderRadius:12, padding:12, background:'#fff'}}>
                   <div style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
@@ -111,19 +106,19 @@ export default function ContextualisedToday(){
                     </div>
                   </div>
                   <div style={{marginTop:8, display:'grid', gap:8}}>
-                    {grouped.map(g => (
-                      <div key={g.key} style={{border:'1px solid #f1f5f9', borderRadius:10, padding:10, background:'#fbfdff'}}>
+                    {grouped.map((g, gi) => (
+                      <div key={gi} style={{border:'1px solid #f1f5f9', borderRadius:10, padding:10, background:'#fbfdff'}}>
                         <div style={{display:'flex', justifyContent:'space-between', alignItems:'baseline', gap:8}}>
                           <div style={{fontWeight:700, display:'flex', flexWrap:'wrap', gap:6}}>
-                            {g.childNames.map((nm, idx)=> (<span key={idx} style={{border:'1px solid #e5e7eb', borderRadius:999, padding:'2px 8px', fontSize:12, background:'#fff'}}>{nm}</span>))}
+                            {(g.childNames||[]).map((nm, idx)=> (<span key={idx} style={{border:'1px solid #e5e7eb', borderRadius:999, padding:'2px 8px', fontSize:12, background:'#fff'}}>{nm}</span>))}
                           </div>
                           <span style={{fontSize:12, color:'#6b7280'}}>({g.readiness})</span>
                         </div>
-                        {g.focusNames.size>0 && (
-                          <div style={{fontSize:12, color:'#334155', marginTop:6}}>Focus: {Array.from(g.focusNames).join(', ')}</div>
+                        {(g.focusTargets||[]).length>0 && (
+                          <div style={{fontSize:12, color:'#334155', marginTop:6}}>Focus: {(g.focusTargets||[]).map(f=>f.name).join(', ')}</div>
                         )}
                         <ul style={{margin:'6px 0 0 18px', fontSize:12, color:'#333'}}>
-                          {g.notes.map((n, j)=>(<li key={j}>{n}</li>))}
+                          {(g.notes||[]).map((n, j)=>(<li key={j}>{n}</li>))}
                         </ul>
                       </div>
                     ))}

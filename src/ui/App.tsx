@@ -39,6 +39,7 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [showBaseline, setShowBaseline] = useState(false);
   const [childList, setChildList] = useState<Array<{ id:string; name:string; dob?:string }>>([]);
+  const [milestoneTab, setMilestoneTab] = useState<'next'|'current'>('next');
 
   useEffect(() => {
     (async () => {
@@ -230,6 +231,27 @@ export default function App() {
     [nextMilestones]
   );
 
+  // Current abilities (Option 1: leaves-of-achieved)
+  const currentAbilities: Node[] = useMemo(() => {
+    if (!genome) return [];
+    const byParent: Record<string, Node[]> = {};
+    genome.nodes.forEach(n => { const k = n.parentId || ''; (byParent[k] ||= []).push(n); });
+    const latest: string[] = [];
+    computedCompleted.forEach(id => {
+      const kids = byParent[id] || [];
+      const anyAchievedChild = kids.some(k => computedCompleted.has(k.id));
+      if (!anyAchievedChild) latest.push(id);
+    });
+    const list = latest.map(id => genome.nodes.find(n => n.id === id)!).filter(Boolean) as Node[];
+    return list.sort((a,b)=>{
+      const da = domainOrder[a.domain || ''] ?? 999;
+      const db = domainOrder[b.domain || ''] ?? 999;
+      const as = a.ageBand?.typicalStart ?? 0;
+      const bs = b.ageBand?.typicalStart ?? 0;
+      return da - db || as - bs || a.name.localeCompare(b.name);
+    });
+  }, [genome, computedCompleted, domainOrder]);
+
   // latest achieved by branch removed per request
 
   // Age-relevant milestones for rapid assessment
@@ -383,38 +405,46 @@ export default function App() {
         </div>
         
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 10, background: "#fff", marginBottom: 12 }}>
-          <div style={{ fontWeight: 700, marginBottom: 6 }}>Next milestones</div>
-          {nextMilestones.length===0 ? (
-            <div style={{ color: '#6b7280', fontSize: 13 }}>No items yet. Mark something complete to unlock next steps.</div>
-          ) : (
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
-          {nextMilestones.slice(0,6).map(n => (
-            <li key={n.id} style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 8, background: '#f8fafc', cursor: 'pointer' }} onClick={() => { setSelectedId(n.id); setFocusId(n.id); }}>
-                  <div style={{ fontWeight: 600, fontSize: 13 }}>
-                    {n.name}
-                    {n.ageBand && (
-                      <span style={{ marginLeft: 6, fontSize: 12, color: '#6b7280' }}>
-                        ({n.ageBand.typicalStart}–{n.ageBand.typicalEnd}m)
-                      </span>
-                    )}
-                  </div>
-                  {activities?.activities && (() => {
-                    const acts = activities.activities.filter(a => a.links?.some(l => l.nodeId===n.id)).slice(0,2)
-                    if (acts.length===0) return null
-                    return (
-                      <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' }}>
-                        {acts.map(a => (
-                          <span key={a.id} style={{ fontSize: 12, background: '#eef2ff', color: '#3730a3', border: '1px solid #e0e7ff', borderRadius: 999, padding: '2px 8px' }}>
-                            {a.emoji ? a.emoji+' ' : ''}{a.title}
-                          </span>
-                        ))}
-                      </div>
-                    )
-                  })()}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom: 6 }}>
+            <div style={{ fontWeight: 700 }}>{milestoneTab==='next' ? 'Next milestones' : 'Current abilities'}</div>
+            <div style={{ display:'flex', gap:6 }}>
+              <button onClick={()=>setMilestoneTab('next')} style={{ border:'1px solid #e5e7eb', background: milestoneTab==='next' ? '#111827' : '#fff', color: milestoneTab==='next' ? '#fff' : '#111827', borderRadius:8, padding:'4px 8px', cursor:'pointer' }}>Next</button>
+              <button onClick={()=>setMilestoneTab('current')} style={{ border:'1px solid #e5e7eb', background: milestoneTab==='current' ? '#111827' : '#fff', color: milestoneTab==='current' ? '#fff' : '#111827', borderRadius:8, padding:'4px 8px', cursor:'pointer' }}>Current</button>
+            </div>
+          </div>
+          {(() => {
+            const list = milestoneTab==='next' ? nextMilestones : currentAbilities;
+            if (list.length===0) return (<div style={{ color: '#6b7280', fontSize: 13 }}>No items yet.</div>);
+            return (
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+                {list.slice(0,6).map(n => (
+                  <li key={n.id} style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 8, background: '#f8fafc', cursor: 'pointer' }} onClick={() => { setSelectedId(n.id); setFocusId(n.id); }}>
+                    <div style={{ fontWeight: 600, fontSize: 13 }}>
+                      {n.name}
+                      {n.ageBand && (
+                        <span style={{ marginLeft: 6, fontSize: 12, color: '#6b7280' }}>
+                          ({n.ageBand.typicalStart}–{n.ageBand.typicalEnd}m)
+                        </span>
+                      )}
+                    </div>
+                    {milestoneTab==='next' && activities?.activities && (() => {
+                      const acts = activities.activities.filter(a => a.links?.some(l => l.nodeId===n.id)).slice(0,2)
+                      if (acts.length===0) return null
+                      return (
+                        <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' }}>
+                          {acts.map(a => (
+                            <span key={a.id} style={{ fontSize: 12, background: '#eef2ff', color: '#3730a3', border: '1px solid #e0e7ff', borderRadius: 999, padding: '2px 8px' }}>
+                              {a.emoji ? a.emoji+' ' : ''}{a.title}
+                            </span>
+                          ))}
+                        </div>
+                      )
+                    })()}
+                  </li>
+                ))}
+              </ul>
+            );
+          })()}
         </div>
         <h3 style={{ margin: "8px 0" }}>
           {selectedNode ? selectedNode.name : "Select a milestone"}
@@ -471,7 +501,33 @@ export default function App() {
         {selectedNode && selectedNode.ageBand && (
           <div style={{ marginTop: 8 }}>
             <div style={{ fontSize: 13, color: '#374151', marginBottom: 4 }}>Current level: {Number(levelOf(selectedNode.id)).toFixed(1)}</div>
-            <input type="range" min={0} max={3} step={0.5} value={levelOf(selectedNode.id)} onChange={e => setChildLevels(prev => ({ ...prev, [selectedNode.id]: parseFloat(e.target.value) }))} />
+            <input
+              type="range"
+              min={0}
+              max={3}
+              step={0.5}
+              value={levelOf(selectedNode.id)}
+              onChange={e => {
+                const val = parseFloat(e.target.value);
+                setChildLevels(prev => {
+                  const next = { ...prev, [selectedNode.id]: val } as Record<string, number>;
+                  // If mastered (3), mark all parents mastered too (same as evaluation modal)
+                  if (val >= 3) {
+                    try {
+                      const byId: Record<string, Node> = Object.fromEntries(genome!.nodes.map(n => [n.id, n]));
+                      let cur: Node | undefined = selectedNode;
+                      while (cur && cur.parentId) {
+                        const p = byId[cur.parentId];
+                        if (!p) break;
+                        next[p.id] = 3;
+                        cur = p;
+                      }
+                    } catch {}
+                  }
+                  return next;
+                });
+              }}
+            />
             <div style={{ fontSize: 12, color: '#6b7280' }}>0 = not yet, 1 = emerging, 2 = consistent, 3 = mastered</div>
           </div>
         )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlannerProvider } from './state/PlannerStore';
-import Today from './views/Today';
-import { Plan } from './views/Plan';
+import { Today } from './views/Today';
+import Plan from './views/Plan';
 import TimetableView from './views/Timetable';
 import { Review } from './views/Review';
 import ContextualisedToday from './views/ContextualisedToday';

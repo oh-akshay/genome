@@ -123,6 +123,60 @@ export async function loadActivities(): Promise<Activity[]> {
   return arr as Activity[];
 }
 
+// --- Mind map / Environment / Materials loaders ---
+export type MindMapWeek = {
+  week: number;
+  focus: string;
+  subconcepts: { id: string; label: string; priority?: number }[];
+  primaryTags?: string[];
+  targetNodeIds?: string[];
+};
+export type MindMap = {
+  themeId: string;
+  ageGroup: 'toddlers'|'prenursery'|'nursery';
+  weeks: MindMapWeek[];
+};
+
+export type Environment = {
+  centreId: string;
+  zones: { id: string; label: string; capacity: number; allowedTags: string[] }[];
+  blockedMaterials?: string[];
+  notes?: string;
+};
+
+export type Materials = {
+  centreId: string;
+  materials: string[];
+  forbidden?: string[];
+};
+
+export async function loadMindMap(themeId: string, ageGroup: string): Promise<MindMap> {
+  // Map themeId/ageGroup to a file – customize mapping as you add more files.
+  const file = themeId === 'food_we_eat' && ageGroup === 'toddlers'
+    ? '/data/metadata/mindmap.food.toddlers.json'
+    : `/data/metadata/mindmap.${themeId}.${ageGroup}.json`;
+  const r = await fetch(file);
+  if (!r.ok) throw new Error(`Failed to load mindmap: ${file}`);
+  return r.json();
+}
+
+export async function loadEnvironment(centreId = 'centre_default'): Promise<Environment> {
+  const r = await fetch('/data/metadata/environment.tmpl.json');
+  if (!r.ok) throw new Error('Failed to load environment');
+  const env = await r.json();
+  // swap to requested centreId at runtime if you keep per-centre files
+  return { ...env, centreId };
+}
+
+export async function loadMaterials(centreId = 'centre_default'): Promise<Materials> {
+  const r = await fetch('/data/metadata/materials.tmpl.json');
+  if (!r.ok) throw new Error('Failed to load materials');
+  const m = await r.json();
+  return { ...m, centreId };
+}
+
+
+
 // --- Students + achievements from /data/metadata/children.json ---
 export async function loadChildrenAndAchievements(){
   const data = await tryJson('/data/metadata/children.json')
@@ -205,3 +259,5 @@ export function computeLevelsFromAchievements(ids: string[]): Record<string, num
   for (const id of all) levels[id] = 3; // mastered
   return levels;
 }
+
+

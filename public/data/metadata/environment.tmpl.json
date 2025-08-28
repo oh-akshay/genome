@@ -1,0 +1,12 @@
+{
+  "centreId": "centre_default",
+  "zones": [
+    { "id": "language_zone", "label": "Language & Numeracy", "capacity": 8, "allowedTags": ["language","early_numeracy","cognitive"] },
+    { "id": "art_music", "label": "Art / Music", "capacity": 10, "allowedTags": ["art","music","movement"] },
+    { "id": "sensory_table", "label": "Sensory Table", "capacity": 6, "allowedTags": ["sensory","practical_life"] },
+    { "id": "pretend_play", "label": "Pretend Play", "capacity": 10, "allowedTags": ["social","practical_life"] },
+    { "id": "meal_zone", "label": "Meal Zone", "capacity": 12, "allowedTags": ["practical_life","social"] }
+  ],
+  "blockedMaterials": [],
+  "notes": "Adjust capacities and tags as per the room."
+}

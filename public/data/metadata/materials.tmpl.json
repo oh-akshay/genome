@@ -1,0 +1,18 @@
+{
+  "centreId": "centre_default",
+  "materials": [
+    "plastic fruit set",
+    "toy vegetables",
+    "baskets",
+    "color mats (red,yellow)",
+    "textured items (orange,corn cob, apple)",
+    "scoops and wide bowls",
+    "dry pasta (large)",
+    "picture cards (fruit, veg, grains)",
+    "tokens / play money",
+    "puppet"
+  ],
+  "forbidden": [
+    "small grains (choking risk)"
+  ]
+}

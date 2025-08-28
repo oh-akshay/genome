@@ -1,0 +1,18 @@
+{
+  "themeId": "food_we_eat",
+  "ageGroup": "toddlers",
+  "weeks": [
+    {
+      "week": 1,
+      "focus": "Fruits & Veggies",
+      "subconcepts": [
+        { "id": "fruit_names", "label": "Names of common fruits", "priority": 1 },
+        { "id": "veg_names", "label": "Names of common vegetables", "priority": 1 },
+        { "id": "textures", "label": "Smooth vs bumpy", "priority": 2 },
+        { "id": "colors", "label": "Red vs yellow foods", "priority": 2 }
+      ],
+      "primaryTags": ["language", "cognitive", "sensory"],
+      "targetNodeIds": ["EX-WORDS-10-12", "COG-SORT-ONE-20", "SENS-FOOD-TEXTURE-09"]
+    }
+  ]
+}
